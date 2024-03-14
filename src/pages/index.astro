@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import { getServicesResume } from "../services/services";
+import Card from "../components/Card.astro";
+
+const servicesResume = await getServicesResume();
+---
+
+<Layout title="Welcome to Astro." description="Home de la pagina de D2B">
+	<main>
+		<section>
+			<div class="px-6 m-auto max-w-screen-xl pb-36 pt-52">
+				<h1 class="text-white text-5xl max-w-[25ch] mb-6 animate-fade-left">
+					Lorem ipsum dolor sit amet consectetur. Eu scelerisque sit elit tellus
+					luctus viverra accumsan.
+				</h1>
+				<p class="text-white max-w-[45ch] mb-14 animate-fade-left">
+					Lorem ipsum dolor sit amet consectetur. Eu scelerisque sit elit tellus
+					luctus viverra accumsan. Lorem ipsum dolor sit amet consectetur.
+				</p>
+				<button
+					class="px-6 py-3 text-white rounded-lg bg-accent animate-fade animate-delay-500"
+				>
+					Botón principal</button
+				>
+			</div>
+		</section>
+
+		<section>
+			<div class="px-6 py-2 m-auto max-w-screen-xl">
+				<h1 class="text-center text-7xl text-neutral-800">
+					Bienvenidos al nuevo <span class="font-bold text-primary">D2B</span>
+				</h1>
+			</div>
+		</section>
+
+		<section>
+			<div class="flex justify-center px-6 py-6 m-auto max-w-screen-xl gap-6">
+				{
+					servicesResume.map(({ nombre_del_servicio, slug }) => {
+						return (
+							<Card title={nombre_del_servicio} href={`/servicio/${slug}`} />
+						);
+					})
+				}
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	section:nth-child(1) {
+		background:
+			radial-gradient(75% 120px at 50% 105%, #fff 75%, transparent 76%),
+			radial-gradient(
+				circle at 70% 70%,
+				rgb(147, 53, 141, 0.9),
+				rgb(147, 53, 141, 0) 60%
+			),
+			radial-gradient(
+					circle at 20% 100%,
+					rgb(91, 104, 223, 0.4),
+					rgb(91, 104, 223, 0) 40%
+				)
+				#1e1e1e;
+	}
+</style>

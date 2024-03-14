@@ -1,0 +1,26 @@
+{
+  "name": "2024-web-d2b",
+  "type": "module",
+  "version": "0.0.1",
+  "eslintConfig": {
+    "extends": "standard"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^8.2.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.2.4",
+    "scrollreveal": "^4.0.9",
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-animated": "^1.0.1"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0"
+  }
+}

@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const res = await fetch("https://admin.d2b.cl/d2badmin/items/2024_servicios");
+const json = await res.json();
+const data = json.data;
+
+const bajada1 = data[0].bajada_1;
+---
+
+<Layout
+	title="Welcome to Astro."
+	description="Pagina de serivicios de la empresa D2B"
+>
+	<main class="flex flex-col items-center px-6 pt-24">
+		<h1 class="mb-2 text-2xl text-center">
+			Servicio <span class="text-red-800">INDEX</span>
+		</h1>
+		<div class="[&>p]:text-neutral-900 [&>p]:mb-4" set:html={bajada1} />
+	</main>
+</Layout>

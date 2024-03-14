@@ -1,0 +1,153 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import { getServiceInfoBySlug } from "../../services/services";
+
+const { serviceSlug } = Astro.params;
+
+const { nombre_del_servicio, bajada_1, bajada_2, frase_1, cta_1 } =
+	await getServiceInfoBySlug({
+		serviceSlug,
+	});
+---
+
+<Layout title=`${nombre_del_servicio} | D2B` description={bajada_1}>
+	<main>
+		<div class="px-6 pt-32 m-auto max-w-screen-xl">
+			<a class="flex gap-2 w-fit" href="/"
+				><svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					fill="none"
+					stroke="currentColor"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					><path stroke="none" d="M0 0h24v24H0z"></path><path
+						d="M5 12h14M5 12l6 6M5 12l6-6"></path></svg
+				>Volver</a
+			>
+		</div>
+
+		<section>
+			<div class="px-6 py-12 m-auto max-w-screen-xl">
+				<h1 class="mb-2 text-2xl">
+					Servicio de {nombre_del_servicio}
+				</h1>
+			</div>
+		</section>
+
+		<section>
+			<div
+				class="px-6 py-12 m-auto grid max-w-screen-xl grid-cols-1 gap-12 md:grid-cols-2"
+			>
+				<div class="animate-fade-right animate-duration-[3000ms]">
+					<div class="*:mb-4" set:html={bajada_1} />
+					<span class="block mb-4 font-semibold text-primary">
+						"{frase_1}"
+					</span>
+				</div>
+
+				<div
+					class="grid w-full place-items-center bg-neutral-200 aspect-video animate-fade-left animate-duration-[3000ms]"
+				>
+					<Image
+						width="100"
+						height="100"
+						src="/grid.png"
+						alt="Imagen temporal"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div
+				class="px-6 py-12 m-auto grid max-w-screen-xl grid-cols-1 gap-12 md:grid-cols-2"
+			>
+				<div
+					class="grid w-full place-items-center bg-neutral-200 aspect-video animate-fade-right animate-duration-[3000ms]"
+				>
+					<Image
+						width="100"
+						height="100"
+						src="/grid.png"
+						alt="Imagen temporal"
+					/>
+				</div>
+
+				<div class="animate-fade-left animate-duration-[3000ms]">
+					<div class="*:mb-4" set:html={bajada_2} />
+					<button class="px-6 py-3 text-white rounded-lg bg-accent"
+						>{cta_1}</button
+					>
+				</div>
+			</div>
+		</section>
+
+		<section class="reveal-right">
+			<div
+				class="px-6 py-12 m-auto grid max-w-screen-xl grid-cols-1 gap-12 md:grid-cols-2"
+			>
+				<div class="w-full grid place-items-center bg-neutral-200 aspect-video">
+					<Image
+						width="100"
+						height="100"
+						src="/grid.png"
+						alt="Imagen temporal"
+					/>
+				</div>
+
+				<div>
+					<div class="*:mb-4" set:html={bajada_2} />
+					<button class="px-6 py-3 text-white rounded-lg bg-accent"
+						>{cta_1}</button
+					>
+				</div>
+			</div>
+		</section>
+
+		<section class="reveal-left">
+			<div
+				class="px-6 py-12 m-auto grid max-w-screen-xl grid-cols-1 gap-12 md:grid-cols-2"
+			>
+				<div class="w-full grid place-items-center bg-neutral-200 aspect-video">
+					<Image
+						width="100"
+						height="100"
+						src="/grid.png"
+						alt="Imagen temporal"
+					/>
+				</div>
+
+				<div>
+					<div class="*:mb-4" set:html={bajada_2} />
+					<button class="px-6 py-3 text-white rounded-lg bg-accent"
+						>{cta_1}</button
+					>
+				</div>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<script>
+	import scrollReveal from "scrollreveal";
+	scrollReveal({ reset: true }).reveal(".reveal-left", {
+		delay: 100,
+		duration: 3000,
+		origin: "left",
+		opacity: 0,
+		distance: "100px",
+		viewFactor: 0.2,
+	});
+	scrollReveal({ reset: true }).reveal(".reveal-right", {
+		delay: 100,
+		duration: 3000,
+		origin: "right",
+		opacity: 0,
+		distance: "100px",
+		viewFactor: 0.2,
+	});
+</script>
