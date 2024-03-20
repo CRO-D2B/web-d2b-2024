@@ -22,8 +22,8 @@ const servicesResume = await getServicesResume();
 				<button
 					class="px-6 py-3 text-white rounded-lg bg-accent animate-fade animate-delay-500"
 				>
-					Botón principal</button
-				>
+					Botón principal
+				</button>
 			</div>
 		</section>
 
@@ -38,9 +38,9 @@ const servicesResume = await getServicesResume();
 		<section>
 			<div class="flex justify-center px-6 py-6 m-auto max-w-screen-xl gap-6">
 				{
-					servicesResume.map(({ nombre_del_servicio, slug }) => {
+					servicesResume.map(({ nombre_del_servicio = "", slug = "" }) => {
 						return (
-							<Card title={nombre_del_servicio} href={`/servicio/${slug}`} />
+							<Card title={nombre_del_servicio} href={`/servicios/${slug}`} />
 						);
 					})
 				}

@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 const menuItems = [
   "Inicio",
   "Servicios",
@@ -12,10 +14,10 @@ const menuItems = [
 
 <header class="fixed z-10 w-full backdrop-blur-sm bg-black/30">
   <section
-    class="relative flex items-center justify-between max-w-screen-xl px-6 py-4 m-auto"
+    class="flex items-center justify-between px-6 py-4 m-auto max-w-screen-xl"
   >
     <a href="/">
-      <img src="/D2B-logo.svg" alt="Logo de D2B" />
+      <Image width={48} height={48} src="/D2B-logo.svg" alt="Logo de D2B" />
     </a>
 
     <menu-button>
@@ -61,10 +63,10 @@ const menuItems = [
     constructor() {
       super();
 
-      const heartButton = this.querySelector("button");
+      const menuButton = this.querySelector("button") as HTMLButtonElement;
 
-      heartButton.addEventListener("click", () => {
-        heartButton.classList.toggle("active");
+      menuButton.addEventListener("click", () => {
+        menuButton.classList.toggle("active");
       });
     }
   }
@@ -75,12 +77,24 @@ const menuItems = [
   .scroll {
     height: 4px;
     width: 0;
-    background: red;
     animation: timeline linear both;
     animation-timeline: scroll(root);
   }
   @keyframes timeline {
+    0% {
+      background-color: red;
+    }
+    25% {
+      background-color: cyan;
+    }
+    50% {
+      background-color: yellow;
+    }
+    75% {
+      background-color: blue;
+    }
     to {
+      background-color: lightgreen;
       width: 100%;
     }
   }

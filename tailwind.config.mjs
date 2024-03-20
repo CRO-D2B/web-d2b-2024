@@ -10,5 +10,41 @@ export default {
       }
     }
   },
-  plugins: [require('tailwindcss-animated')]
+  plugins: [
+    require('tailwindcss-animated'),
+    function ({ addComponents }) {
+      addComponents({
+        '.scroll-reveal-left': {
+          animation: 'reveal-left linear both',
+          'animation-timeline': 'view()',
+          'animation-range': 'entry 20% cover 40%'
+        },
+        '@keyframes reveal-left': {
+          from: {
+            opacity: 0,
+            translate: '-100px'
+          },
+          to: {
+            opacity: 1,
+            translate: 0
+          }
+        },
+
+        '.scroll-reveal-right': {
+          animation: 'reveal-right linear both',
+          'animation-timeline': 'view()',
+          'animation-range': 'entry 20% cover 40%'
+        },
+        '@keyframes reveal-right': {
+          from: {
+            opacity: 0,
+            translate: '100px'
+          },
+          to: {
+            opacity: 1,
+            translate: 0
+          }
+        }
+      })
+    }]
 }
