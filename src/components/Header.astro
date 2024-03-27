@@ -22,18 +22,18 @@ const menuItems = [
 
     <menu-button class="relative">
       <button
-        id="menu-button"
+        id="open-close-button"
         class="group peer relative z-10 h-6 w-9 *:bg-white *:absolute *:left-0 *:w-full *:rounded-full *:h-1 *:duration-200"
         type="button"
       >
         <span
-          class="top-0 group-[.active]:rotate-45 group-[.active]:top-1/2 group-[.active]:bg-neutral-600 group-[.active]:-translate-y-1/2 group-hover:bg-neutral-400"
+          class="top-0 group-[.active]:rotate-45 group-[.active]:top-1/2 group-[.active]:bg-neutral-600 group-[.active]:-translate-y-1/2 group-hover:bg-neutral-200"
         ></span>
         <span
-          class="-translate-y-1/2 top-1/2 group-[.active]:opacity-0 group-hover:bg-neutral-400"
+          class="-translate-y-1/2 top-1/2 group-[.active]:opacity-0 group-hover:bg-neutral-200"
         ></span>
         <span
-          class="bottom-0 group-[.active]:-rotate-45 group-[.active]:top-1/2 group-[.active]:bg-neutral-600 group-[.active]:-translate-y-1/2 group-hover:bg-neutral-400"
+          class="bottom-0 group-[.active]:-rotate-45 group-[.active]:top-1/2 group-[.active]:bg-neutral-600 group-[.active]:-translate-y-1/2 group-hover:bg-neutral-200"
         ></span>
       </button>
 
@@ -63,10 +63,21 @@ const menuItems = [
     constructor() {
       super();
 
-      const menuButton = this.querySelector("button") as HTMLButtonElement;
+      const openCloseButton = this.querySelector(
+        "#open-close-button",
+      ) as HTMLButtonElement;
 
-      menuButton.addEventListener("click", () => {
-        menuButton.classList.toggle("active");
+      openCloseButton.addEventListener("click", () => {
+        openCloseButton.classList.toggle("active");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!this.contains(e.target as HTMLElement))
+          openCloseButton.classList.remove("active");
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") openCloseButton.classList.remove("active");
       });
     }
   }
