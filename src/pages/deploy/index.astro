@@ -2,7 +2,7 @@
 import { exec } from "node:child_process";
 
 exec(
-  "sh src/pages/deploy/_deploy.sh",
+  "sh src/pages/deploy/deploy.sh",
   (error, stdout: string, stderr: string) => {
     console.log(stdout);
     console.log(stderr);
