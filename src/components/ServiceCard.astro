@@ -8,9 +8,11 @@ const { href, title } = Astro.props;
 ---
 
 <a href={href}>
-	<article class="w-full p-8 rounded-lg h-52 bg-accent/20 max-w-52">
+	<article class="w-full p-8 rounded-lg h-52 bg-accent/20 max-w-52 min-w-48">
 		<header>
-			<h2 class="text-center">{title}</h2>
+			<h2 class="text-center">
+				{title}
+			</h2>
 		</header>
 	</article>
 </a>

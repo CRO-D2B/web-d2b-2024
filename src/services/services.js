@@ -7,15 +7,13 @@ export const getServicesInfo = async () => {
 }
 
 export const getServiceInfoBySlug = async ({ serviceSlug }) => {
-  const res = await fetch(`${API_URL}/items/2024_servicios?slug=${serviceSlug}`)
+  const res = await fetch(`${API_URL}/items/2024_servicios?filter[slug]=${serviceSlug}`)
   const { data } = await res.json()
   return data[0]
 }
 
 export const getServicesResume = async () => {
-  const res = await fetch(
-    `${API_URL}/items/2024_servicios?fields[]=nombre_del_servicio&fields[]=slug`
-  )
+  const res = await fetch(`${API_URL}/items/2024_servicios?fields[]=nombre_del_servicio&fields[]=slug`)
   const { data } = await res.json()
   return data
 }

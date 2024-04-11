@@ -1,0 +1,143 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+const formFields = {
+  name: "name",
+  email: "email",
+  phoneNumber: "phone-number",
+  company: "company",
+  message: "message",
+};
+---
+
+<Layout title=`${"Contacto"} | D2B` description={"Págica de contacto"}>
+  <main>
+    <div class="max-w-screen-xl px-6 pt-32 m-auto">
+      <a class="flex gap-2 w-fit" href="/"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          ><path stroke="none" d="M0 0h24v24H0z"></path><path
+            d="M5 12h14M5 12l6 6M5 12l6-6"></path></svg
+        >Volver</a
+      >
+    </div>
+
+    <section>
+      <div class="grid max-w-screen-xl grid-cols-2 gap-8 px-6 py-12 m-auto">
+        <div>
+          <h1 class="mb-2 text-3xl">Contacto</h1>
+          <p class="mb-6">
+            Lorem ipsum dolor sit amet consectetur. Eu scelerisque sit elit
+            tellus luctus viverra accumsan. Lorem ipsum dolor sit amet
+            consectetur. Eu scelerisque sit elit tellus luctus viverra accumsan.
+          </p>
+
+          <form>
+            <div class="flex gap-4">
+              <label class="flex-grow basis-0" for={formFields.name}
+                >Nombre completo
+                <input
+                  type="text"
+                  id={formFields.name}
+                  name={formFields.name}
+                  class="w-full p-2 mb-4 border rounded-md border-neutral-300"
+                />
+              </label>
+
+              <label class="flex-grow basis-0" for={formFields.email}
+                >Correo
+                <input
+                  type="email"
+                  id={formFields.email}
+                  name={formFields.email}
+                  class="w-full p-2 mb-4 border rounded-md border-neutral-300"
+                />
+              </label>
+            </div>
+
+            <div class="flex gap-4">
+              <label class="flex-grow basis-0" for={formFields.phoneNumber}
+                >Teléfono
+                <input
+                  type="tel"
+                  id={formFields.phoneNumber}
+                  name={formFields.phoneNumber}
+                  class="w-full p-2 mb-4 border rounded-md border-neutral-300"
+                />
+              </label>
+
+              <label class="flex-grow basis-0" for={formFields.company}
+                >Empresa
+                <input
+                  type="text"
+                  id={formFields.company}
+                  name={formFields.company}
+                  class="w-full p-2 mb-4 border rounded-md border-neutral-300"
+                />
+              </label>
+            </div>
+
+            <label for={formFields.message}>Mensaje</label>
+            <textarea
+              id={formFields.message}
+              name={formFields.message}
+              rows="4"
+              class="w-full p-2 mb-4 border rounded-md border-neutral-300"
+            ></textarea>
+
+            <input
+              type="submit"
+              value="Enviar"
+              class="w-full p-2 text-white rounded-md cursor-pointer bg-accent"
+            />
+          </form>
+        </div>
+
+        <aside
+          class="grid w-full place-items-center bg-neutral-200 aspect-video"
+        >
+          <Image
+            width="100"
+            height="100"
+            src="/grid.png"
+            alt="Imagen temporal"
+          />
+        </aside>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  const form = document.querySelector("form") as HTMLFormElement;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData);
+
+    // sendEmail(data);
+
+    // function sendEmail(data: Object) {
+    //   import { Resend } from "resend";
+
+    //   const resend = new Resend("re_VAVcc1uc_JUmnBQF6Y5yTYLsHRcji5EDg");
+
+    //   resend.emails.send({
+    //     from: "onboarding@resend.dev",
+    //     to: "fabianmorag0405@gmail.com",
+    //     subject: "Hello World",
+    //     html: "<p>Congrats on sending your <strong>first email</strong>!</p>",
+    //   });
+    // }
+  });
+</script>

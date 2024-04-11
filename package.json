@@ -19,6 +19,8 @@
     "@astrojs/node": "^8.2.0",
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.2.4",
+    "resend": "^3.2.0",
+    "scrollreveal": "^4.0.9",
     "tailwindcss": "^3.4.1",
     "tailwindcss-animated": "^1.0.1"
   },

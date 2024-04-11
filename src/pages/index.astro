@@ -1,15 +1,19 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { getServicesResume } from "../services/services";
-import Card from "../components/Card.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getServicesResume } from "@/services/services";
+import ServiceCard from "@/components/ServiceCard.astro";
 
-const servicesResume = await getServicesResume();
+const servicesResume = await getServicesResume().then((res) =>
+	res.map(({ nombre_del_servicio, slug }) => {
+		return { serviceName: nombre_del_servicio, slug: slug };
+	}),
+);
 ---
 
 <Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
 	<main>
 		<section>
-			<div class="px-6 m-auto max-w-screen-xl pb-36 pt-52">
+			<div class="max-w-screen-xl px-6 m-auto pb-36 pt-52">
 				<h1 class="text-white text-5xl max-w-[25ch] mb-6 animate-fade-left">
 					Lorem ipsum dolor sit amet consectetur. Eu scelerisque sit elit tellus
 					luctus viverra accumsan.
@@ -27,7 +31,7 @@ const servicesResume = await getServicesResume();
 		</section>
 
 		<section>
-			<div class="px-6 py-2 m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl px-6 py-2 m-auto">
 				<h1 class="text-center text-7xl text-neutral-800">
 					Bienvenidos al nuevo <span class="font-bold text-primary">D2B</span>
 				</h1>
@@ -35,13 +39,11 @@ const servicesResume = await getServicesResume();
 		</section>
 
 		<section>
-			<div class="flex justify-center px-6 py-6 m-auto max-w-screen-xl gap-6">
+			<div class="flex justify-center max-w-screen-xl gap-6 px-6 py-6 m-auto">
 				{
-					servicesResume.map(({ nombre_del_servicio = "", slug = "" }) => {
-						return (
-							<Card title={nombre_del_servicio} href={`/servicios/${slug}`} />
-						);
-					})
+					servicesResume.map(({ serviceName, slug }) => (
+						<ServiceCard title={serviceName} href={`/servicios/${slug}`} />
+					))
 				}
 			</div>
 		</section>
