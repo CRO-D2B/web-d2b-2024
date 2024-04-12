@@ -5,7 +5,7 @@ import { Image } from "astro:assets";
 const formFields = {
   name: "name",
   email: "email",
-  phoneNumber: "phone-number",
+  phoneNumber: "number",
   company: "company",
   message: "message",
 };
@@ -121,8 +121,6 @@ const formFields = {
 </Layout>
 
 <script>
-  import { Resend } from "resend";
-
   const form = document.querySelector("form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -130,17 +128,17 @@ const formFields = {
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    sendEmail(data);
+    console.log(form.dataset.name);
+
+    fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.text())
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
   });
-
-  function sendEmail(data: Object) {
-    const resend = new Resend(import.meta.env.RESEND_API_KEY);
-
-    resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: "fabianmorag0405@gmail.com",
-      subject: "Hello World",
-      html: "<p>Congrats on sending your <strong>first email</strong>!</p>",
-    });
-  }
 </script>
