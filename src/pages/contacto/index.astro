@@ -134,8 +134,11 @@ const formFields = {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    });
-    // .then((res) => res.text())
+    }).then((res) =>
+      res.ok
+        ? console.log("Email enviado")
+        : console.error("Error al enviar email"),
+    );
     // .then((res) => console.log(res))
     // .catch((err) => console.error(err));
   });

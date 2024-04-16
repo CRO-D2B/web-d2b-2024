@@ -8,7 +8,7 @@ export const POST = async ({ params, request }) => {
 
   const resend = new Resend(import.meta.env.RESEND_API_KEY)
   try {
-    resend.emails.send({
+    await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: 'fabianmorag0405@gmail.com',
       subject: `${devTag}Hello World`,
@@ -19,9 +19,10 @@ export const POST = async ({ params, request }) => {
         <strong>Empresa</strong>: ${company} <br>
         <strong>Comentario</strong>: ${message} <br>
       `
-    }).then(res => console.log(res)).catch(err => console.log(err))
-    return new Response('OK', { status: 200, headers: { 'Content-Type': 'text/plain' } })
-  } catch (e) {
-    return new Response('Error', { status: 500, headers: { 'Content-Type': 'text/plain' } })
+    })
+  } catch (error) {
+    console.error(error)
+    return new Response('Error sending email', { status: 500 })
   }
+  return new Response('OK', { status: 200 })
 }
