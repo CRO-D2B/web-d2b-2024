@@ -3,7 +3,7 @@ import { isProd } from '@/lib/utils'
 
 const deployFile = isProd ? '_prod-deploy.sh' : '_dev-deploy.sh'
 
-export const GET = async ({ params, request }) => {
+export const POST = async ({ params, request }) => {
   if (request.url.includes('github')) { return new Response('Not valid client', { status: 500 }) }
 
   exec(
