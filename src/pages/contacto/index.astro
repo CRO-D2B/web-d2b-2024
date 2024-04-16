@@ -128,17 +128,15 @@ const formFields = {
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    console.log(form.dataset.name);
-
     fetch("/api/send-email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    })
-      .then((res) => res.text())
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+    });
+    // .then((res) => res.text())
+    // .then((res) => console.log(res))
+    // .catch((err) => console.error(err));
   });
 </script>
