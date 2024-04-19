@@ -1,9 +1,16 @@
 ---
-import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
+import BlogCard from "@/components/BlogCard.astro";
 import { getPosts } from "@/services/blog";
 
 const posts = await getPosts();
+
+const getCaption = (post) => {
+  const { caption } = post.yoast_head_json.schema["@graph"].filter(
+    (item) => item["@type"] === "ImageObject",
+  )[0];
+  return caption;
+};
 ---
 
 <Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
@@ -11,7 +18,7 @@ const posts = await getPosts();
     <section
       class="bg-no-repeat bg-cover bg-[url('https://d2b.cl/blog/wp-content/uploads/2021/11/prueba2.jpg')]"
     >
-      <div class="max-w-screen-xl px-6 m-auto pb-36 pt-52">
+      <div class="max-w-screen-xl m-auto px-6 pb-36 pt-52">
         <h1 class="text-white text-5xl max-w-[25ch] mb-12">Blog de D2B</h1>
         <p class="text-white text-lg mb-6">
           Infórmate de todo lo que sucede en el Marketing Digital.
@@ -32,26 +39,20 @@ const posts = await getPosts();
     </section>
 
     <section>
-      <div
-        class="max-w-screen-xl px-6 m-auto pb-36 pt-52 grid grid-cols-3 gap-4"
-      >
+      <div class="max-w-screen-xl m-auto px-6 py-36 grid grid-cols-3 gap-12">
         {
           posts.map((post) => (
-            <a href="#">
-              <article class="w-full p-4 h-full rounded-lg bg-accent/20 overflow-hidden">
-                <header>
-                  <Image
-                    class="w-full h-80 object-cover"
-                    height={300}
-                    width={300}
-                    src={post.yoast_head_json.og_image[0].url}
-                    alt={`Imagen de ${post.title.rendered}`}
-                  />
-
-                  <h2 class="text-center">{post.title.rendered}</h2>
-                </header>
-              </article>
-            </a>
+            <BlogCard
+              title={post.title.rendered}
+              excerpt={post.excerpt.rendered}
+              img={post.yoast_head_json.og_image[0].url}
+              caption={getCaption(post) ?? `Imagen de ${post.title.rendered}`}
+              author={post.yoast_head_json.author}
+              readingTime={
+                post.yoast_head_json.twitter_misc["Tiempo de lectura"]
+              }
+              slug={post.slug}
+            />
           ))
         }
       </div>

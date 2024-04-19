@@ -14,6 +14,12 @@ export default {
     require('tailwindcss-animated'),
     function ({ addComponents }) {
       addComponents({
+        '.text-clamp-4': {
+          display: '-webkit-box',
+          '-webkit-line-clamp': '4',
+          '-webkit-box-orient': 'vertical',
+          overflow: 'hidden'
+        },
         '.scroll-reveal-left': {
           animation: 'reveal-left linear both',
           'animation-timeline': 'view()',
