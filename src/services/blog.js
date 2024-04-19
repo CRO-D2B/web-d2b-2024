@@ -11,7 +11,7 @@ export const getCategories = async () => {
 
 export const getPosts = async () => {
   const endpoint = '/posts'
-  const params = 'per_page=6'
+  const params = '_fields=title,excerpt,slug,yoast_head_json&per_page=6'
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()
