@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
-const menuItems = ["Inicio", "Servicios", "Casos", "Blog", "Contacto"];
+import { menuItems } from "@/constants";
+
+const neededItems = ["Inicio", "Servicios", "Casos", "Blog", "Contacto"];
 ---
 
 <footer class="w-full">
@@ -23,11 +25,13 @@ const menuItems = ["Inicio", "Servicios", "Casos", "Blog", "Contacto"];
         <h6 class="text-sm">Mapa del sitio</h6>
         <nav class="flex flex-col">
           {
-            menuItems.map((item) => (
-              <a class={`py-1 text-right hover:text-accent`} href="#">
-                {item}
-              </a>
-            ))
+            menuItems
+              .filter(({ name }) => neededItems.includes(name))
+              .map(({ name, slug }) => (
+                <a class={`py-1 text-right hover:text-accent`} href={slug}>
+                  {name}
+                </a>
+              ))
           }
         </nav>
       </div>
