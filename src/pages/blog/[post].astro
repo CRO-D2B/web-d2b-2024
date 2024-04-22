@@ -1,5 +1,10 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { getPostsBySlug } from "@/services/blog";
+
+const { post: postSlug } = Astro.params;
+
+const post = await getPostsBySlug({ postSlug });
 ---
 
 <Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
@@ -28,9 +33,14 @@ import Layout from "@/layouts/Layout.astro";
     </section>
 
     <section>
-      <div class="max-w-screen-xl px-6 m-auto pb-36 pt-52">
-        <h1>hola</h1>
+      <div class="max-w-[50ch] px-6 m-auto pt-12 pb-6 text-center">
+        <h1 class="text-3xl">{post[0].title.rendered}</h1>
+        <small>{post[0].yoast_head_json.author}</small>
       </div>
+      <div
+        class="max-w-[75ch] px-6 m-auto pb-36 [&>p]:mb-4 [&>h5]:mb-4 [&>h6]:mb-4 [&>h6]:text-lg [&>ul]:mb-4 [&>ul]:list-disc [&>ul]:ml-8 [&>h5]:text-xl [&>img]:w-full [&>*>a]:underline [&>*>a]:text-primary [&>blockquote]:bg-gray-100 [&>blockquote]:p-4 [&>blockquote]:border-l-4 [&>blockquote]:border-accent [&>blockquote]:text-gray-800 [&>blockquote]:font-serif [&>blockquote]:text-lg [&>blockquote]:mb-4"
+        set:html={post[0].content.rendered}
+      />
     </section>
   </main>
 </Layout>

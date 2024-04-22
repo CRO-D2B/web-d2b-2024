@@ -17,6 +17,14 @@ export const getPosts = async () => {
   const data = await res.json()
   return data
 }
+export const getPostsBySlug = async ({ postSlug }) => {
+  const endpoint = '/posts'
+  const params = `slug=${postSlug}`
+  const url = buildUrl({ endpoint, params })
+  const res = await fetch(url)
+  const data = await res.json()
+  return data
+}
 
 const buildUrl = ({ endpoint, params = '' }) => {
   return `${WP_API_URL}${endpoint}?${params}`
