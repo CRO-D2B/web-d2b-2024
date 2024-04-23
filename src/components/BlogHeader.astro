@@ -18,7 +18,7 @@ const menuItems = await getCategories();
         menuItems.map(({ name, slug }) => (
           <a
             class="px-6 py-3 text-md font-medium text-white hover:text-accent"
-            href={`/blog/${slug}`}
+            href={`/blog/categoria/${slug}`}
           >
             {name}
           </a>
