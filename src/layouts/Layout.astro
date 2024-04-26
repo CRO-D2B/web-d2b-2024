@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import "@fontsource-variable/open-sans";
 import MainHeader from "@/components/MainHeader.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
 import Footer from "@/components/Footer.astro";
@@ -33,7 +34,7 @@ const isBlog = pathname.startsWith("/blog");
 		<Footer />
 		<style is:global>
 			html {
-				font-family: system-ui, sans-serif;
+				font-family: "Open Sans Variable", sans-serif;
 				scroll-behavior: smooth;
 			}
 			body {
