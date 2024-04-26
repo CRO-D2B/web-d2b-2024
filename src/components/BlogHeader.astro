@@ -5,9 +5,9 @@ import { getCategories } from "@/services/blog";
 const menuItems = await getCategories();
 ---
 
-<header class="fixed z-10 w-full backdrop-blur-sm bg-black/40">
+<header class="fixed z-10 px-6 w-full backdrop-blur-sm bg-black/40">
   <section
-    class="flex items-center justify-between max-w-screen-xl px-6 py-4 m-auto"
+    class="flex items-center justify-between max-w-screen-xl py-4 m-auto"
   >
     <a href="/blog">
       <Image width={52} height={52} src="/D2B-logo.svg" alt="Logo de D2B" />
@@ -15,10 +15,11 @@ const menuItems = await getCategories();
 
     <nav class="flex gap-4">
       {
-        menuItems.map(({ name, slug }) => (
+        menuItems.map(({ id, name, slug }) => (
           <a
             class="px-6 py-3 text-md font-medium text-white hover:text-accent"
             href={`/blog/categoria/${slug}`}
+            data-category-id={id}
           >
             {name}
           </a>
@@ -47,32 +48,6 @@ const menuItems = await getCategories();
   </section>
   <div class="scroll"></div>
 </header>
-
-<script>
-  class MenuButton extends HTMLElement {
-    constructor() {
-      super();
-
-      const openCloseButton = this.querySelector(
-        "#open-close-button",
-      ) as HTMLButtonElement;
-
-      openCloseButton.addEventListener("click", () => {
-        openCloseButton.classList.toggle("active");
-      });
-
-      document.addEventListener("click", (e) => {
-        if (!this.contains(e.target as HTMLElement))
-          openCloseButton.classList.remove("active");
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") openCloseButton.classList.remove("active");
-      });
-    }
-  }
-  customElements.define("menu-button", MenuButton);
-</script>
 
 <style>
   .scroll {

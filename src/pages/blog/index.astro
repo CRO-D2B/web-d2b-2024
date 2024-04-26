@@ -2,28 +2,22 @@
 import Layout from "@/layouts/Layout.astro";
 import BlogCard from "@/components/BlogCard.astro";
 import { getPosts } from "@/services/blog";
+import { getCaption, getImgUrl } from "@/lib/utils";
 
 const posts = await getPosts();
-
-const getCaption = (post) => {
-  const { caption } = post.yoast_head_json.schema["@graph"].filter(
-    (item) => item["@type"] === "ImageObject",
-  )[0];
-  return caption;
-};
 ---
 
 <Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
   <main>
     <section
-      class="bg-no-repeat bg-cover bg-[url('https://d2b.cl/blog/wp-content/uploads/2021/11/prueba2.jpg')]"
+      class="px-6 bg-no-repeat bg-cover bg-[url('https://d2b.cl/blog/wp-content/uploads/2021/11/prueba2.jpg')]"
     >
-      <div class="max-w-screen-xl m-auto px-6 pb-36 pt-52">
+      <div class="max-w-screen-xl m-auto pb-36 pt-52">
         <h1 class="text-white text-5xl max-w-[25ch] mb-12">Blog de D2B</h1>
-        <p class="text-white text-lg mb-6">
+        <p class="mb-6 text-lg text-white">
           Infórmate de todo lo que sucede en el Marketing Digital.
         </p>
-        <p class="text-white text-lg mb-6">
+        <p class="mb-6 text-lg text-white">
           Te damos la bienvenida al Blog de D2B, donde nuestros profesionales
           comparten artículos relacionados al marketing digital,
           recomendaciones, pensamientos y lecciones aprendidas sobre diversos
@@ -38,14 +32,14 @@ const getCaption = (post) => {
       </div>
     </section>
 
-    <section>
-      <div class="max-w-screen-xl m-auto px-6 py-36 grid grid-cols-3 gap-12">
+    <section class="px-6">
+      <div class="grid max-w-screen-xl grid-cols-3 gap-12 m-auto py-36">
         {
           posts.map((post) => (
             <BlogCard
               title={post.title.rendered}
               excerpt={post.excerpt.rendered}
-              img={post.yoast_head_json.og_image[0].url}
+              img={getImgUrl(post)}
               caption={getCaption(post) ?? `Imagen de ${post.title.rendered}`}
               author={post.yoast_head_json.author}
               readingTime={
