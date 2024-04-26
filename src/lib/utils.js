@@ -14,3 +14,9 @@ export const getImgUrl = (post) => {
   )[0]
   return url ?? post.yoast_head_json.og_image[0].url
 }
+export const getAutor = (json) => {
+  const autor = json.schema['@graph'].filter(
+    (item) => item['@type'] === 'Person'
+  )[0]
+  return autor
+}

@@ -1,10 +1,14 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import { getPostBySlug } from "@/services/blog";
+import { getAutor } from "@/lib/utils";
 
 const { post: postSlug } = Astro.params;
 
 const { title, yoast_head_json, content } = await getPostBySlug({ postSlug });
+
+const autor = getAutor(yoast_head_json);
 ---
 
 <Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
@@ -15,14 +19,22 @@ const { title, yoast_head_json, content } = await getPostBySlug({ postSlug });
         <small>{yoast_head_json.author}</small>
       </div>
       <div
-        class="max-w-[75ch] m-auto pb-12 [&_p]:mb-4 [&_h5]:mb-4 [&_h5]:text-xl [&_h6]:mb-4 [&_h6]:text-xl [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:ml-8 [&_img]:w-full [&_a]:underline [&_a]:text-primary [&_a:hover]:text-accent [&_blockquote]:bg-gray-100 [&_blockquote]:p-4 [&_blockquote]:border-l-4 [&_blockquote]:border-accent [&_blockquote]:text-gray-800 [&_blockquote]:font-serif [&_blockquote]:text-lg [&_blockquote]:mb-4 [&_div]:max-w-[75ch]"
+        class="max-w-[75ch] m-auto [&_p]:mb-4 [&_h5]:mb-4 [&_h5]:text-xl [&_h6]:mb-4 [&_h6]:text-xl [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:ml-8 [&_img]:w-full [&_a]:underline [&_a]:text-primary [&_a:hover]:text-accent [&_blockquote]:bg-gray-100 [&_blockquote]:p-4 [&_blockquote]:border-l-4 [&_blockquote]:border-accent [&_blockquote]:text-gray-800 [&_blockquote]:font-serif [&_blockquote]:text-lg [&_blockquote]:mb-4 [&_div]:max-w-[75ch]"
         set:html={content.rendered}
       />
     </section>
 
     <section class="px-6">
       <div class="max-w-[75ch] x m-auto py-12 border-t border-neutral-500">
-        <h1>ToDo: autor</h1>
+        <Image
+          class="object-cover rounded-full"
+          height={100}
+          width={100}
+          src={autor.image.url}
+          alt={`Imagen de ${autor.name}`}
+        />
+        <h3 class="text-lg text-accent">{autor.name}</h3>
+        <p>{autor.description}</p>
       </div>
     </section>
   </main>
