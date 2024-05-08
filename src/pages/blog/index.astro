@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import BlogCard from "@/components/BlogCard.astro";
 import { getPosts } from "@/services/blog";
-import { getCaption, getImgUrl } from "@/lib/utils";
+import { wordCounter } from "@/lib/utils";
 
 const posts = await getPosts();
 ---
@@ -39,11 +39,11 @@ const posts = await getPosts();
             <BlogCard
               title={post.title.rendered}
               excerpt={post.excerpt.rendered}
-              img={getImgUrl(post)}
-              caption={getCaption(post) ?? `Imagen de ${post.title.rendered}`}
-              author={post.yoast_head_json.author}
+              img={post._embedded["wp:featuredmedia"][0].link}
+              caption={post._embedded["wp:featuredmedia"][0].alt_text}
+              author={post._embedded.author[0].name}
               readingTime={
-                post.yoast_head_json.twitter_misc["Tiempo de lectura"]
+                Math.ceil(wordCounter(post.content.rendered) / 200) + " minutos"
               }
               slug={post.slug}
             />

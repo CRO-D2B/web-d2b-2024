@@ -20,7 +20,7 @@ export const getCategoryInfo = async ({ categorySlug }) => {
 
 export const getPosts = async () => {
   const endpoint = '/posts'
-  const params = '_fields=title,excerpt,slug,yoast_head_json&per_page=6'
+  const params = '_embed&_fields=title,excerpt,content,slug,_links&per_page=6'
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()
@@ -28,7 +28,7 @@ export const getPosts = async () => {
 }
 export const getPostBySlug = async ({ postSlug }) => {
   const endpoint = '/posts'
-  const params = `slug=${postSlug}`
+  const params = `_embed&slug=${postSlug}`
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()
@@ -36,7 +36,7 @@ export const getPostBySlug = async ({ postSlug }) => {
 }
 export const getPostsByCategoryId = async ({ id }) => {
   const endpoint = '/posts'
-  const params = `categories=${id}&per_page=100`
+  const params = `_embed&categories=${id}&per_page=100`
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()

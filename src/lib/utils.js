@@ -20,3 +20,7 @@ export const getAutor = (json) => {
   )[0]
   return autor
 }
+
+export const wordCounter = (text) => {
+  return text.split(' ').length
+}
