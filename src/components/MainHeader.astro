@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import { menuItems } from "@/constants";
 ---
 
-<header class="fixed z-10 px-6 w-full backdrop-blur-sm bg-black/30">
+<header class="scroll-dark-bg fixed z-10 px-6 w-full backdrop-blur-sm">
   <section
     class="flex items-center justify-between max-w-screen-xl py-4 m-auto"
   >
@@ -11,10 +11,10 @@ import { menuItems } from "@/constants";
       <Image width={52} height={52} src="/D2B-logo.svg" alt="Logo de D2B" />
     </a>
 
-    <menu-button class="relative">
+    <div class="relative">
       <button
         id="open-close-button"
-        class="group peer relative z-10 h-6 w-9 *:bg-white *:absolute *:left-0 *:w-full *:rounded-full *:h-1 *:duration-200"
+        class="active group peer relative z-10 h-6 w-9 *:bg-white *:absolute *:left-0 *:w-full *:rounded-full *:h-1 *:duration-200"
         type="button"
       >
         <span
@@ -34,7 +34,7 @@ import { menuItems } from "@/constants";
         {
           menuItems.map(({ name, slug }, index) => (
             <a
-              class={`px-6 py-3 opacity-0 text-neutral-600 hover:text-accent hover:bg-accent/10 fade`}
+              class={`px-6 py-3 opacity-0 text-neutral-700 hover:text-accent hover:bg-accent/10 fade`}
               href={slug}
               style={`animation-delay: ${200 + 100 * index}ms`}
             >
@@ -43,61 +43,34 @@ import { menuItems } from "@/constants";
           ))
         }
       </nav>
-    </menu-button>
+    </div>
   </section>
-
-  <div class="scroll absolute left-0"></div>
 </header>
 
 <script>
-  class MenuButton extends HTMLElement {
-    constructor() {
-      super();
+  const openCloseButton = document.querySelector("#open-close-button");
 
-      const openCloseButton = this.querySelector(
-        "#open-close-button",
-      ) as HTMLButtonElement;
+  openCloseButton.addEventListener("click", () => {
+    openCloseButton.classList.toggle("active");
+  });
 
-      openCloseButton.addEventListener("click", () => {
-        openCloseButton.classList.toggle("active");
-      });
-
-      document.addEventListener("click", (e) => {
-        if (!this.contains(e.target as HTMLElement))
-          openCloseButton.classList.remove("active");
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") openCloseButton.classList.remove("active");
-      });
-    }
-  }
-  customElements.define("menu-button", MenuButton);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") openCloseButton.classList.remove("active");
+  });
 </script>
 
 <style>
-  .scroll {
-    height: 4px;
-    width: 0;
-    animation: timeline linear both;
+  .scroll-dark-bg {
+    animation: graying linear both;
     animation-timeline: scroll(root);
+    animation-range: 0 400px;
   }
-  @keyframes timeline {
-    0% {
-      background-color: red;
-    }
-    25% {
-      background-color: cyan;
-    }
-    50% {
-      background-color: yellow;
-    }
-    75% {
-      background-color: blue;
+  @keyframes graying {
+    from {
+      background: rgba(0, 0, 0, 0);
     }
     to {
-      background-color: lightgreen;
-      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
     }
   }
 
