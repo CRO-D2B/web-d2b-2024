@@ -5,7 +5,7 @@ import { menuItems } from "@/constants";
 
 <header class="fixed z-10 w-full px-6 scroll-dark-bg backdrop-blur-sm">
   <section
-    class="flex items-center justify-between py-4 m-auto max-w-screen-xl"
+    class="flex items-center justify-between max-w-screen-xl py-4 m-auto"
   >
     <a href="/">
       <Image width={52} height={52} src="/D2B-logo.svg" alt="Logo de D2B" />
@@ -14,7 +14,7 @@ import { menuItems } from "@/constants";
     <div class="relative">
       <button
         id="open-close-button"
-        class="active group peer relative z-10 h-6 w-9 *:bg-white *:absolute *:left-0 *:w-full *:rounded-full *:h-1 *:duration-200"
+        class="group peer relative z-10 h-6 w-9 *:bg-white *:absolute *:left-0 *:w-full *:rounded-full *:h-1 *:duration-200"
         type="button"
       >
         <span
@@ -43,7 +43,7 @@ import { menuItems } from "@/constants";
           ))
         }
         <div class="h-1 mx-20 my-6 rounded-full bg-primary"></div>
-        <div class="flex px-20 gap-2">
+        <div class="flex gap-2 px-20">
           <a
             class="inline p-3 overflow-hidden rounded-xl text-primary bg-primary/10 hover:bg-primary/20"
             href="#"
