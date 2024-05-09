@@ -13,7 +13,7 @@ const servicesResume = await getServicesResume().then((res) =>
 <Layout title="D2B Inteligencia Digital" description="Blog de la pagina de D2B">
 	<main>
 		<section class="px-6">
-			<div class="max-w-screen-xl m-auto pb-36 pt-52">
+			<div class="m-auto max-w-screen-xl pb-36 pt-52">
 				<h1 class="text-white text-5xl max-w-[25ch] mb-6 animate-fade-left">
 					Lorem ipsum dolor sit amet consectetur. Eu scelerisque sit elit tellus
 					luctus viverra accumsan.
@@ -31,7 +31,7 @@ const servicesResume = await getServicesResume().then((res) =>
 		</section>
 
 		<section class="px-6">
-			<div class="max-w-screen-xl py-2 m-auto">
+			<div class="py-2 m-auto max-w-screen-xl">
 				<h1 class="text-center text-7xl text-neutral-800">
 					Bienvenidos al nuevo <span class="font-bold text-primary">D2B</span>
 				</h1>
@@ -39,7 +39,7 @@ const servicesResume = await getServicesResume().then((res) =>
 		</section>
 
 		<section class="px-6">
-			<div class="flex justify-center max-w-screen-xl gap-6 py-6 m-auto">
+			<div class="flex justify-center py-6 m-auto max-w-screen-xl gap-6">
 				{
 					servicesResume.map(({ serviceName, slug }) => (
 						<ServiceCard title={serviceName} href={`/servicios/${slug}`} />

@@ -5,9 +5,9 @@ import { getCategories } from "@/services/blog";
 const menuItems = await getCategories();
 ---
 
-<header class="fixed z-10 px-6 w-full backdrop-blur-sm bg-black/40">
+<header class="fixed z-10 w-full px-6 backdrop-blur-sm bg-black/40">
   <section
-    class="flex items-center justify-between max-w-screen-xl py-4 m-auto"
+    class="flex items-center justify-between py-4 m-auto max-w-screen-xl"
   >
     <a href="/blog">
       <Image width={52} height={52} src="/D2B-logo.svg" alt="Logo de D2B" />
@@ -17,7 +17,7 @@ const menuItems = await getCategories();
       {
         menuItems.map(({ id, name, slug }) => (
           <a
-            class="px-6 py-3 text-md font-medium text-white hover:text-accent"
+            class="px-6 py-3 font-medium text-white text-md hover:text-accent"
             href={`/blog/categoria/${slug}`}
             data-category-id={id}
           >
@@ -46,7 +46,7 @@ const menuItems = await getCategories();
       </svg>
     </button>
   </section>
-  <div class="scroll absolute left-0"></div>
+  <div class="absolute left-0 scroll"></div>
 </header>
 
 <style>

@@ -6,10 +6,10 @@ const { title, excerpt, img, caption, author, readingTime, slug } = Astro.props;
 
 <a href={`/blog/${slug}`}>
   <article
-    class="flex flex-col gap-4 w-full h-full rounded-lg shadow-md overflow-hidden"
+    class="flex flex-col w-full h-full overflow-hidden rounded-lg shadow-md gap-4"
   >
     <Image
-      class="w-full h-56 object-cover shadow-md rounded-b-lg"
+      class="object-cover w-full h-56 rounded-b-lg shadow-md"
       height={300}
       width={300}
       src={img}
@@ -17,7 +17,7 @@ const { title, excerpt, img, caption, author, readingTime, slug } = Astro.props;
     />
 
     <header class="px-4">
-      <h3 class="text-center font-bold text-pretty text-lg text-neutral-800">
+      <h3 class="text-lg font-bold text-center text-pretty text-neutral-800">
         {title}
       </h3>
     </header>
@@ -26,8 +26,8 @@ const { title, excerpt, img, caption, author, readingTime, slug } = Astro.props;
       <div class="text-clamp-4 [&>p]:text-neutral-600" set:html={excerpt} />
     </div>
 
-    <footer class="px-3 pb-4 flex-grow content-end">
-      <span class="text-primary/80 font-semibold">
+    <footer class="content-end flex-grow px-3 pb-4">
+      <span class="font-semibold text-primary/80">
         {author}
       </span>
       <span>
