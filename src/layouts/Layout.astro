@@ -1,5 +1,4 @@
 ---
-import { ViewTransitions } from "astro:transitions";
 import "@fontsource-variable/open-sans";
 import MainHeader from "@/components/MainHeader.astro";
 import BlogHeader from "@/components/BlogHeader.astro";
@@ -25,7 +24,6 @@ const isBlog = pathname.startsWith("/blog");
 		<link rel="icon" type="image/svg+xml" href="/D2B-logo.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions />
 	</head>
 
 	<body>
