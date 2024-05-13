@@ -1,5 +1,5 @@
 export const menuItems = [
-  { name: 'Inicio', slug: '/' },
+  { name: 'Home', slug: '/' },
   { name: 'Servicios', slug: '#' },
   { name: 'Casos', slug: '#' },
   { name: 'Contacto', slug: '/contacto' },
