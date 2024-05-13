@@ -14,7 +14,7 @@ import { menuItems } from "@/constants";
     <div class="relative">
       <button
         id="open-close-button"
-        class="group peer relative z-10 h-6 w-9 *:bg-white *:absolute *:left-0 *:w-full *:rounded-full *:h-1 *:duration-200"
+        class="active group peer relative z-10 h-6 w-9 *:bg-white *:absolute *:left-0 *:w-full *:rounded-full *:h-1 *:duration-200"
         type="button"
       >
         <span
@@ -29,24 +29,31 @@ import { menuItems } from "@/constants";
       </button>
 
       <nav
-        class="absolute -right-4 top-16 flex flex-col pt-14 pb-12 text-xl opacity-0 duration-300 -translate-y-20 bg-white rounded-lg peer-[.active]:opacity-100"
+        class="absolute -right-4 -top-4 flex flex-col pt-14 pb-12 text-xl shadow-lg shadow-neutral-500/10 opacity-0 duration-300 bg-white rounded-lg peer-[.active]:opacity-100"
       >
-        {
-          menuItems.map(({ name, slug }, index) => (
-            <a
-              class={`fade px-20 py-3 text-3xl font-semibold text-nowrap opacity-0 text-neutral-700 hover:text-primary hover:bg-primary/10 `}
-              href={slug}
-              style={`animation-delay: ${200 + 100 * index}ms`}
-            >
-              {name}
-            </a>
-          ))
-        }
-        <div class="h-1 mx-20 my-6 rounded-full bg-primary"></div>
-        <div class="flex gap-2 px-20">
-          <a
-            class="inline p-3 overflow-hidden rounded-xl text-primary bg-primary/10 hover:bg-primary/20"
-            href="#"
+        <div class="flex flex-col gap-2 px-8 md:px-16">
+          {
+            menuItems.map(({ name, slug }, index) => (
+              <a
+                class={`fade px-0 md:px-4 py-2 rounded-md text-3xl font-semibold text-nowrap opacity-0 text-primary hover:bg-accent`}
+                href={slug}
+                style={`animation-delay: ${200 + 100 * index}ms`}
+              >
+                {name}
+              </a>
+            ))
+          }
+        </div>
+        <div
+          class="h-1 mx-8 my-6 rounded-full md:mx-16 fade bg-primary"
+          style="animation-delay: 800ms;"
+        >
+        </div>
+        <div
+          class="flex gap-2 px-8 md:px-16 fade"
+          style="animation-delay: 800ms;"
+        >
+          <a class="inline p-3 rounded-xl text-primary hover:bg-accent" href="#"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -59,9 +66,7 @@ import { menuItems } from "@/constants";
               ></path></svg
             ></a
           >
-          <a
-            class="inline p-3 overflow-hidden rounded-xl text-primary bg-primary/10 hover:bg-primary/20"
-            href="#"
+          <a class="inline p-3 rounded-xl text-primary hover:bg-accent" href="#"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -112,10 +117,10 @@ import { menuItems } from "@/constants";
     clip-path: inset(0 0 100% 100%);
   }
   button.active + nav {
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(-10% -10% -10% -10%);
   }
 
-  button.active + nav > a.fade {
+  button.active + nav .fade {
     animation: fade 1s both;
   }
 

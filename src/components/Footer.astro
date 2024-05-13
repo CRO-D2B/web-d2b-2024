@@ -1,8 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import { menuItems } from "@/constants";
-
-const neededItems = ["Inicio", "Servicios", "Casos", "Blog", "Contacto"];
 ---
 
 <footer class="w-full">
@@ -23,13 +21,11 @@ const neededItems = ["Inicio", "Servicios", "Casos", "Blog", "Contacto"];
         <h6 class="text-sm">Mapa del sitio</h6>
         <nav class="flex flex-col">
           {
-            menuItems
-              .filter(({ name }) => neededItems.includes(name))
-              .map(({ name, slug }) => (
-                <a class={`py-1 text-right hover:text-accent`} href={slug}>
-                  {name}
-                </a>
-              ))
+            menuItems.map(({ name, slug }) => (
+              <a class={`py-1 text-right hover:text-accent`} href={slug}>
+                {name}
+              </a>
+            ))
           }
         </nav>
       </div>
@@ -45,8 +41,6 @@ const neededItems = ["Inicio", "Servicios", "Casos", "Blog", "Contacto"];
       <span>Av. Apoquindo No 6410, Of. 212, Las Condes, Santiago, Chile</span>
       <span class="text-4xl">|</span>
       <a href="#">Política de Cookies</a>
-      <span class="text-4xl">|</span>
-      <a href="#">LinkIn</a>
     </div>
   </section>
 </footer>
