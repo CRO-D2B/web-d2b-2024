@@ -35,7 +35,7 @@ import { menuItems } from "@/constants";
           {
             menuItems.map(({ name, slug }, index) => (
               <a
-                class={`fade px-0 md:px-4 py-2 rounded-md text-3xl font-semibold text-nowrap opacity-0 text-primary hover:bg-accent`}
+                class={`fade px-0 md:px-4 py-2 rounded-md text-3xl font-semibold text-nowrap opacity-0 text-primary-purple hover:bg-accent-purple`}
                 href={slug}
                 style={`animation-delay: ${200 + 100 * index}ms`}
               >
@@ -45,7 +45,7 @@ import { menuItems } from "@/constants";
           }
         </div>
         <div
-          class="h-1 mx-8 my-6 rounded-full md:mx-16 fade bg-primary"
+          class="h-1 mx-8 my-6 rounded-full md:mx-16 fade bg-primary-purple"
           style="animation-delay: 800ms;"
         >
         </div>
@@ -53,7 +53,9 @@ import { menuItems } from "@/constants";
           class="flex gap-2 px-8 md:px-16 fade"
           style="animation-delay: 800ms;"
         >
-          <a class="inline p-3 rounded-xl text-primary hover:bg-accent" href="#"
+          <a
+            class="inline p-3 rounded-xl text-primary-purple hover:bg-accent-purple"
+            href="#"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -66,7 +68,9 @@ import { menuItems } from "@/constants";
               ></path></svg
             ></a
           >
-          <a class="inline p-3 rounded-xl text-primary hover:bg-accent" href="#"
+          <a
+            class="inline p-3 rounded-xl text-primary-purple hover:bg-accent-purple"
+            href="#"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

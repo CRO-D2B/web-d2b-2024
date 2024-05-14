@@ -7,7 +7,9 @@ export default {
       colors: {
         primary: '#008FBE',
         secondary: '#035F7D',
-        accent: '#D7F5FF'
+        'primary-purple': '#570B52',
+        accent: '#D7F5FF',
+        'accent-purple': '#E6E9FF'
       }
     }
   },
