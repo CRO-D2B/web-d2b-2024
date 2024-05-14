@@ -10,6 +10,9 @@ export default {
         'primary-purple': '#570B52',
         accent: '#D7F5FF',
         'accent-purple': '#E6E9FF'
+      },
+      backgroundImage: {
+        hero: "url('/web.webp')"
       }
     }
   },
