@@ -16,6 +16,9 @@ const {
 	cta_principal: main_cta,
 	servicios_titulo: services_title,
 	servicios: services,
+	propuesta_de_valor_titulo: valuePropositionTitle,
+	propuesta_de_valor_bajada: valuePropositionSubtitle,
+	propuestas_de_valor: valuePropositions,
 } = await getHomeInfo();
 ---
 
@@ -67,23 +70,67 @@ const {
 				}
 			</div>
 		</section>
-	</main>
-</Layout>
 
-<style>
-	.section:nth-child(1) {
-		background:
-			radial-gradient(75% 120px at 50% 105%, #fff 75%, transparent 76%),
-			radial-gradient(
-				circle at 70% 70%,
-				rgb(147, 53, 141, 0.9),
-				rgb(147, 53, 141, 0) 60%
-			),
-			radial-gradient(
-					circle at 20% 100%,
-					rgb(91, 104, 223, 0.4),
-					rgb(91, 104, 223, 0) 40%
-				)
-				#1e1e1e;
-	}
-</style>
+		<section class="px-6 py-24">
+			<div class="max-w-screen-xl m-auto">
+				<h1 class="mb-6 text-5xl font-bold text-center text-primary-purple">
+					{valuePropositionTitle}
+				</h1>
+				<h2 class="mb-12 text-xl text-center">
+					{valuePropositionSubtitle}
+				</h2>
+				<div class="grid grid-cols-12 gap-6">
+					{
+						valuePropositions.map(
+							({ titulo: title, descripcion: description }, index) => (
+								<article
+									class:list={[
+										"p-10 bg-white border-2 rounded-lg border-neutral-200 col-span-6",
+										{ "col-start-2 col-span-5": index == 0 },
+										{ "bg-accent-purple": index == 1 || index == 2 },
+										{ "col-span-5": index == 3 },
+									]}
+								>
+									<h3 class="text-xl font-bold text-primary-purple">{title}</h3>
+									<p class="mt-4">{description}</p>
+								</article>
+							),
+						)
+					}
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<style>
+		section:nth-child(3) {
+			background:
+				radial-gradient(70% 300px at 50% 230px, #f5f8f8 75%, transparent 75.2%),
+				radial-gradient(
+					100% 500px at 50% 550px,
+					#f5f8f8 75%,
+					transparent 75.2%
+				),
+				/* radial-gradient(75% 150px at 50% 70%, #f5f8f8 75%, transparent 76%), */
+					/* radial-gradient(75% 150px at 50% 100%, #f5f8f8 75%, transparent 76%) */
+					#fff;
+		}
+
+		/**	template for circles in background */
+		/* section:nth-child(2) {
+			background:
+				radial-gradient(75% 120px at 50% 105%, #fff 75%, transparent 76%),
+				radial-gradient(
+					circle at 70% 70%,
+					rgb(147, 53, 141, 0.9),
+					rgb(147, 53, 141, 0) 60%
+				),
+				radial-gradient(
+						circle at 20% 100%,
+						rgb(91, 104, 223, 0.4),
+						rgb(91, 104, 223, 0) 40%
+					)
+					#1e1e1e;
+		} */
+	</style>
+</Layout>

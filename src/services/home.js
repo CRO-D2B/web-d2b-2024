@@ -13,7 +13,10 @@ export const getHomeInfo = async () => {
     'fields[]=servicios.nombre_del_servicio',
     'fields[]=servicios.descripcion_del_servicio',
     'fields[]=servicios.icono.data.full_url',
-    'fields[]=servicios.slug'
+    'fields[]=servicios.slug',
+    'fields[]=propuesta_de_valor_titulo',
+    'fields[]=propuesta_de_valor_bajada',
+    'fields[]=propuestas_de_valor.*'
   ]
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
