@@ -5,7 +5,7 @@ import { menuItems } from "@/constants";
 
 <header class="fixed z-10 w-full px-6 scroll-dark-bg backdrop-blur-sm">
   <section
-    class="flex items-center justify-between max-w-screen-xl py-4 m-auto"
+    class="flex items-center justify-between py-4 m-auto max-w-screen-xl"
   >
     <a href="/">
       <Image width={64} height={64} src="/D2B-logo.svg" alt="Logo de D2B" />
@@ -31,7 +31,7 @@ import { menuItems } from "@/constants";
       <nav
         class="absolute -right-4 -top-4 flex flex-col pt-14 pb-12 text-xl shadow-lg shadow-neutral-500/10 opacity-0 duration-300 bg-white rounded-lg peer-[.active]:opacity-100"
       >
-        <div class="flex flex-col gap-2 px-8 md:px-16">
+        <div class="flex flex-col px-8 gap-2 md:px-16">
           {
             menuItems.map(({ name, slug }, index) => (
               <a
@@ -50,7 +50,7 @@ import { menuItems } from "@/constants";
         >
         </div>
         <div
-          class="flex gap-2 px-8 md:px-16 fade"
+          class="flex px-8 gap-2 md:px-16 fade"
           style="animation-delay: 800ms;"
         >
           <a
