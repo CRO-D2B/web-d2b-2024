@@ -1,18 +1,42 @@
 ---
+import { Image } from "astro:assets";
+import Arrow from "@/components/icon/Arrow.astro";
+
 interface Props {
+	icon: string;
 	title: string;
+	description: string;
 	href: string;
 }
 
-const { href, title } = Astro.props;
+const { icon, title, description, href } = Astro.props;
 ---
 
 <a href={href}>
-	<article class="w-full p-8 rounded-lg h-52 bg-accent/20 max-w-52 min-w-48">
-		<header>
-			<h2 class="text-center">
-				{title}
-			</h2>
+	<article
+		class="flex flex-col h-full gap-2 p-4 rounded-lg bg-accent-purple w-52"
+	>
+		<header class="flex flex-col gap-2 border-b-2 border-black">
+			<Image
+				class="p-2 bg-white rounded-lg"
+				src={icon}
+				alt="Astro Logo"
+				width={40}
+				height={40}
+			/>
+			<div class="flex justify-between mb-2">
+				<h2 class="font-bold">
+					{title}
+				</h2>
+				<div
+					class="grid border-2 border-black rounded-full h-fit place-items-center"
+				>
+					<Arrow size={24} />
+				</div>
+			</div>
 		</header>
+		<p class="text-xs leading-relaxed">
+			{description}
+		</p>
 	</article>
 </a>

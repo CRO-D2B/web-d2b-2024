@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { getServicesResume } from "@/services/services";
+import { getHomeInfo } from "@/services/home";
 import ServiceCard from "@/components/ServiceCard.astro";
 
 const servicesResume = await getServicesResume().then((res) =>
@@ -8,42 +9,61 @@ const servicesResume = await getServicesResume().then((res) =>
 		return { serviceName: nombre_del_servicio, slug: slug };
 	}),
 );
+
+const {
+	titulo_principal: main_title,
+	bajada_principal: minor_text,
+	cta_principal: main_cta,
+	servicios_titulo: services_title,
+	servicios: services,
+} = await getHomeInfo();
 ---
 
 <Layout title="D2B Inteligencia Digital" description="Blog de la pagina de D2B">
 	<main>
 		<section class="px-6 bg-top bg-cover bg-hero">
 			<div class="max-w-screen-xl m-auto pb-36 pt-52">
-				<h1 class="text-white text-5xl max-w-[25ch] mb-6 animate-fade-left">
-					Lorem ipsum dolor sit amet consectetur. Eu scelerisque sit elit tellus
-					luctus viverra accumsan.
+				<h1
+					class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+				>
+					{main_title}
 				</h1>
-				<p class="text-white max-w-[45ch] mb-14 animate-fade-left">
-					Lorem ipsum dolor sit amet consectetur. Eu scelerisque sit elit tellus
-					luctus viverra accumsan. Lorem ipsum dolor sit amet consectetur.
+				<p class="text-white text-2xl max-w-[45ch] mb-14 animate-fade-left">
+					{minor_text}
 				</p>
 				<button
 					class="px-6 py-3 text-white rounded-lg bg-primary hover:bg-secondary animate-fade animate-delay-500"
 				>
-					Botón principal
+					{main_cta}
 				</button>
 			</div>
 		</section>
 
-		<section class="px-6">
-			<div class="max-w-screen-xl py-2 m-auto">
-				<h1 class="text-center text-7xl text-neutral-800">
-					Bienvenidos al nuevo <span class="font-bold text-primary">D2B</span>
+		<section class="px-6 py-24">
+			<div class="max-w-screen-xl m-auto">
+				<h1 class="text-5xl font-bold text-center text-primary-purple">
+					{services_title}
 				</h1>
 			</div>
-		</section>
-
-		<section class="px-6">
-			<div class="flex justify-center max-w-screen-xl gap-6 py-6 m-auto">
+			<div
+				class="flex flex-wrap justify-center max-w-screen-xl gap-6 py-6 m-auto"
+			>
 				{
-					servicesResume.map(({ serviceName, slug }) => (
-						<ServiceCard title={serviceName} href={`/servicios/${slug}`} />
-					))
+					services.map(
+						({
+							nombre_del_servicio: serviceName,
+							icono: icon,
+							descripcion_del_servicio: serviceDescription,
+							slug,
+						}) => (
+							<ServiceCard
+								icon={icon.data.full_url}
+								title={serviceName}
+								description={serviceDescription}
+								href={`/servicios/${slug}`}
+							/>
+						),
+					)
 				}
 			</div>
 		</section>
