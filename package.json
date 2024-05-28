@@ -28,6 +28,7 @@
     "tailwindcss-animated": "^1.0.1"
   },
   "devDependencies": {
+    "pm2": "5.4.0",
     "standard": "^17.1.0"
   }
 }
