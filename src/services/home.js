@@ -1,29 +1,15 @@
-import { isProd } from '@/lib/utils'
+import { createDirectus, authentication, rest, readItems, readSingleton } from '@directus/sdk'
 
-const API_URL = 'https://admin.d2b.cl/d2badmin'
-const publishedFilter = isProd ? 'status=published' : ''
+const { DIRECTUS_URL, DIRECTUS_USER, DIRECTUS_PASSWORD } = import.meta.env
 
-export const getHomeInfo = async () => {
-  const endpoint = '/items/2024_home/1'
-  const params = [
-    'fields[]=titulo_principal',
-    'fields[]=bajada_principal',
-    'fields[]=cta_principal',
-    'fields[]=servicios_titulo',
-    'fields[]=servicios.nombre_del_servicio',
-    'fields[]=servicios.descripcion_del_servicio',
-    'fields[]=servicios.icono.data.full_url',
-    'fields[]=servicios.slug',
-    'fields[]=propuesta_de_valor_titulo',
-    'fields[]=propuesta_de_valor_bajada',
-    'fields[]=propuestas_de_valor.*'
-  ]
-  const url = buildUrl({ endpoint, params })
-  const res = await fetch(url)
-  const { data } = await res.json()
-  return data
-}
+// Directus SDK configuration
+const client = createDirectus(DIRECTUS_URL).with(authentication()).with(rest())
+await client.login(DIRECTUS_USER, DIRECTUS_PASSWORD)
 
-const buildUrl = ({ endpoint, params = [''] }) => {
-  return `${API_URL}${endpoint}?${publishedFilter}&${params.join('&')}`
-}
+export const homeData = await client.request(readSingleton('Home'))
+
+export const servicesResume = await client.request(readItems('Servicios'))
+
+export const valueProposition = await client.request(readItems('Propuesta_de_valor'))
+
+export const clients = await client.request(readItems('Clientes'))

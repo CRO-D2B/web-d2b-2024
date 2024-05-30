@@ -1,68 +1,67 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getServicesResume } from "@/services/services";
-import { getHomeInfo } from "@/services/home";
+import { Image } from "astro:assets";
 import ServiceCard from "@/components/ServiceCard.astro";
-
-const servicesResume = await getServicesResume().then((res) =>
-	res.map(({ nombre_del_servicio, slug }) => {
-		return { serviceName: nombre_del_servicio, slug: slug };
-	}),
-);
+import {
+	homeData,
+	servicesResume,
+	valueProposition,
+	clients,
+} from "@/services/home";
 
 const {
-	titulo_principal: main_title,
-	bajada_principal: minor_text,
-	cta_principal: main_cta,
-	servicios_titulo: services_title,
-	servicios: services,
-	propuesta_de_valor_titulo: valuePropositionTitle,
-	propuesta_de_valor_bajada: valuePropositionSubtitle,
-	propuestas_de_valor: valuePropositions,
-} = await getHomeInfo();
+	titulo_principal,
+	subtitulo,
+	cta_principal,
+	servicios_titulo,
+	propuesta_de_valor_titulo,
+	propuesta_de_valor_subtitulo,
+} = homeData;
 ---
 
-<Layout title="D2B Inteligencia Digital" description="Blog de la pagina de D2B">
+<Layout title="D2B Inteligencia Digital" description="Home de D2B">
 	<main>
 		<section class="px-6 bg-top bg-cover bg-hero">
 			<div class="max-w-screen-xl m-auto pb-36 pt-52">
 				<h1
 					class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
 				>
-					{main_title}
+					{titulo_principal}
 				</h1>
 				<p class="text-white text-2xl max-w-[45ch] mb-14 animate-fade-left">
-					{minor_text}
+					{subtitulo}
 				</p>
 				<button
 					class="px-6 py-3 font-bold text-white rounded-lg bg-primary hover:bg-secondary animate-fade animate-delay-500"
 				>
-					{main_cta}
+					{cta_principal}
 				</button>
 			</div>
 		</section>
 
 		<section class="px-6 py-24">
 			<div class="max-w-screen-xl m-auto">
-				<h1 class="text-5xl font-bold text-center text-primary-purple">
-					{services_title}
+				<h1
+					class="text-3xl font-bold text-center md:text-5xl text-primary-purple"
+				>
+					{servicios_titulo}
 				</h1>
 			</div>
 			<div
 				class="flex flex-wrap justify-center max-w-screen-xl gap-6 py-6 m-auto"
 			>
 				{
-					services.map(
+					servicesResume.map(
 						({
-							nombre_del_servicio: serviceName,
-							icono: icon,
-							descripcion_del_servicio: serviceDescription,
+							nombre_del_servicio,
+							icono,
+							descripcion_del_servicio,
 							slug,
 						}) => (
 							<ServiceCard
-								icon={icon.data.full_url}
-								title={serviceName}
-								description={serviceDescription}
+								icon={`${import.meta.env.DIRECTUS_URL}/assets/${icono}`}
+								title={nombre_del_servicio}
+								description={descripcion_del_servicio}
 								href={`/servicios/${slug}`}
 							/>
 						),
@@ -71,63 +70,94 @@ const {
 			</div>
 		</section>
 
-		<section class="px-6 py-24">
+		<section class="px-6 py-24 gray-rounded-background">
 			<div class="max-w-screen-xl m-auto">
-				<h1 class="mb-6 text-5xl font-bold text-center text-primary-purple">
-					{valuePropositionTitle}
+				<h1
+					class="mb-6 text-3xl font-bold text-center md:text-5xl text-primary-purple"
+				>
+					{propuesta_de_valor_titulo}
 				</h1>
-				<h2 class="mb-12 text-xl text-center">
-					{valuePropositionSubtitle}
+				<h2 class="mb-12 text-base text-center md:text-lg">
+					{propuesta_de_valor_subtitulo}
 				</h2>
 				<div class="grid grid-cols-12 gap-6">
 					{
-						valuePropositions.map(
-							({ titulo: title, descripcion: description }, index) => (
-								<article
-									class:list={[
-										"p-10 border-2 rounded-lg border-neutral-200",
-										{ "bg-white col-start-2 col-span-5": index == 0 },
-										{ "bg-accent-purple col-span-6": index == 1 || index == 2 },
-										{ "bg-white col-span-5": index == 3 },
-									]}
-								>
-									<h3 class="text-xl font-bold text-primary-purple">{title}</h3>
-									<p class="mt-4">{description}</p>
-								</article>
-							),
-						)
+						valueProposition.map(({ titulo, descripcion }, index) => (
+							<article
+								class:list={[
+									"p-6 md:p-10 border-2 rounded-lg border-neutral-200",
+									{
+										"bg-white col-start-1 md:col-start-2 col-span-12  md:col-span-5":
+											index == 0,
+									},
+									{
+										"bg-accent-purple col-span-12 md:col-span-6":
+											index == 1 || index == 2,
+									},
+									{ "bg-white col-span-12 md:col-span-5": index == 3 },
+								]}
+							>
+								<h3 class="text-xl font-bold text-primary-purple">{titulo}</h3>
+								<p class="mt-4">{descripcion}</p>
+							</article>
+						))
 					}
 				</div>
+			</div>
+		</section>
+
+		<section class="px-6 py-24">
+			<div class="max-w-screen-xl m-auto">
+				<h1
+					class="mb-6 text-3xl font-bold text-center md:text-5xl text-primary-purple"
+				>
+					{propuesta_de_valor_titulo}
+				</h1>
+				<h2 class="mb-16 text-base text-center md:text-lg">
+					{propuesta_de_valor_subtitulo}
+				</h2>
+			</div>
+			<div
+				class="flex flex-wrap justify-center max-w-screen-xl m-auto gap-y-12 md:gap-14"
+			>
+				{
+					clients.map(({ nombre, logo }) => (
+						<Image
+							class="object-contain w-1/2 h-16 md:w-auto grayscale"
+							src={`${import.meta.env.DIRECTUS_URL}/assets/${logo}`}
+							alt={`Image de ${nombre}`}
+							inferSize
+						/>
+					))
+				}
 			</div>
 		</section>
 	</main>
 
 	<style>
-		section:nth-child(3) {
+		.gray-rounded-background {
 			background: radial-gradient(
-					70% 300px at 50% 230px,
+					100% 300px at 50% 230px,
 					#f5f8f8 75%,
 					transparent 75.2%
 				),
-				radial-gradient(100% 500px at 50% 550px, #f5f8f8 75%, transparent 75.2%),
+				radial-gradient(200% 700px at 50% 600px, #f5f8f8 75%, transparent 75.2%),
 				#fff;
 		}
-
-		/**	template for circles in background */
-		/* section:nth-child(2) {
-			background:
-				radial-gradient(75% 120px at 50% 105%, #fff 75%, transparent 76%),
-				radial-gradient(
-					circle at 70% 70%,
-					rgb(147, 53, 141, 0.9),
-					rgb(147, 53, 141, 0) 60%
-				),
-				radial-gradient(
-						circle at 20% 100%,
-						rgb(91, 104, 223, 0.4),
-						rgb(91, 104, 223, 0) 40%
-					)
-					#1e1e1e;
-		} */
+		@media screen and (width<768px) {
+			.gray-rounded-background {
+				background: radial-gradient(
+						150% 300px at 50% 230px,
+						#f5f8f8 75%,
+						transparent 75.2%
+					),
+					radial-gradient(
+						150% 500px at 50% 750px,
+						#f5f8f8 100%,
+						transparent 75.2%
+					),
+					#fff;
+			}
+		}
 	</style>
 </Layout>

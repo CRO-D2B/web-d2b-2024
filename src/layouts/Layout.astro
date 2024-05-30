@@ -30,6 +30,7 @@ const isBlog = pathname.startsWith("/blog");
 		{isBlog ? <BlogHeader /> : <MainHeader />}
 		<slot />
 		<Footer />
+
 		<style is:global>
 			html {
 				font-family: "Open Sans Variable", sans-serif;

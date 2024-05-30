@@ -14,6 +14,9 @@ importers:
       '@astrojs/tailwind':
         specifier: ^5.1.0
         version: 5.1.0(astro@4.6.0(@types/node@20.12.7))(tailwindcss@3.4.3)
+      '@directus/sdk':
+        specifier: ^16.0.2
+        version: 16.0.2
       '@fontsource-variable/open-sans':
         specifier: ^5.0.29
         version: 5.0.29
@@ -191,6 +194,13 @@ packages:
   '@babel/types@7.24.0':
     resolution: {integrity: sha512-+j7a5c253RfKh8iABBhywc8NSfP5LURe7Uh4qpsh6jc+aLJguvmIUBdjSdEMQv2bENrCR5MfRdjGo7vzS/ob7w==}
     engines: {node: '>=6.9.0'}
+
+  '@directus/sdk@16.0.2':
+    resolution: {integrity: sha512-GJ+GgQGGlx/pOsnaMPJSn4HjbJypsODJ0P1Xd0X+1WCTuIk3gj4vLBQmj5D0CPPWU/wdNCeFl+Fx8KsnJfOZlA==}
+    engines: {node: '>=18.0.0'}
+
+  '@directus/system-data@1.0.3':
+    resolution: {integrity: sha512-Dr7w2RZiX3/+kBOLqz8KkMHXmDhzVVraaK+CLQNgsB1FOxotuegyWfQxTi+YvDhH9gEs8/yZZBKeyQetcTQfSg==}
 
   '@esbuild/aix-ppc64@0.19.12':
     resolution: {integrity: sha512-bmoCYyWdEL3wDQIVbcyzRyeKLgk2WtWLTWz1ZIAZF/EGbNOwSA6ew3PftJ1PqMiOOGu0OyFMzG53L0zqIpPeNA==}
@@ -3650,6 +3660,12 @@ snapshots:
       '@babel/helper-string-parser': 7.24.1
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
+
+  '@directus/sdk@16.0.2':
+    dependencies:
+      '@directus/system-data': 1.0.3
+
+  '@directus/system-data@1.0.3': {}
 
   '@esbuild/aix-ppc64@0.19.12':
     optional: true
