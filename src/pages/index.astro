@@ -7,6 +7,7 @@ import {
 	servicesResume,
 	valueProposition,
 	clients,
+	partners,
 } from "@/services/home";
 
 const {
@@ -16,6 +17,8 @@ const {
 	servicios_titulo,
 	propuesta_de_valor_titulo,
 	propuesta_de_valor_subtitulo,
+	partners_titulo,
+	partners_subtitulo,
 } = homeData;
 ---
 
@@ -106,7 +109,7 @@ const {
 			</div>
 		</section>
 
-		<section class="px-6 py-24">
+		<section class="px-6 pt-24 pb-12">
 			<div class="max-w-screen-xl m-auto">
 				<h1
 					class="mb-6 text-3xl font-bold text-center md:text-5xl text-primary-purple"
@@ -132,6 +135,35 @@ const {
 				}
 			</div>
 		</section>
+
+		<section class="px-6 py-12 md:py-24">
+			<div
+				class="flex flex-col max-w-screen-xl gap-2 px-4 py-6 m-auto rounded-lg md:flex-row md:px-28 md:py-10 bg-accent-purple"
+			>
+				<div>
+					<h1
+						class="mb-6 text-3xl font-bold text-center md:text-left md:text-5xl text-primary-purple"
+					>
+						{partners_titulo}
+					</h1>
+					<p class="mb-10 text-base text-center md:text-lg md:text-left">
+						{partners_subtitulo}
+					</p>
+				</div>
+				<div class="grid grid-cols-3 gap-x-4 gap-y-6">
+					{
+						partners.map(({ nombre, logo }) => (
+							<Image
+								class="object-contain w-full h-12 m-auto grayscale"
+								src={`${import.meta.env.DIRECTUS_URL}/assets/${logo}`}
+								alt={`Imagen de ${nombre}`}
+								inferSize
+							/>
+						))
+					}
+				</div>
+			</div>
+		</section>
 	</main>
 
 	<style>
@@ -144,6 +176,7 @@ const {
 				radial-gradient(200% 700px at 50% 600px, #f5f8f8 75%, transparent 75.2%),
 				#fff;
 		}
+
 		@media screen and (width<768px) {
 			.gray-rounded-background {
 				background: radial-gradient(

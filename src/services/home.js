@@ -13,3 +13,5 @@ export const servicesResume = await client.request(readItems('Servicios'))
 export const valueProposition = await client.request(readItems('Propuesta_de_valor'))
 
 export const clients = await client.request(readItems('Clientes'))
+
+export const partners = await client.request(readItems('Partners'))
