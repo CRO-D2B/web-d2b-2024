@@ -1,21 +1,64 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+import { servicesLanding, servicesResume } from "@/services/services";
 
-const res = await fetch("https://admin.d2b.cl/d2badmin/items/2024_servicios");
-const json = await res.json();
-const data = json.data;
-
-const bajada1 = data[0].bajada_1;
+const { titulo_principal, subtitulo } = servicesLanding;
 ---
 
-<Layout
-	title="D2B Servicios"
-	description="Pagina de serivicios de la empresa D2B"
->
-	<main class="flex flex-col items-center px-6 pt-32">
-		<h1 class="mb-2 text-2xl text-center">
-			Servicio <span class="text-red-800">INDEX</span>
-		</h1>
-		<div class="[&>p]:text-neutral-900 [&>p]:mb-4" set:html={bajada1} />
+<Layout title="D2B Inteligencia Digital" description="Home de D2B">
+	<main>
+		<section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
+			<div class="max-w-screen-xl m-auto">
+				<h1
+					class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+				>
+					{titulo_principal}
+				</h1>
+				<p class="text-white text-2xl max-w-[45ch] mb-14 animate-fade-left">
+					{subtitulo}
+				</p>
+				<div class="flex flex-wrap gap-8">
+					{
+						servicesResume.map(({ nombre_del_servicio, slug }) => (
+							<a class="text-white underline" href={`/servicios/${slug}`}>
+								{nombre_del_servicio}
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="px-6 py-24 gray-rounded-background">
+			<div class="max-w-screen-xl m-auto">
+				<h2>
+					{
+						servicesResume.map(
+							({
+								nombre_del_servicio,
+								descripcion_del_servicio,
+								slug,
+								imagen_principal,
+							}) => (
+								<div class="">
+									<div>
+										<h3>{nombre_del_servicio}</h3>
+										<p>{descripcion_del_servicio}</p>
+										<a href={slug}>Leer más</a>
+									</div>
+									<Image
+										src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_principal}`}
+										alt={`Imagen del servicio ${nombre_del_servicio}`}
+										height={400}
+										width={400}
+									/>
+								</div>
+							),
+						)
+					}
+				</h2>
+			</div>
+		</section>
 	</main>
 </Layout>

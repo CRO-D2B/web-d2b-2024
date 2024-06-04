@@ -8,8 +8,6 @@ await client.login(DIRECTUS_USER, DIRECTUS_PASSWORD)
 
 export const homeData = await client.request(readSingleton('Home'))
 
-export const servicesResume = await client.request(readItems('Servicios'))
-
 export const valueProposition = await client.request(readItems('Propuesta_de_valor'))
 
 export const clients = await client.request(readItems('Clientes'))

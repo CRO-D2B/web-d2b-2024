@@ -14,9 +14,9 @@ const { icon, title, description, href } = Astro.props;
 
 <a href={href}>
 	<article
-		class="flex flex-col h-full p-4 rounded-lg gap-2 bg-accent-purple md:w-52"
+		class="flex flex-col h-full gap-2 p-4 rounded-lg bg-accent-purple md:w-52"
 	>
-		<header class="flex flex-col border-b-2 border-black gap-2">
+		<header class="flex flex-col gap-2 border-b-2 border-black">
 			<Image
 				class="p-2 bg-white rounded-lg"
 				src={icon}
@@ -29,7 +29,7 @@ const { icon, title, description, href } = Astro.props;
 					{title}
 				</h2>
 				<div
-					class="border-2 border-black rounded-full grid h-fit place-items-center"
+					class="grid border-2 border-black rounded-full h-fit place-items-center"
 				>
 					<Arrow size={24} />
 				</div>
