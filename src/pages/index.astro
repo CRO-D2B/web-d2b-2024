@@ -163,30 +163,24 @@ const {
 	</main>
 
 	<style>
-		/* ToDo: cambiar radial por linear */
+		/* radial and linear at 230px  */
 		.gray-rounded-background {
 			background: radial-gradient(
-					100% 300px at 50% 230px,
+					150% 300px at 50% 230px,
 					#f5f8f8 75%,
 					transparent 75.2%
 				),
-				radial-gradient(200% 700px at 50% 600px, #f5f8f8 75%, transparent 75.2%),
-				#fff;
+				linear-gradient(180deg, transparent 230px, #f5f8f8 230px), #fff;
 		}
 
-		@media screen and (width<768px) {
+		@media (width>=768px) {
 			.gray-rounded-background {
 				background: radial-gradient(
-						150% 300px at 50% 230px,
+						100% 300px at 50% 230px,
 						#f5f8f8 75%,
 						transparent 75.2%
 					),
-					radial-gradient(
-						150% 500px at 50% 750px,
-						#f5f8f8 100%,
-						transparent 75.2%
-					),
-					#fff;
+					linear-gradient(180deg, transparent 230px, #f5f8f8 230px), #fff;
 			}
 		}
 	</style>
