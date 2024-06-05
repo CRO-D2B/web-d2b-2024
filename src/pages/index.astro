@@ -40,11 +40,11 @@ const {
 
 		<section class="px-6 py-24">
 			<div class="m-auto max-w-screen-xl">
-				<h1
+				<h2
 					class="mb-12 text-3xl font-bold text-center md:text-5xl text-primary-purple"
 				>
 					{servicios_titulo}
-				</h1>
+				</h2>
 			</div>
 			<div
 				class="flex flex-col flex-wrap justify-center m-auto max-w-screen-xl gap-2 xl:flex-nowrap md:flex-row"
@@ -71,14 +71,14 @@ const {
 
 		<section class="px-6 py-24 gray-rounded-background">
 			<div class="m-auto max-w-screen-xl">
-				<h1
+				<h2
 					class="mb-6 text-3xl font-bold text-center md:text-5xl text-primary-purple"
 				>
 					{propuesta_de_valor_titulo}
-				</h1>
-				<h2 class="mb-12 text-base text-center md:text-lg">
-					{propuesta_de_valor_subtitulo}
 				</h2>
+				<h3 class="mb-12 text-base text-center md:text-lg">
+					{propuesta_de_valor_subtitulo}
+				</h3>
 				<div class="grid grid-cols-12 gap-6">
 					{
 						valueProposition.map(({ titulo, descripcion }, index) => (
@@ -96,7 +96,7 @@ const {
 									{ "bg-white col-span-12 md:col-span-5": index == 3 },
 								]}
 							>
-								<h3 class="text-xl font-bold text-primary-purple">{titulo}</h3>
+								<h4 class="text-xl font-bold text-primary-purple">{titulo}</h4>
 								<p class="mt-4">{descripcion}</p>
 							</article>
 						))
@@ -107,14 +107,14 @@ const {
 
 		<section class="px-6 pt-24 pb-12">
 			<div class="m-auto max-w-screen-xl">
-				<h1
+				<h2
 					class="mb-6 text-3xl font-bold text-center md:text-5xl text-primary-purple"
 				>
 					{propuesta_de_valor_titulo}
-				</h1>
-				<h2 class="mb-16 text-base text-center md:text-lg">
-					{propuesta_de_valor_subtitulo}
 				</h2>
+				<h3 class="mb-16 text-base text-center md:text-lg">
+					{propuesta_de_valor_subtitulo}
+				</h3>
 			</div>
 			<div
 				class="flex flex-wrap justify-center m-auto max-w-screen-xl gap-y-12 md:gap-14"
@@ -137,11 +137,11 @@ const {
 				class="flex flex-col px-4 py-6 m-auto rounded-lg max-w-screen-xl gap-2 md:flex-row md:px-28 md:py-10 bg-accent-purple"
 			>
 				<div>
-					<h1
+					<h2
 						class="mb-6 text-3xl font-bold text-center md:text-left md:text-5xl text-primary-purple"
 					>
 						{partners_titulo}
-					</h1>
+					</h2>
 					<p class="mb-10 text-base text-center md:text-lg md:text-left">
 						{partners_subtitulo}
 					</p>
@@ -163,6 +163,7 @@ const {
 	</main>
 
 	<style>
+		/* ToDo: cambiar radial por linear */
 		.gray-rounded-background {
 			background: radial-gradient(
 					100% 300px at 50% 230px,
