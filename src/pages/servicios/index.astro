@@ -1,6 +1,7 @@
 ---
-import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import Arrow from "@/components/icon/Arrow.astro";
 import { servicesLanding, servicesResume } from "@/services/services";
 
 const { titulo_principal, subtitulo } = servicesLanding;
@@ -9,7 +10,7 @@ const { titulo_principal, subtitulo } = servicesLanding;
 <Layout title="D2B Inteligencia Digital" description="Home de D2B">
 	<main>
 		<section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
-			<div class="max-w-screen-xl m-auto">
+			<div class="m-auto max-w-screen-xl">
 				<h1
 					class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
 				>
@@ -31,29 +32,55 @@ const { titulo_principal, subtitulo } = servicesLanding;
 		</section>
 
 		<section class="px-6 py-24 gray-rounded-background">
-			<div class="max-w-screen-xl m-auto">
+			<div class="m-auto max-w-screen-lg">
 				<h2>
 					{
 						servicesResume.map(
-							({
-								nombre_del_servicio,
-								descripcion_del_servicio,
-								slug,
-								imagen_principal,
-							}) => (
-								<div class="">
-									<div>
-										<h3>{nombre_del_servicio}</h3>
-										<p>{descripcion_del_servicio}</p>
-										<a href={slug}>Leer más</a>
+							(
+								{
+									nombre_del_servicio,
+									descripcion_del_servicio,
+									slug,
+									imagen_principal,
+								},
+								index,
+							) => (
+								<article
+									class:list={[
+										"md:flex md:gap-36 justify-between",
+										{ "flex-row-reverse": index % 2 === 1 },
+									]}
+								>
+									<div class="content-center">
+										<h3 class="mb-4 text-3xl font-bold text-primary-purple">
+											{nombre_del_servicio}
+										</h3>
+										<Image
+											class="m-auto mb-10 md:hidden"
+											src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_principal}`}
+											alt={`Imagen del servicio ${nombre_del_servicio}`}
+											height={400}
+											width={400}
+										/>
+										<p class="mb-6 ">{descripcion_del_servicio}</p>
+										<a
+											class="inline-flex items-center font-bold gap-4 hover:underline text-primary"
+											href={`/servicios/${slug}`}
+										>
+											Leer más
+											<span class="border-2 rounded-full grid w-fit border-primary h-fit place-items-center">
+												<Arrow size={24} />
+											</span>
+										</a>
 									</div>
 									<Image
+										class="hidden m-auto md:block"
 										src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_principal}`}
 										alt={`Imagen del servicio ${nombre_del_servicio}`}
 										height={400}
 										width={400}
 									/>
-								</div>
+								</article>
 							),
 						)
 					}
