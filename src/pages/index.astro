@@ -3,7 +3,6 @@ import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
 import ServiceCard from "@/components/ServiceCard.astro";
 import { homeData, valueProposition, clients, partners } from "@/services/home";
-
 import { servicesResume } from "@/services/services";
 
 const {
@@ -31,7 +30,7 @@ const {
 					{subtitulo}
 				</p>
 				<a
-					class="px-6 py-3 font-bold text-white rounded-lg bg-primary hover:bg-secondary animate-fade animate-delay-300"
+					class="block px-6 py-3 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-secondary animate-fade animate-delay-300"
 					href="/contacto"
 				>
 					{cta_principal}
@@ -162,27 +161,27 @@ const {
 			</div>
 		</section>
 	</main>
+</Layout>
 
-	<style>
-		/* radial and linear at 230px  */
+<style>
+	/* radial and linear at 230px  */
+	.gray-rounded-background {
+		background: radial-gradient(
+				150% 300px at 50% 230px,
+				#f5f8f8 75%,
+				transparent 75.2%
+			),
+			linear-gradient(180deg, transparent 230px, #f5f8f8 230px), #fff;
+	}
+
+	@media (width>=768px) {
 		.gray-rounded-background {
 			background: radial-gradient(
-					150% 300px at 50% 230px,
+					100% 300px at 50% 230px,
 					#f5f8f8 75%,
 					transparent 75.2%
 				),
 				linear-gradient(180deg, transparent 230px, #f5f8f8 230px), #fff;
 		}
-
-		@media (width>=768px) {
-			.gray-rounded-background {
-				background: radial-gradient(
-						100% 300px at 50% 230px,
-						#f5f8f8 75%,
-						transparent 75.2%
-					),
-					linear-gradient(180deg, transparent 230px, #f5f8f8 230px), #fff;
-			}
-		}
-	</style>
-</Layout>
+	}
+</style>
