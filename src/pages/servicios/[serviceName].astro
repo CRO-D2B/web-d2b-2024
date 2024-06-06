@@ -1,193 +1,71 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
-import { getServiceInfoBySlug } from "@/services/services";
+import { serviceDataByName } from "@/services/services";
+import ApproachSection from "@/components/section/ApproachSection.astro";
 
-const { serviceName: serviceSlug } = Astro.params;
+const serviceData = await serviceDataByName(Astro.params.serviceName);
 
-const {
-	nombre_del_servicio: serviceName,
-	titulo_principal: mainTitle,
-	bajada_1: paragraph1,
-	bajada_2: paragraph2,
-	frase_1: phrase1,
-	cta_1: cta1,
-} = await getServiceInfoBySlug({ serviceSlug });
+const { titulo_principal, subtitulo, cta_principal, titulo_1, texto_1, cta_1 } =
+	serviceData[0];
 ---
 
-<Layout title=`${serviceName} | D2B` description={paragraph1}>
+<Layout
+	title="nombre del servicio | D2B"
+	description="descripcion del servicio"
+>
 	<main>
-		<div class="px-6 pt-32 m-auto max-w-screen-xl">
-			<a class="flex gap-2 w-fit" href="/"
-				><svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					fill="none"
-					stroke="currentColor"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					><path stroke="none" d="M0 0h24v24H0z"></path><path
-						d="M5 12h14M5 12l6 6M5 12l6-6"></path></svg
-				>Volver</a
-			>
-		</div>
-
-		<section>
-			<div class="px-6 py-12 m-auto max-w-screen-xl">
-				<h1 class="mb-2 text-2xl">
-					{mainTitle}
+		<section class="px-6 bg-top bg-cover bg-hero">
+			<div class="max-w-screen-xl m-auto pb-36 pt-52">
+				<h1
+					class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+				>
+					{titulo_principal}
 				</h1>
-			</div>
-		</section>
-
-		<section class="overflow-clip">
-			<div
-				class="px-6 py-12 m-auto grid max-w-screen-xl grid-cols-1 gap-12 md:grid-cols-2"
-			>
-				<div class="animate-fade-right animate-duration-[3000ms]">
-					<div class="*:mb-4" set:html={paragraph1} />
-					<span class="block mb-4 font-semibold text-primary">
-						"{phrase1}"
-					</span>
-				</div>
-
-				<div
-					class="grid w-full place-items-center bg-neutral-200 aspect-video animate-fade-left animate-duration-[3000ms]"
+				<p class="text-white text-2xl max-w-[45ch] mb-14 animate-fade-left">
+					{subtitulo}
+				</p>
+				<a
+					class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-secondary animate-fade animate-delay-300"
+					href="/contacto"
 				>
-					<Image
-						width={100}
-						height={100}
-						src="/grid.png"
-						alt="Imagen temporal"
-					/>
-				</div>
+					{cta_principal}
+				</a>
 			</div>
 		</section>
 
-		<section class="overflow-clip">
-			<div
-				class="px-6 py-12 m-auto grid max-w-screen-xl grid-cols-1 gap-12 md:grid-cols-2"
-			>
-				<div
-					class="grid w-full place-items-center bg-neutral-200 aspect-video animate-fade-right animate-duration-[3000ms]"
+		<section class="px-6 py-24">
+			<div class="max-w-screen-xl m-auto md:flex md:gap-12">
+				<h2
+					class="w-full mb-8 text-3xl font-bold md:mb-0 md:text-4xl text-primary-purple"
 				>
-					<Image
-						src="/grid.png"
-						alt="Imagen temporal"
-						width={100}
-						height={100}
-					/>
-				</div>
-
-				<div class="animate-fade-left animate-duration-[3000ms]">
-					<div class="*:mb-4" set:html={paragraph2} />
-					<button class="px-6 py-3 text-white rounded-lg bg-accent"
-						>{cta1}</button
-					>
-				</div>
-			</div>
-		</section>
-
-		<section class="overflow-clip">
-			<div
-				class="px-6 py-12 m-auto grid max-w-screen-xl grid-cols-1 gap-12 scroll-reveal-right md:grid-cols-2"
-			>
-				<div class="w-full bg-indigo-200 grid place-items-center aspect-video">
-					<Image
-						src="/grid.png"
-						alt="Imagen temporal"
-						width={100}
-						height={100}
-					/>
-				</div>
-
+					{titulo_1}
+				</h2>
 				<div>
-					<div class="*:mb-4" set:html={paragraph2} />
-					<button class="px-6 py-3 text-white rounded-lg bg-accent"
-						>{cta1}</button
-					>
-				</div>
-			</div>
-		</section>
-
-		<section class="overflow-clip">
-			<div
-				class="px-6 py-12 m-auto grid max-w-screen-xl grid-cols-1 gap-12 scroll-reveal-left md:grid-cols-2"
-			>
-				<div class="w-full bg-indigo-200 grid place-items-center aspect-video">
-					<Image
-						src="/grid.png"
-						alt="Imagen temporal"
-						width={100}
-						height={100}
+					<div
+						class="mb-10 [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
+						set:html={texto_1}
 					/>
-				</div>
-
-				<div>
-					<div class="*:mb-4" set:html={paragraph2} />
-					<button class="px-6 py-3 text-white rounded-lg bg-accent"
-						>{cta1}</button
+					<a
+						class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-secondary"
+						href="/contacto">{cta_1}</a
 					>
 				</div>
 			</div>
 		</section>
 
-		<section class="overflow-clip">
-			<div
-				class="px-6 py-12 m-auto grid max-w-screen-xl grid-cols-1 gap-12 sr-right md:grid-cols-2"
-			>
-				<div class="w-full bg-indigo-200 grid place-items-center aspect-video">
-					<Image
-						src="/grid.png"
-						alt="Imagen temporal"
-						width={100}
-						height={100}
-					/>
-				</div>
-
-				<div>
-					<div class="*:mb-4" set:html={paragraph2} />
-					<button class="px-6 py-3 text-white rounded-lg bg-primary"
-						>{cta1}</button
-					>
-				</div>
-			</div>
-		</section>
-
-		<section class="overflow-clip">
-			<div
-				class="px-6 py-12 m-auto grid max-w-screen-xl grid-cols-1 gap-12 sr-right md:grid-cols-2"
-			>
-				<div class="w-full bg-indigo-200 grid place-items-center aspect-video">
-					<Image
-						src="/grid.png"
-						alt="Imagen temporal"
-						width={100}
-						height={100}
-					/>
-				</div>
-
-				<div>
-					<div class="*:mb-4" set:html={paragraph2} />
-					<button class="px-6 py-3 text-white rounded-lg bg-primary"
-						>{cta1}</button
-					>
-				</div>
-			</div>
-		</section>
+		<ApproachSection />
 	</main>
-</Layout>
 
-<script>
+	<!-- scroll reveal demo -->
+	<!-- <script>
 	import ScrollReveal from "scrollreveal";
 
 	ScrollReveal().reveal(".sr-right", {
 		origin: "right",
 		distance: "100px",
-		duration: 2000,
+		duration: 1000,
 		delay: 200,
-		reset: true,
 	});
-</script>
+</script> -->
+</Layout>
