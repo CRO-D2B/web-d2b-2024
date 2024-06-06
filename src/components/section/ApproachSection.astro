@@ -17,8 +17,8 @@ const {
 } = serviceData[0];
 ---
 
-<section class="flex flex-col gap-5 px-6 py-24 gray-rounded-background">
-  <div class="max-w-screen-xl m-auto">
+<section class="flex flex-col px-6 py-24 gap-5 gray-rounded-background">
+  <div class="w-full m-auto max-w-screen-xl">
     <h2
       class="mb-8 text-3xl font-bold text-center md:text-4xl md:text-left text-primary-purple"
     >
@@ -27,8 +27,10 @@ const {
   </div>
 
   <!-- Bloque 1 -->
-  <div class="flex flex-col max-w-screen-xl gap-4 m-auto md:gap-16 md:flex-row">
-    <article class="p-10 bg-white rounded-2xl">
+  <div
+    class="flex flex-col m-auto max-w-screen-xl gap-4 md:grid md:grid-cols-11 md:gap-16"
+  >
+    <article class="p-10 bg-white col-span-6 rounded-2xl">
       <div class="flex justify-between mb-2">
         <h3 class="text-xl font-bold text-primary-purple">
           {enfoques_de_trabajo[0].titulo}
@@ -44,7 +46,7 @@ const {
     {
       imagen_enfoque_1 && (
         <Image
-          class="object-cover object-center w-full rounded-2xl md:max-w-96"
+          class="object-cover object-center w-full mx-auto col-span-4 rounded-2xl md:max-w-96"
           src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_enfoque_1}`}
           alt={`Imagen de ${enfoques_de_trabajo[0].titulo}`}
           width={353}
@@ -55,9 +57,9 @@ const {
   </div>
 
   <!-- Bloque 2 -->
-  <div class="max-w-screen-xl m-auto">
-    <div class="grid grid-cols-7">
-      <article class="col-start-3 col-end-7 p-10 bg-accent-purple rounded-2xl">
+  <div class="m-auto max-w-screen-xl">
+    <div class="flex flex-col md:grid md:grid-cols-7">
+      <article class="p-10 col-start-3 col-end-7 bg-accent-purple rounded-2xl">
         <div class="flex justify-between mb-2">
           <h3 class="text-xl font-bold text-primary-purple">
             {enfoques_de_trabajo[1].titulo}
@@ -75,7 +77,7 @@ const {
   <!-- Frase 1 -->
   {
     frase_1 && (
-      <div class="max-w-screen-xl m-auto">
+      <div class="m-auto max-w-screen-xl">
         <Image
           class="mb-4"
           src="/quote.webp"
@@ -83,7 +85,7 @@ const {
           width={40}
           height={40}
         />
-        <p class="mb-12 text-3xl font-bold text-black">{frase_1}</p>
+        <p class="mb-12 text-xl font-bold text-black md:text-3xl">{frase_1}</p>
         {cta_enfoque_1 && (
           <a
             class="block px-8 py-4 font-bold text-center bg-white border-2 rounded-lg border-primary text-back md:inline-block"
@@ -98,9 +100,9 @@ const {
 
   <!-- Bloque 3 -->
   <div
-    class="flex flex-col max-w-screen-xl gap-4 m-auto md:gap-16 md:flex-row-reverse"
+    class="flex flex-col m-auto max-w-screen-xl gap-4 md:grid md:grid-cols-11 md:gap-16"
   >
-    <article class="p-10 bg-white rounded-2xl">
+    <article class="order-2 p-10 bg-white col-span-6 col-start-6 rounded-2xl">
       <div class="flex justify-between mb-2">
         <h3 class="text-xl font-bold text-primary-purple">
           {enfoques_de_trabajo[2].titulo}
@@ -116,7 +118,7 @@ const {
     {
       imagen_enfoque_2 && (
         <Image
-          class="object-cover object-center w-full rounded-2xl md:max-w-96"
+          class="order-1 object-cover object-center w-full mx-auto col-span-4 col-start-2 rounded-2xl md:max-w-96"
           src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_enfoque_2}`}
           alt={`Imagen de ${enfoques_de_trabajo[2].titulo}`}
           width={353}
@@ -129,9 +131,9 @@ const {
   <!-- Bloque 4 -->
   {
     enfoques_de_trabajo[3] && (
-      <div class="max-w-screen-xl m-auto">
-        <div class="grid grid-cols-7">
-          <article class="col-start-3 col-end-7 p-10 bg-accent-purple rounded-2xl">
+      <div class="m-auto max-w-screen-xl">
+        <div class="flex flex-col md:grid md:grid-cols-7">
+          <article class="p-10 col-start-3 col-end-7 bg-accent-purple rounded-2xl">
             <div class="flex justify-between mb-2">
               <h3 class="text-xl font-bold text-primary-purple">
                 {enfoques_de_trabajo[3].titulo}
@@ -151,8 +153,8 @@ const {
   <!-- Bloque 5 -->
   {
     enfoques_de_trabajo[4] && (
-      <div class="flex flex-col max-w-screen-xl gap-4 m-auto md:gap-16 md:flex-row">
-        <article class="p-10 bg-white rounded-2xl">
+      <div class="flex flex-col m-auto max-w-screen-xl gap-4 md:grid md:grid-cols-11 md:gap-16">
+        <article class="p-10 bg-white col-span-6 rounded-2xl">
           <div class="flex justify-between mb-2">
             <h3 class="text-xl font-bold text-primary-purple">
               {enfoques_de_trabajo[4].titulo}
@@ -167,7 +169,7 @@ const {
 
         {imagen_enfoque_3 && (
           <Image
-            class="object-cover object-center w-full rounded-2xl md:max-w-96"
+            class="object-cover object-center w-full mx-auto col-span-4 rounded-2xl md:max-w-96"
             src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_enfoque_3}`}
             alt={`Imagen de ${enfoques_de_trabajo[4].titulo}`}
             width={353}
@@ -181,7 +183,7 @@ const {
   <!-- Frase 2 -->
   {
     frase_2 && (
-      <div class="max-w-screen-xl m-auto">
+      <div class="m-auto max-w-screen-xl">
         <Image
           class="mb-4"
           src="/quote.webp"
@@ -189,7 +191,7 @@ const {
           width={40}
           height={40}
         />
-        <p class="mb-12 text-3xl font-bold text-black">{frase_2}</p>
+        <p class="mb-12 text-xl font-bold text-black md:text-3xl">{frase_2}</p>
         {cta_enfoque_2 && (
           <a
             class="block px-8 py-4 font-bold text-center bg-white border-2 rounded-lg border-primary text-back md:inline-block"
