@@ -1,8 +1,7 @@
 ---
-import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import { serviceDataByName } from "@/services/services";
-import ApproachSection from "@/components/section/ApproachSection.astro";
+import ApproachSection from "@/components/sections/ApproachSection.astro";
 
 const serviceData = await serviceDataByName(Astro.params.serviceName);
 
@@ -14,6 +13,12 @@ const {
 	titulo_1,
 	texto_1,
 	cta_1,
+	titulo_resultados,
+	texto_resultados,
+	cta_resultados,
+	titulo_aun_no_convencido,
+	texto_aun_no_convencido,
+	titulo_preguntas_frecuentes,
 } = serviceData[0];
 ---
 
@@ -62,10 +67,59 @@ const {
 		</section>
 
 		<ApproachSection />
-	</main>
 
-	<!-- scroll reveal demo -->
-	<!-- <script>
+		<section class="px-6 py-24">
+			<div class="m-auto max-w-screen-xl">
+				<h2
+					class="mb-6 block text-3xl font-bold md:text-4xl text-primary-purple"
+				>
+					{titulo_resultados}
+				</h2>
+				<div
+					class="mb-10 max-w-[80ch] md:[&>p]:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_a]:text-primary [&_a]:underline"
+					set:html={texto_resultados}
+				/>
+				<a
+					class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-secondary animate-fade animate-delay-300"
+					href="/contacto"
+				>
+					{cta_resultados}
+				</a>
+			</div>
+		</section>
+
+		<section class="px-6 py-24">
+			<div class="m-auto max-w-screen-xl">
+				<h2
+					class="mb-6 block text-3xl font-bold md:text-4xl text-primary-purple"
+				>
+					{titulo_aun_no_convencido}
+				</h2>
+				<div
+					class="mb-10 max-w-[80ch] md:[&>p]:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_a]:text-primary [&_a]:underline"
+					set:html={texto_aun_no_convencido}
+				/>
+			</div>
+		</section>
+
+		<section class="px-6 py-24">
+			<div class="m-auto max-w-screen-xl bg-neutral-100 p-12 rounded-2xl">
+				<h2
+					class="mb-6 block text-3xl font-bold md:text-4xl text-primary-purple"
+				>
+					{titulo_preguntas_frecuentes}
+				</h2>
+				<div
+					class="mb-10 max-w-[80ch] md:[&>p]:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_a]:text-primary [&_a]:underline"
+					set:html={texto_aun_no_convencido}
+				/>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<!-- scroll reveal demo -->
+<!-- <script>
 	import ScrollReveal from "scrollreveal";
 
 	ScrollReveal().reveal(".sr-right", {
@@ -75,4 +129,3 @@ const {
 		delay: 200,
 	});
 </script> -->
-</Layout>
