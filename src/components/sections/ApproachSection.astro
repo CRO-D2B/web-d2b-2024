@@ -99,34 +99,34 @@ const {
   }
 
   <!-- Bloque 3 -->
-  <div
-    class="flex flex-col m-auto max-w-screen-xl gap-4 md:grid md:grid-cols-11 md:gap-16"
-  >
-    <article class="order-2 p-10 bg-white col-span-6 col-start-6 rounded-2xl">
-      <div class="flex justify-between mb-2">
-        <h3 class="text-xl font-bold text-primary-purple">
-          {enfoques_de_trabajo[2].titulo}
-        </h3>
-        <span class="font-bold text-primary-purple/60">03</span>
-      </div>
-      <div
-        class="[&_strong]:text-primary [&_a]:text-primary [&_a]:underline [&_p]:mb-2 [&_p]:text-sm"
-        set:html={enfoques_de_trabajo[2].texto}
-      />
-    </article>
+  {
+    enfoques_de_trabajo[2] && (
+      <div class="flex flex-col m-auto max-w-screen-xl gap-4 md:grid md:grid-cols-11 md:gap-16">
+        <article class="order-2 p-10 bg-white col-span-6 col-start-6 rounded-2xl">
+          <div class="flex justify-between mb-2">
+            <h3 class="text-xl font-bold text-primary-purple">
+              {enfoques_de_trabajo[2].titulo}
+            </h3>
+            <span class="font-bold text-primary-purple/60">03</span>
+          </div>
+          <div
+            class="[&_strong]:text-primary [&_a]:text-primary [&_a]:underline [&_p]:mb-2 [&_p]:text-sm"
+            set:html={enfoques_de_trabajo[2].texto}
+          />
+        </article>
 
-    {
-      imagen_enfoque_2 && (
-        <Image
-          class="order-1 object-cover object-center w-full mx-auto col-span-4 col-start-2 rounded-2xl md:max-w-96"
-          src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_enfoque_2}`}
-          alt={`Imagen de ${enfoques_de_trabajo[2].titulo}`}
-          width={353}
-          height={239}
-        />
-      )
-    }
-  </div>
+        {imagen_enfoque_2 && (
+          <Image
+            class="order-1 object-cover object-center w-full mx-auto col-span-4 col-start-2 rounded-2xl md:max-w-96"
+            src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_enfoque_2}`}
+            alt={`Imagen de ${enfoques_de_trabajo[2].titulo}`}
+            width={353}
+            height={239}
+          />
+        )}
+      </div>
+    )
+  }
 
   <!-- Bloque 4 -->
   {
