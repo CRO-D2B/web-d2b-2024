@@ -13,108 +13,161 @@ const formFields = {
 
 <Layout title=`${"Contacto"} | D2B` description={"Págica de contacto"}>
   <main>
-    <section class="px-6 pt-32 m-auto max-w-screen-xl">
-      <a class="flex gap-2 w-fit" href="/"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          ><path stroke="none" d="M0 0h24v24H0z"></path><path
-            d="M5 12h14M5 12l6 6M5 12l6-6"></path></svg
-        >Volver</a
-      >
+    <section class="px-6 bg-top bg-cover bg-hero">
+      <div class="m-auto max-w-screen-xl pb-24 pt-52">
+        <h1
+          class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+        >
+          Contactanos
+        </h1>
+        <p
+          class="text-white text-2xl w-1/2 max-w-[45ch] mb-14 animate-fade-left"
+        >
+          Confía en nuestra consultoría para ayudarte a hacer crecer tu negocio.
+          Indícanos tus datos de contacto para poder amoldar una propuesta que
+          se ajuste a tus necesidades y las de tu negocio:
+        </p>
+      </div>
     </section>
 
-    <section class="px-6">
-      <div class="py-12 m-auto grid max-w-screen-xl grid-cols-2 gap-8">
+    <section class="px-6 min-h-[500px]">
+      <div
+        class="py-8 md:py-20 m-auto flex flex-col-reverse md:grid max-w-screen-xl md:grid-cols-2 gap-8"
+      >
         <div>
-          <h1 class="mb-2 text-3xl">Contacto</h1>
-          <p class="mb-6">
-            Lorem ipsum dolor sit amet consectetur. Eu scelerisque sit elit
-            tellus luctus viverra accumsan. Lorem ipsum dolor sit amet
-            consectetur. Eu scelerisque sit elit tellus luctus viverra accumsan.
-          </p>
+          <ul class="[&>li]:mb-6 [&>li]:flex [&>li]:gap-4">
+            <li>
+              <Image
+                class="size-10 p-2 object-contain bg-accent-purple rounded-lg"
+                src="/map-marker.webp"
+                width={24}
+                height={24}
+                alt="map marker icon"
+              />
 
-          <form>
-            <div class="flex gap-4">
-              <label class="flex-grow basis-0" for={formFields.name}
-                >Nombre completo
-                <input
-                  type="text"
-                  id={formFields.name}
-                  name={formFields.name}
-                  class="w-full p-2 mb-4 border rounded-md border-neutral-300"
-                  autocomplete="name"
-                />
-              </label>
+              <div>
+                <header class="text-2xl font-semibold">Dirección</header>
+                <footer class="flex flex-col">
+                  <span>Av. Apoquindo No 6410, Of. 212,</span>
+                  <span>Las Condes, Santiago, Chile</span>
+                </footer>
+              </div>
+            </li>
 
-              <label class="flex-grow basis-0" for={formFields.email}
-                >Correo
-                <input
-                  type="email"
-                  id={formFields.email}
-                  name={formFields.email}
-                  class="w-full p-2 mb-4 border rounded-md border-neutral-300"
-                  autocomplete="email"
-                />
-              </label>
-            </div>
+            <li>
+              <Image
+                class="size-10 p-2 object-contain bg-accent-purple rounded-lg"
+                src="/letter.webp"
+                width={24}
+                height={24}
+                alt="mail icon"
+              />
 
-            <div class="flex gap-4">
-              <label class="flex-grow basis-0" for={formFields.phoneNumber}
-                >Teléfono
-                <input
-                  type="tel"
-                  id={formFields.phoneNumber}
-                  name={formFields.phoneNumber}
-                  class="w-full p-2 mb-4 border rounded-md border-neutral-300"
-                  autocomplete="tel"
-                />
-              </label>
+              <div>
+                <header class="text-2xl font-semibold">
+                  Correo electrónico
+                </header>
+                <footer>hola@d2b.cl</footer>
+              </div>
+            </li>
 
-              <label class="flex-grow basis-0" for={formFields.company}
-                >Empresa
-                <input
-                  type="text"
-                  id={formFields.company}
-                  name={formFields.company}
-                  class="w-full p-2 mb-4 border rounded-md border-neutral-300"
-                  autocomplete="organization"
-                />
-              </label>
-            </div>
+            <li>
+              <Image
+                class="size-10 p-2 object-contain bg-accent-purple rounded-lg"
+                src="/phone.webp"
+                width={24}
+                height={24}
+                alt="phone icon"
+              />
 
-            <label for={formFields.message}>Mensaje</label>
+              <div>
+                <header class="text-2xl font-semibold">Teléfono</header>
+                <footer>+56 9 1234 5678</footer>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="relative">
+          <form
+            class="md:absolute w-full -top-[430px] bg-white p-0 md:p-12 border-b-2 md:border-2 border-neutral-200 md:rounded-2xl"
+          >
+            <label
+              class="mb-1 block text-primary font-bold"
+              for={formFields.name}
+              >Nombre completo
+            </label>
+            <input
+              type="text"
+              id={formFields.name}
+              name={formFields.name}
+              class="w-full p-2 mb-6 border rounded-md border-neutral-300"
+              autocomplete="name"
+              placeholder="Tu nombre"
+            />
+
+            <label
+              class="mb-1 block text-primary font-bold"
+              for={formFields.email}
+              >Correo
+            </label>
+            <input
+              type="email"
+              id={formFields.email}
+              name={formFields.email}
+              class="w-full p-2 mb-6 border rounded-md border-neutral-300"
+              autocomplete="email"
+              placeholder="Tu correo"
+            />
+
+            <label
+              class="mb-1 block text-primary font-bold"
+              for={formFields.phoneNumber}
+              >Teléfono
+            </label>
+            <input
+              type="tel"
+              id={formFields.phoneNumber}
+              name={formFields.phoneNumber}
+              class="w-full p-2 mb-6 border rounded-md border-neutral-300"
+              autocomplete="tel"
+              placeholder="Tu teléfono"
+            />
+
+            <label
+              class="mb-1 block text-primary font-bold"
+              for={formFields.company}
+              >Empresa
+            </label>
+            <input
+              type="text"
+              id={formFields.company}
+              name={formFields.company}
+              class="w-full p-2 mb-6 border rounded-md border-neutral-300"
+              autocomplete="organization"
+              placeholder="Tu empresa"
+            />
+
+            <label
+              class="mb-1 block text-primary font-bold"
+              for={formFields.message}>Mensaje</label
+            >
             <textarea
               id={formFields.message}
               name={formFields.message}
               rows="4"
-              class="w-full p-2 mb-4 border rounded-md border-neutral-300"
-            ></textarea>
+              class="w-full p-2 mb-6 border rounded-md border-neutral-300 resize-none"
+              placeholder="Escribe aquí tu mensaje"></textarea>
 
-            <input
-              type="submit"
-              value="Enviar"
-              class="w-full p-2 text-white cursor-pointer rounded-md bg-accent"
-            />
+            <div class="flex justify-end">
+              <input
+                type="submit"
+                value="Enviar"
+                class="mb-8 md:mb-0 py-4 px-8 bold text-white cursor-pointer rounded-md bg-primary"
+              />
+            </div>
           </form>
         </div>
-
-        <aside
-          class="w-full grid place-items-center bg-neutral-200 aspect-video"
-        >
-          <Image
-            src="/grid.png"
-            alt="Imagen temporal"
-            width={100}
-            height={100}
-          />
-        </aside>
       </div>
     </section>
   </main>
