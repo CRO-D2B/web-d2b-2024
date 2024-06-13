@@ -37,7 +37,7 @@ import YoutubeIcon from "@/icons/youtube.astro";
           {
             headerMenuItems.map(({ name, slug }, index) => (
               <a
-                class={`fade px-0 md:px-4 py-2 rounded-md text-3xl font-semibold text-nowrap opacity-0 text-primary-purple hover:bg-accent-purple`}
+                class={`fade px-0 md:px-4 py-2 rounded-md text-3xl font-semibold text-nowrap opacity-0 text-secondary hover:bg-accent-purple`}
                 href={slug}
                 style={`animation-delay: ${200 + 100 * index}ms`}
               >
@@ -47,7 +47,7 @@ import YoutubeIcon from "@/icons/youtube.astro";
           }
         </div>
         <div
-          class="h-1 mx-8 my-6 rounded-full md:mx-16 fade bg-primary-purple"
+          class="h-1 mx-8 my-6 rounded-full md:mx-16 fade bg-secondary"
           style="animation-delay: 800ms;"
         >
         </div>
@@ -56,12 +56,12 @@ import YoutubeIcon from "@/icons/youtube.astro";
           style="animation-delay: 800ms;"
         >
           <a
-            class="inline p-3 rounded-xl text-primary-purple hover:bg-accent-purple"
+            class="inline p-3 rounded-xl text-secondary hover:bg-accent-purple"
             href={socialMedia.linkedin.url}
             target="_blank"><LinkedinIcon size={24} /></a
           >
           <a
-            class="inline p-3 rounded-xl text-primary-purple hover:bg-accent-purple"
+            class="inline p-3 rounded-xl text-secondary hover:bg-accent-purple"
             href={socialMedia.youtube.url}
             target="_blank"><YoutubeIcon size={24} /></a
           >
@@ -95,7 +95,7 @@ import YoutubeIcon from "@/icons/youtube.astro";
       background: rgba(0, 0, 0, 0);
     }
     to {
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.4);
     }
   }
 

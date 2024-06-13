@@ -5,7 +5,7 @@ import { getCategories } from "@/services/blog";
 const menuItems = await getCategories();
 ---
 
-<header class="fixed z-10 w-full px-6 backdrop-blur-sm bg-black/40">
+<header class="fixed z-10 w-full px-6 backdrop-blur-sm scroll-dark-bg">
   <section
     class="flex items-center justify-between py-4 m-auto max-w-screen-xl"
   >
@@ -53,6 +53,20 @@ const menuItems = await getCategories();
 </header>
 
 <style>
+  .scroll-dark-bg {
+    animation: graying linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 600px;
+  }
+  @keyframes graying {
+    from {
+      background: rgba(0, 0, 0, 0);
+    }
+    to {
+      background: rgba(0, 0, 0, 0.4);
+    }
+  }
+
   .scroll {
     height: 4px;
     width: 0;
