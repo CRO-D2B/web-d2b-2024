@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { headerMenuItems } from "@/constants";
+import { headerMenuItems, socialMedia } from "@/constants";
 import LinkedinIcon from "@/icons/linkedin.astro";
 import YoutubeIcon from "@/icons/youtube.astro";
 ---
@@ -57,11 +57,13 @@ import YoutubeIcon from "@/icons/youtube.astro";
         >
           <a
             class="inline p-3 rounded-xl text-primary-purple hover:bg-accent-purple"
-            href="#"><LinkedinIcon size={24} /></a
+            href={socialMedia.linkedin.url}
+            target="_blank"><LinkedinIcon size={24} /></a
           >
           <a
             class="inline p-3 rounded-xl text-primary-purple hover:bg-accent-purple"
-            href="#"><YoutubeIcon size={24} /></a
+            href={socialMedia.youtube.url}
+            target="_blank"><YoutubeIcon size={24} /></a
           >
         </div>
       </nav>
