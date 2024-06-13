@@ -4,29 +4,29 @@ import { Image } from "astro:assets";
 const { title, excerpt, img, caption, author, readingTime, slug } = Astro.props;
 ---
 
-<a href={`/blog/${slug}`}>
-  <article
-    class="flex flex-col w-full h-full overflow-hidden rounded-lg shadow-md gap-4"
-  >
-    <Image
-      class="object-cover w-full h-56 rounded-b-lg shadow-md"
-      src={img}
-      alt={caption}
-      height={300}
-      width={300}
-    />
+<article
+  class="flex flex-col w-full h-full overflow-hidden rounded-lg shadow-md gap-4"
+>
+  <Image
+    class="object-cover w-full h-56 rounded-b-lg shadow-md"
+    src={img}
+    alt={caption}
+    height={300}
+    width={300}
+  />
 
-    <header class="px-4">
-      <h3 class="text-lg font-bold text-center text-pretty text-neutral-800">
-        {title}
-      </h3>
-    </header>
+  <header class="px-4">
+    <h3 class="text-lg font-bold text-center text-pretty text-neutral-800">
+      {title}
+    </h3>
+  </header>
 
-    <div class="px-4">
-      <div class="text-clamp-4 [&>p]:text-neutral-600" set:html={excerpt} />
-    </div>
+  <div class="px-4">
+    <div class="text-clamp-4 [&>p]:text-neutral-600" set:html={excerpt} />
+  </div>
 
-    <footer class="content-end flex-grow px-3 pb-4">
+  <footer class="px-3 pb-6">
+    <div class="mb-6 text-sm">
       <span class="font-semibold text-primary/80">
         {author}
       </span>
@@ -34,6 +34,10 @@ const { title, excerpt, img, caption, author, readingTime, slug } = Astro.props;
         - Lectura:
         {readingTime}
       </span>
-    </footer>
-  </article>
-</a>
+    </div>
+    <a
+      class="block w-fit px-6 py-3 bg-primary rounded-lg text-white"
+      href={`/blog/${slug}`}>Leer más</a
+    >
+  </footer>
+</article>
