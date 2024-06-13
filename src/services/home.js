@@ -1,10 +1,7 @@
-import { createDirectus, authentication, rest, readItems, readSingleton } from '@directus/sdk'
+import { client } from './directus-sdk'
+import { readSingleton, readItems } from '@directus/sdk'
 
-const { DIRECTUS_URL } = import.meta.env
-
-const client = createDirectus(DIRECTUS_URL).with(authentication()).with(rest())
-
-export const homeData = await client.request(readSingleton('Home'))
+export const homePage = await client.request(readSingleton('Home'))
 
 export const valueProposition = await client.request(readItems('Propuesta_de_valor'))
 

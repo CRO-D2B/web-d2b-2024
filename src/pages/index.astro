@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
 import ServiceCard from "@/components/ServiceCard.astro";
-import { homeData, valueProposition, clients, partners } from "@/services/home";
+import { homePage, valueProposition, clients, partners } from "@/services/home";
 import { servicesResume } from "@/services/services";
 
 const {
@@ -14,7 +14,7 @@ const {
 	propuesta_de_valor_subtitulo,
 	partners_titulo,
 	partners_subtitulo,
-} = homeData;
+} = homePage;
 ---
 
 <Layout title="D2B Inteligencia Digital" description="Home de D2B">
@@ -30,7 +30,7 @@ const {
 					{subtitulo}
 				</p>
 				<a
-					class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-secondary animate-fade animate-delay-300"
+					class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-dark-primary animate-fade animate-delay-300"
 					href="/contacto"
 				>
 					{cta_principal}

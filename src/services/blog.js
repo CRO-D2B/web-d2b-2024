@@ -1,4 +1,9 @@
+import { client } from './directus-sdk'
+import { readSingleton } from '@directus/sdk'
+
 const WP_API_URL = 'https://d2b.cl/blog/wp-json/wp/v2'
+
+export const blogPage = await client.request(readSingleton('Blog'))
 
 export const getCategories = async () => {
   const endpoint = '/categories'

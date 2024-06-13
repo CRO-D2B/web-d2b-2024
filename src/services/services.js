@@ -1,8 +1,5 @@
-import { createDirectus, authentication, rest, readItems, readSingleton } from '@directus/sdk'
-
-const { DIRECTUS_URL } = import.meta.env
-
-const client = createDirectus(DIRECTUS_URL).with(authentication()).with(rest())
+import { client } from './directus-sdk'
+import { readSingleton, readItems } from '@directus/sdk'
 
 export const servicesLanding = await client.request(readSingleton('Landing_servicios'))
 
@@ -15,8 +12,7 @@ export const servicesResume = await client.request(readItems('Servicios',
 
 export const serviceDataByName = (slug) => client.request(readItems('Servicios',
   {
-    fields:
-      ['*', { enfoques_de_trabajo: ['*'] }],
+    fields: ['*', { enfoques_de_trabajo: ['*'] }],
     filter: { slug }
   }
 ))

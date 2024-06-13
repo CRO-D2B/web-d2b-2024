@@ -3,6 +3,9 @@ import Layout from "@/layouts/Layout.astro";
 import BlogCard from "@/components/BlogCard.astro";
 import { getPosts } from "@/services/blog";
 import { wordCounter } from "@/lib/utils";
+import { blogPage } from "@/services/blog";
+
+const { titulo, subtitulo, boton_principal } = blogPage;
 
 const posts = await getPosts();
 ---
@@ -13,19 +16,13 @@ const posts = await getPosts();
       class="px-6 bg-no-repeat bg-cover bg-[url('https://d2b.cl/blog/wp-content/uploads/2021/11/prueba2.jpg')]"
     >
       <div class="m-auto max-w-screen-xl pb-36 pt-52">
-        <h1 class="text-white text-5xl max-w-[25ch] mb-12">Blog de D2B</h1>
-        <p class="mb-6 text-lg text-white">
-          Infórmate de todo lo que sucede en el Marketing Digital.
-        </p>
-        <p class="mb-6 text-lg text-white">
-          Te damos la bienvenida al Blog de D2B, donde nuestros profesionales
-          comparten artículos relacionados al marketing digital,
-          recomendaciones, pensamientos y lecciones aprendidas sobre diversos
-          temas referentes a SEO, Performance, Analytics, CRO y mucho más. Te
-          acompañamos en todo lo que necesitas saber para ganar más clientes.
-        </p>
+        <h1 class="text-white text-5xl max-w-[25ch] mb-12">{titulo}</h1>
+        <div
+          class="[&>p]:mb-6 [&>p]:text-lg [&>p]:text-white"
+          set:html={subtitulo}
+        />
         <button
-          class="px-6 py-3 text-white rounded-lg bg-accent animate-fade animate-delay-500"
+          class="px-6 py-3 text-white rounded-lg bg-primary hover:bg-dark-primary animate-fade animate-delay-500"
         >
           Botón principal
         </button>

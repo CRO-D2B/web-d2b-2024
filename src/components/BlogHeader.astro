@@ -17,7 +17,7 @@ const menuItems = await getCategories();
       {
         menuItems.map(({ id, name, slug }) => (
           <a
-            class="px-6 py-3 font-medium text-white text-md hover:text-accent"
+            class="px-6 py-3 font-medium text-white text-md hover:text-primary"
             href={`/blog/categoria/${slug}`}
             data-category-id={id}
           >
@@ -25,7 +25,10 @@ const menuItems = await getCategories();
           </a>
         ))
       }
-      <a class="px-6 py-3 text-white rounded-lg bg-accent" href="/">
+      <a
+        class="px-6 py-3 text-white rounded-lg bg-primary hover:bg-dark-primary"
+        href="/"
+      >
         Volver a D2B
       </a>
     </nav>
