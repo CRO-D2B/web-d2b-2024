@@ -1,10 +1,8 @@
 import { createDirectus, authentication, rest, readItems, readSingleton } from '@directus/sdk'
 
-const { DIRECTUS_URL, DIRECTUS_USER, DIRECTUS_PASSWORD } = import.meta.env
+const { DIRECTUS_URL } = import.meta.env
 
-// Directus SDK configuration
 const client = createDirectus(DIRECTUS_URL).with(authentication()).with(rest())
-// await client.login(DIRECTUS_USER, DIRECTUS_PASSWORD)
 
 export const servicesLanding = await client.request(readSingleton('Landing_servicios'))
 
