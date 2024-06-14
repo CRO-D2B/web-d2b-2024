@@ -1,33 +1,53 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
+import BlogCard from "@/components/BlogCard.astro";
+import { wordCounter } from "@/lib/utils";
+import { getUserBySlug, getPostsByUserId } from "@/services/blog";
+
+const { author: userSlug } = Astro.params;
+
+const { id, name, description, avatar_urls } = await getUserBySlug({
+  userSlug,
+});
+
+const posts = await getPostsByUserId({ id });
 ---
 
 <Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
   <main>
-    <section
-      class="px-6 bg-no-repeat bg-cover bg-[url('https://d2b.cl/blog/wp-content/uploads/2021/11/prueba2.jpg')]"
-    >
-      <div class="m-auto max-w-screen-xl pb-36 pt-52">
-        <h1 class="text-white text-5xl max-w-[25ch] mb-12">Blog de D2B</h1>
-        <p class="mb-6 text-lg text-white">AUTORES</p>
-        <p class="mb-6 text-lg text-white">
-          Te damos la bienvenida al Blog de D2B, donde nuestros profesionales
-          comparten artículos relacionados al marketing digital,
-          recomendaciones, pensamientos y lecciones aprendidas sobre diversos
-          temas referentes a SEO, Performance, Analytics, CRO y mucho más. Te
-          acompañamos en todo lo que necesitas saber para ganar más clientes.
-        </p>
-        <button
-          class="px-6 py-3 text-white rounded-lg bg-accent animate-fade animate-delay-500"
-        >
-          Botón principal
-        </button>
+    <section class="px-6 pt-48 pb-6">
+      <div class="m-auto max-w-screen-xl">
+        <Image
+          src={avatar_urls[96]}
+          alt={`Imagen de ${name}`}
+          class="rounded-full"
+          width={96}
+          height={96}
+        />
+        <h1 class="text-3xl max-w-[25ch] mb-12">{name}</h1>
+        <p class="mb-6 text-lg">{description}</p>
       </div>
     </section>
 
-    <section class="px-6">
-      <div class="m-auto max-w-screen-xl pb-36 pt-52">
-        <h1 class="text-5xl max-w-[25ch] mb-12">hola</h1>
+    <section class="px-6 py-12">
+      <div class="m-auto grid max-w-screen-xl grid-cols-3 gap-12">
+        {
+          posts.map((post) => (
+            <BlogCard
+              title={post.title.rendered}
+              excerpt={post.excerpt.rendered}
+              img={post._embedded["wp:featuredmedia"][0].link}
+              caption={post._embedded["wp:featuredmedia"][0].alt_text}
+              author={post._embedded.author[0].name}
+              authorSlug={post._embedded.author[0].slug}
+              readingTime={
+                Math.ceil(wordCounter(post.content.rendered) / 200) + " minutos"
+              }
+              slug={post.slug}
+            />
+          ))
+        }
       </div>
     </section>
   </main>

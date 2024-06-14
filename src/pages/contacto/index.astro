@@ -17,8 +17,8 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
 
 <Layout title=`${"Contacto"} | D2B` description={"Págica de contacto"}>
   <main>
-    <section class="px-6 bg-top bg-cover bg-hero">
-      <div class="m-auto max-w-screen-xl pb-24 pt-52">
+    <section class="px-6 pb-24 bg-top bg-cover pt-52 bg-hero">
+      <div class="m-auto max-w-screen-xl">
         <h1
           class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
         >
@@ -32,15 +32,15 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
       </div>
     </section>
 
-    <section class="px-6 min-h-[500px]">
+    <section class="px-6 py-8 md:py-20 min-h-[500px]">
       <div
-        class="py-8 md:py-20 m-auto flex flex-col-reverse md:grid max-w-screen-xl md:grid-cols-2 gap-8"
+        class="flex flex-col-reverse m-auto max-w-screen-xl gap-8 md:grid md:grid-cols-2"
       >
         <div>
           <ul class="[&>li]:mb-6 [&>li]:flex [&>li]:gap-4">
             <li>
               <Image
-                class="size-10 p-2 object-contain bg-accent-purple rounded-lg"
+                class="object-contain p-2 rounded-lg size-10 bg-accent-purple"
                 src="/map-marker.webp"
                 width={24}
                 height={24}
@@ -55,7 +55,7 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
 
             <li>
               <Image
-                class="size-10 p-2 object-contain bg-accent-purple rounded-lg"
+                class="object-contain p-2 rounded-lg size-10 bg-accent-purple"
                 src="/letter.webp"
                 width={24}
                 height={24}
@@ -72,7 +72,7 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
 
             <li>
               <Image
-                class="size-10 p-2 object-contain bg-accent-purple rounded-lg"
+                class="object-contain p-2 rounded-lg size-10 bg-accent-purple"
                 src="/phone.webp"
                 width={24}
                 height={24}
@@ -92,7 +92,7 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
             class="md:absolute w-full -top-[430px] bg-white p-0 md:p-12 border-b-2 md:border-2 border-neutral-200 md:rounded-2xl"
           >
             <label
-              class="mb-1 block text-primary font-bold"
+              class="block mb-1 font-bold text-primary"
               for={formFields.name}
               >Nombre completo
             </label>
@@ -106,7 +106,7 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
             />
 
             <label
-              class="mb-1 block text-primary font-bold"
+              class="block mb-1 font-bold text-primary"
               for={formFields.email}
               >Correo
             </label>
@@ -120,7 +120,7 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
             />
 
             <label
-              class="mb-1 block text-primary font-bold"
+              class="block mb-1 font-bold text-primary"
               for={formFields.phoneNumber}
               >Teléfono
             </label>
@@ -134,7 +134,7 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
             />
 
             <label
-              class="mb-1 block text-primary font-bold"
+              class="block mb-1 font-bold text-primary"
               for={formFields.company}
               >Empresa
             </label>
@@ -148,21 +148,21 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
             />
 
             <label
-              class="mb-1 block text-primary font-bold"
+              class="block mb-1 font-bold text-primary"
               for={formFields.message}>Mensaje</label
             >
             <textarea
               id={formFields.message}
               name={formFields.message}
               rows="4"
-              class="w-full p-2 mb-6 border rounded-md border-neutral-300 resize-none"
+              class="w-full p-2 mb-6 border resize-none rounded-md border-neutral-300"
               placeholder="Escribe aquí tu mensaje"></textarea>
 
             <div class="flex justify-end">
               <input
                 type="submit"
                 value="Enviar"
-                class="mb-8 md:mb-0 py-4 px-8 bold text-white cursor-pointer rounded-md bg-primary"
+                class="px-8 py-4 mb-8 text-white cursor-pointer rounded-md md:mb-0 bold bg-primary"
               />
             </div>
           </form>

@@ -12,10 +12,8 @@ const posts = await getPosts();
 
 <Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
   <main>
-    <section
-      class="px-6 bg-no-repeat bg-cover bg-[url('https://d2b.cl/blog/wp-content/uploads/2021/11/prueba2.jpg')]"
-    >
-      <div class="m-auto max-w-screen-xl pb-36 pt-52">
+    <section class="px-6 bg-no-repeat bg-cover pb-36 pt-52 bg-hero-blog">
+      <div class="m-auto max-w-screen-xl">
         <h1 class="text-white text-5xl max-w-[25ch] mb-12">{titulo}</h1>
         <div
           class="[&>p]:mb-6 [&>p]:text-lg [&>p]:text-white"
@@ -29,8 +27,8 @@ const posts = await getPosts();
       </div>
     </section>
 
-    <section class="px-6">
-      <div class="m-auto grid max-w-screen-xl grid-cols-3 gap-12 py-36">
+    <section class="px-6 py-36">
+      <div class="m-auto grid max-w-screen-xl grid-cols-3 gap-12">
         {
           posts.map((post) => (
             <BlogCard
@@ -39,6 +37,7 @@ const posts = await getPosts();
               img={post._embedded["wp:featuredmedia"][0].link}
               caption={post._embedded["wp:featuredmedia"][0].alt_text}
               author={post._embedded.author[0].name}
+              authorSlug={post._embedded.author[0].slug}
               readingTime={
                 Math.ceil(wordCounter(post.content.rendered) / 200) + " minutos"
               }

@@ -12,7 +12,8 @@ export default {
         'accent-purple': '#E6E9FF'
       },
       backgroundImage: {
-        hero: "url('/web.webp')"
+        hero: "url('/web.webp')",
+        'hero-blog': "url('/blog-bg.webp')"
       }
     }
   },

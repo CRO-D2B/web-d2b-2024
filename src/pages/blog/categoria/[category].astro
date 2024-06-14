@@ -13,8 +13,8 @@ const posts = await getPostsByCategoryId({ id });
 
 <Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
   <main>
-    <section class="px-6">
-      <div class="pb-12 m-auto max-w-screen-xl pt-36">
+    <section class="px-6 pt-48 pb-12">
+      <div class="m-auto max-w-screen-xl">
         <h1 class="text-3xl max-w-[25ch] mb-12">{name}</h1>
         <p class="mb-6 text-lg">
           {description}
@@ -22,8 +22,8 @@ const posts = await getPostsByCategoryId({ id });
       </div>
     </section>
 
-    <section class="px-6">
-      <div class="py-12 m-auto grid max-w-screen-xl grid-cols-3 gap-12">
+    <section class="px-6 py-12">
+      <div class="m-auto grid max-w-screen-xl grid-cols-3 gap-12">
         {
           posts.map((post) => (
             <BlogCard
@@ -32,6 +32,7 @@ const posts = await getPostsByCategoryId({ id });
               img={post._embedded["wp:featuredmedia"][0].link}
               caption={post._embedded["wp:featuredmedia"][0].alt_text}
               author={post._embedded.author[0].name}
+              authorSlug={post._embedded.author[0].slug}
               readingTime={
                 Math.ceil(wordCounter(post.content.rendered) / 200) + " minutos"
               }

@@ -1,4 +1,4 @@
-import { client } from './directus-sdk'
+import { client } from './config'
 import { readSingleton, readItems } from '@directus/sdk'
 
 export const homePage = await client.request(readSingleton('Home'))

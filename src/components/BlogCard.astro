@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
 
-const { title, excerpt, img, caption, author, readingTime, slug } = Astro.props;
+const { title, excerpt, img, caption, author, authorSlug, readingTime, slug } =
+  Astro.props;
 ---
 
 <article
@@ -13,6 +14,7 @@ const { title, excerpt, img, caption, author, readingTime, slug } = Astro.props;
     alt={caption}
     height={300}
     width={300}
+    loading="lazy"
   />
 
   <header class="px-4">
@@ -27,16 +29,16 @@ const { title, excerpt, img, caption, author, readingTime, slug } = Astro.props;
 
   <footer class="px-3 pb-6">
     <div class="mb-6 text-sm">
-      <span class="font-semibold text-primary/80">
+      <a href=`/blog/autor/${authorSlug}` class="font-semibold text-primary/80">
         {author}
-      </span>
+      </a>
       <span>
         - Lectura:
         {readingTime}
       </span>
     </div>
     <a
-      class="block w-fit px-6 py-3 bg-primary rounded-lg hover:bg-dark-primary text-white"
+      class="block px-6 py-3 text-white rounded-lg w-fit bg-primary hover:bg-dark-primary"
       href={`/blog/${slug}`}>Leer más</a
     >
   </footer>

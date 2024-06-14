@@ -1,4 +1,4 @@
-import { client } from './directus-sdk'
+import { client } from './config'
 import { readSingleton, readItems } from '@directus/sdk'
 
 export const servicesLanding = await client.request(readSingleton('Landing_servicios'))

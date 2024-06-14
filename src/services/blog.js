@@ -1,7 +1,7 @@
-import { client } from './directus-sdk'
+import { client } from './config'
 import { readSingleton } from '@directus/sdk'
 
-const WP_API_URL = 'https://d2b.cl/blog/wp-json/wp/v2'
+const { WP_API_URL } = import.meta.env
 
 export const blogPage = await client.request(readSingleton('Blog'))
 
@@ -31,6 +31,7 @@ export const getPosts = async () => {
   const data = await res.json()
   return data
 }
+
 export const getPostBySlug = async ({ postSlug }) => {
   const endpoint = '/posts'
   const params = `_embed&_fields=title,_links,content&slug=${postSlug}`
@@ -39,6 +40,7 @@ export const getPostBySlug = async ({ postSlug }) => {
   const data = await res.json()
   return data[0]
 }
+
 export const getPostsByCategoryId = async ({ id }) => {
   const endpoint = '/posts'
   const params = `_embed&categories=${id}&per_page=100`
@@ -46,6 +48,24 @@ export const getPostsByCategoryId = async ({ id }) => {
   const res = await fetch(url)
   const data = await res.json()
   return data
+}
+
+export const getPostsByUserId = async ({ id }) => {
+  const endpoint = '/posts'
+  const params = `_embed&author=${id}&per_page=100`
+  const url = buildUrl({ endpoint, params })
+  const res = await fetch(url)
+  const data = await res.json()
+  return data
+}
+
+export const getUserBySlug = async ({ userSlug }) => {
+  const endpoint = '/users'
+  const params = `slug=${userSlug}`
+  const url = buildUrl({ endpoint, params })
+  const res = await fetch(url)
+  const data = await res.json()
+  return data[0]
 }
 
 const buildUrl = ({ endpoint, params = '' }) => {
