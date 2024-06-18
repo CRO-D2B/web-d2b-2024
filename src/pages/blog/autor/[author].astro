@@ -16,22 +16,24 @@ const posts = await getPostsByUserId({ id });
 
 <Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
   <main>
-    <section class="px-6 pt-48 pb-6">
-      <div class="m-auto max-w-screen-xl">
+    <section class="px-6 pt-48 pb-16">
+      <div class="flex flex-col m-auto max-w-screen-xl md:flex-row gap-6">
         <Image
+          class="rounded-full size-28"
           src={avatar_urls[96]}
           alt={`Imagen de ${name}`}
-          class="rounded-full"
           width={96}
           height={96}
         />
-        <h1 class="text-3xl max-w-[25ch] mb-12">{name}</h1>
-        <p class="mb-6 text-lg">{description}</p>
+        <div>
+          <h1 class="text-xl md:text-3xl max-w-[25ch] mb-6">{name}</h1>
+          <p class="md:text-lg">{description}</p>
+        </div>
       </div>
     </section>
 
     <section class="px-6 py-12">
-      <div class="m-auto grid max-w-screen-xl grid-cols-3 gap-12">
+      <div class="m-auto grid max-w-screen-xl md:grid-cols-3 gap-12">
         {
           posts.map((post) => (
             <BlogCard

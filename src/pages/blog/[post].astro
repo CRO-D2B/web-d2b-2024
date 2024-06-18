@@ -13,7 +13,7 @@ const author = _embedded.author[0];
 <Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
   <main>
     <section class="px-6 pb-12 pt-36">
-      <div class="max-w-[50ch] m-auto text-center">
+      <div class="max-w-[50ch] m-auto text-center mb-8">
         <h1 class="text-3xl">{title.rendered}</h1>
         <small class="text-sm">{author.name}</small>
       </div>
@@ -24,7 +24,7 @@ const author = _embedded.author[0];
     </section>
 
     <section class="px-6 py-12">
-      <div class="max-w-[75ch] m-auto border-t border-neutral-500">
+      <div class="max-w-[75ch] m-auto border-t border-neutral-500 pt-6">
         <a href=`/blog/autor/${author.slug}`>
           <Image
             class="object-cover rounded-full"

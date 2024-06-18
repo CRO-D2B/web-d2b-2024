@@ -14,7 +14,9 @@ const posts = await getPosts();
   <main>
     <section class="px-6 bg-no-repeat bg-cover pb-36 pt-52 bg-hero-blog">
       <div class="m-auto max-w-screen-xl">
-        <h1 class="text-white text-5xl max-w-[25ch] mb-12">{titulo}</h1>
+        <h1 class="text-white text-3xl md:text-5xl max-w-[25ch] mb-12">
+          {titulo}
+        </h1>
         <div
           class="[&>p]:mb-6 [&>p]:text-lg [&>p]:text-white"
           set:html={subtitulo}
@@ -28,7 +30,7 @@ const posts = await getPosts();
     </section>
 
     <section class="px-6 py-36">
-      <div class="m-auto grid max-w-screen-xl grid-cols-3 gap-12">
+      <div class="m-auto grid max-w-screen-xl md:grid-cols-3 gap-12">
         {
           posts.map((post) => (
             <BlogCard

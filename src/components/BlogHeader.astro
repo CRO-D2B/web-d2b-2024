@@ -49,25 +49,12 @@ const menuItems = await getCategories();
       </svg>
     </button>
   </section>
-  <div class="absolute left-0 scroll"></div>
+  <!-- <div class="absolute left-0 growing-bar"></div> -->
 </header>
 
 <style>
-  .scroll-dark-bg {
-    animation: graying linear both;
-    animation-timeline: scroll(root);
-    animation-range: 0 600px;
-  }
-  @keyframes graying {
-    from {
-      background: rgba(0, 0, 0, 0);
-    }
-    to {
-      background: rgba(0, 0, 0, 0.4);
-    }
-  }
-
-  .scroll {
+  /* Growing bar animation on blog header */
+  .growing-bar {
     height: 4px;
     width: 0;
     animation: timeline linear both;

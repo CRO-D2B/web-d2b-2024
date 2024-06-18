@@ -15,15 +15,15 @@ const posts = await getPostsByCategoryId({ id });
   <main>
     <section class="px-6 pt-48 pb-12">
       <div class="m-auto max-w-screen-xl">
-        <h1 class="text-3xl max-w-[25ch] mb-12">{name}</h1>
-        <p class="mb-6 text-lg">
+        <h1 class="text-xl md:text-3xl max-w-[25ch] mb-12">{name}</h1>
+        <p class="md:text-lg">
           {description}
         </p>
       </div>
     </section>
 
     <section class="px-6 py-12">
-      <div class="m-auto grid max-w-screen-xl grid-cols-3 gap-12">
+      <div class="m-auto grid max-w-screen-xl md:grid-cols-3 gap-12">
         {
           posts.map((post) => (
             <BlogCard
