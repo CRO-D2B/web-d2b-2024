@@ -13,7 +13,7 @@ const menuItems = await getCategories();
       <Image src="/D2B-logo.svg" alt="Logo de D2B" width={64} height={64} />
     </a>
 
-    <nav class="flex gap-4">
+    <nav class="hidden gap-4 md:flex">
       {
         menuItems.map(({ id, name, slug }) => (
           <a
@@ -32,22 +32,53 @@ const menuItems = await getCategories();
         Volver a D2B
       </a>
     </nav>
-    <button>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        class="text-white"
+
+    <div class="relative visible md:invisible">
+      <button
+        id="open-close-button"
+        class="group peer relative z-10 h-6 w-9 *:bg-white *:absolute *:left-0 *:w-full *:rounded-full *:h-1 *:duration-200"
+        type="button"
       >
-        <path stroke="none" d="M0 0h24v24H0z"></path>
-        <path d="M3 10a7 7 0 1 0 14 0 7 7 0 1 0-14 0M21 21l-6-6"></path>
-      </svg>
-    </button>
+        <span
+          class="top-0 group-[.active]:rotate-45 group-[.active]:top-1/2 group-[.active]:bg-neutral-600 group-[.active]:-translate-y-1/2 group-hover:bg-neutral-200"
+        ></span>
+        <span
+          class="-translate-y-1/2 top-1/2 group-[.active]:opacity-0 group-hover:bg-neutral-200"
+        ></span>
+        <span
+          class="bottom-0 group-[.active]:-rotate-45 group-[.active]:top-1/2 group-[.active]:bg-neutral-600 group-[.active]:-translate-y-1/2 group-hover:bg-neutral-200"
+        ></span>
+      </button>
+
+      <nav
+        class="blog-nav absolute -right-4 -top-4 flex flex-col pt-14 pb-12 text-xl shadow-lg shadow-neutral-500/10 opacity-0 duration-300 bg-white rounded-lg peer-[.active]:opacity-100"
+      >
+        <div class="flex flex-col px-8 gap-2 md:px-16">
+          {
+            menuItems.map(({ name, slug }, index) => (
+              <a
+                class="px-0 py-2 text-3xl font-semibold opacity-0 rounded-md fade md:px-4 text-nowrap text-secondary hover:bg-accent-purple"
+                href={`/blog/categoria/${slug}`}
+                style={`animation-delay: ${200 + 100 * index}ms`}
+              >
+                {name}
+              </a>
+            ))
+          }
+          <div
+            class="h-1 my-6 rounded-full fade bg-secondary"
+            style="animation-delay: 600ms;"
+          >
+          </div>
+          <a
+            class="px-0 py-2 text-3xl font-semibold opacity-0 rounded-md fade md:px-4 text-nowrap text-secondary hover:bg-accent-purple"
+            style="animation-delay: 600ms;"
+            href="/"
+            target="_blank">Volver a D2B</a
+          >
+        </div>
+      </nav>
+    </div>
   </section>
   <!-- <div class="absolute left-0 growing-bar"></div> -->
 </header>
@@ -76,6 +107,27 @@ const menuItems = await getCategories();
     to {
       background-color: lightgreen;
       width: 100%;
+    }
+  }
+
+  /* Menu items fade in */
+  .blog-nav {
+    clip-path: inset(0 0 100% 100%);
+  }
+  button.active + .blog-nav {
+    clip-path: inset(-10% -10% -10% -10%);
+  }
+
+  button.active + .blog-nav .fade {
+    animation: fade 1s both;
+  }
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 </style>
