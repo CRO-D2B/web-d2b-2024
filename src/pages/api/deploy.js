@@ -17,5 +17,5 @@ export const POST = async ({ params, request }) => {
     }
   )
 
-  return new Response('Not valid client', { status: 200 })
+  return new Response('Correct deploy', { status: 200 })
 }
