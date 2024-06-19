@@ -1,0 +1,70 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { workWithUsPage } from "@/services/contact";
+
+console.log(workWithUsPage);
+
+const {
+  titulo_principal,
+  subtitulo,
+  cta_principal,
+  titulo_1,
+  texto_1,
+  cta_1,
+  titulo_beneficios,
+} = workWithUsPage;
+---
+
+<Layout
+  title=`Trabaja con nosotros | D2B`
+  description="descripcion del servicio"
+>
+  <main>
+    <section class="px-6 bg-top bg-cover bg-hero">
+      <div class="m-auto max-w-screen-xl pb-36 pt-52">
+        <h1
+          class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+        >
+          {titulo_principal}
+        </h1>
+        <p class="text-white text-2xl max-w-[45ch] mb-14 animate-fade-left">
+          {subtitulo}
+        </p>
+        <a
+          class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-dark-primary animate-fade animate-delay-300"
+          href="/contacto"
+        >
+          {cta_principal}
+        </a>
+      </div>
+    </section>
+
+    <section class="px-6 py-24">
+      <div class="m-auto max-w-screen-xl md:flex md:gap-12">
+        <h2
+          class="w-full mb-8 text-3xl font-bold md:mb-0 md:text-4xl text-secondary"
+        >
+          {titulo_1}
+        </h2>
+        <div>
+          <div
+            class="mb-10 [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
+            set:html={texto_1}
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<!-- scroll reveal demo -->
+<!-- <script>
+	import ScrollReveal from "scrollreveal";
+
+	ScrollReveal().reveal(".sr-right", {
+		origin: "right",
+		distance: "100px",
+		duration: 1000,
+		delay: 200,
+	});
+</script> -->
