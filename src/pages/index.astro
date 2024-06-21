@@ -87,13 +87,16 @@ const {
 									"p-6 md:p-10 border-2 rounded-lg border-neutral-200",
 									{
 										"bg-white col-start-1 md:col-start-2 col-span-12  md:col-span-5":
-											index == 0,
+											index == 0 || index == 4 || index == 8,
 									},
 									{
 										"bg-accent-purple col-span-12 md:col-span-6":
-											index == 1 || index == 2,
+											index == 1 || index == 2 || index == 5 || index == 6,
 									},
-									{ "bg-white col-span-12 md:col-span-5": index == 3 },
+									{
+										"bg-white col-span-12 md:col-span-5":
+											index == 3 || index == 7,
+									},
 								]}
 							>
 								<h4 class="text-xl font-bold text-secondary">{titulo}</h4>

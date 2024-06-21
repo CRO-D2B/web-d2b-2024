@@ -1,8 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { workWithUsPage } from "@/services/contact";
-
-console.log(workWithUsPage);
+import { workWithUsPage, benefits } from "@/services/contact";
 
 const {
   titulo_principal,
@@ -10,8 +8,8 @@ const {
   cta_principal,
   titulo_1,
   texto_1,
-  cta_1,
   titulo_beneficios,
+  titulo_opiniones_del_equipo,
 } = workWithUsPage;
 ---
 
@@ -40,31 +38,85 @@ const {
     </section>
 
     <section class="px-6 py-24">
-      <div class="m-auto max-w-screen-xl md:flex md:gap-12">
-        <h2
-          class="w-full mb-8 text-3xl font-bold md:mb-0 md:text-4xl text-secondary"
-        >
+      <div class="m-auto max-w-screen-xl md:flex md:gap-36">
+        <h2 class="mb-8 text-3xl font-bold md:mb-0 md:text-4xl text-secondary">
           {titulo_1}
         </h2>
         <div>
           <div
-            class="mb-10 [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
+            class="w-full mb-10 md:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
             set:html={texto_1}
           />
         </div>
       </div>
     </section>
+
+    <section class="flex flex-col px-6 py-24 gap-5 gray-rounded-background">
+      <div class="m-auto max-w-screen-xl">
+        <h2
+          class="mb-8 text-3xl font-bold text-center md:text-4xl text-secondary"
+        >
+          {titulo_beneficios}
+        </h2>
+
+        <div class="grid grid-cols-12 gap-6">
+          {
+            benefits.map(({ titulo, descripcion }, index) => (
+              <article
+                class:list={[
+                  "p-6 md:p-10 border-2 rounded-lg border-neutral-200",
+                  {
+                    "bg-white col-start-1 md:col-start-2 col-span-12  md:col-span-5":
+                      index == 0 || index == 4 || index == 8,
+                  },
+                  {
+                    "bg-accent-purple col-span-12 md:col-span-6":
+                      index == 1 || index == 2 || index == 5 || index == 6,
+                  },
+                  {
+                    "bg-white col-span-12 md:col-span-5":
+                      index == 3 || index == 7,
+                  },
+                ]}
+              >
+                <h4 class="text-xl font-bold text-secondary">{titulo}</h4>
+                <p class="mt-4">{descripcion}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="px-6 py-24">
+      <div class="m-auto max-w-screen-xl">
+        <h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
+          {titulo_opiniones_del_equipo}
+        </h2>
+      </div>
+    </section>
   </main>
 </Layout>
 
-<!-- scroll reveal demo -->
-<!-- <script>
-	import ScrollReveal from "scrollreveal";
+<style>
+  /* radial and linear at 230px  */
+  .gray-rounded-background {
+    background: radial-gradient(
+        150% 300px at 50% 230px,
+        #f5f8f8 75%,
+        transparent 75.2%
+      ),
+      linear-gradient(180deg, transparent 230px, #f5f8f8 230px), #fff;
+  }
 
-	ScrollReveal().reveal(".sr-right", {
-		origin: "right",
-		distance: "100px",
-		duration: 1000,
-		delay: 200,
-	});
-</script> -->
+  @media (width>=768px) {
+    .gray-rounded-background {
+      background: radial-gradient(
+          100% 300px at 50% 230px,
+          #f5f8f8 75%,
+          transparent 75.2%
+        ),
+        linear-gradient(180deg, transparent 230px, #f5f8f8 230px), #fff;
+    }
+  }
+</style>
