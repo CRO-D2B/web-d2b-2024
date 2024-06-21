@@ -4,7 +4,7 @@ import { isProd } from '@/lib/utils'
 const deployFile = isProd ? '_prod-deploy.sh' : '_dev-deploy.sh'
 
 export const POST = async ({ params, request }) => {
-  if (!request.url.includes('github')) { return new Response('Not valid client', { status: 500 }) }
+  if (!request.url.includes('github')) { return new Response('Not valid request', { status: 500 }) }
 
   exec(
     `sh src/pages/api/${deployFile}`,
