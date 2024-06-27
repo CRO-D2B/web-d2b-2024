@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { workWithUsPage, benefits } from "@/services/contact";
+import { Image } from "astro:assets";
+import { workWithUsPage, benefits, teamOpinions } from "@/services/contact";
 
 const {
   titulo_principal,
@@ -19,7 +20,7 @@ const {
 >
   <main>
     <section class="px-6 bg-top bg-cover bg-hero">
-      <div class="m-auto max-w-screen-xl pb-36 pt-52">
+      <div class="max-w-screen-xl m-auto pb-36 pt-52">
         <h1
           class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
         >
@@ -38,7 +39,7 @@ const {
     </section>
 
     <section class="px-6 py-24">
-      <div class="m-auto max-w-screen-xl md:flex md:gap-36">
+      <div class="max-w-screen-xl m-auto md:flex md:gap-36">
         <h2 class="mb-8 text-3xl font-bold md:mb-0 md:text-4xl text-secondary">
           {titulo_1}
         </h2>
@@ -51,8 +52,8 @@ const {
       </div>
     </section>
 
-    <section class="flex flex-col px-6 py-24 gap-5 gray-rounded-background">
-      <div class="m-auto max-w-screen-xl">
+    <section class="flex flex-col gap-5 px-6 py-24 gray-rounded-background">
+      <div class="max-w-screen-xl m-auto">
         <h2
           class="mb-8 text-3xl font-bold text-center md:text-4xl text-secondary"
         >
@@ -89,10 +90,75 @@ const {
     </section>
 
     <section class="px-6 py-24">
-      <div class="m-auto max-w-screen-xl">
+      <div class="max-w-screen-xl m-auto">
         <h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
           {titulo_opiniones_del_equipo}
         </h2>
+
+        <div
+          class="relative right-0 flex w-full gap-6 mb-4 overflow-x-scroll opinion-container snap-x snap-mandatory hidden-scrollbar scroll-smooth"
+        >
+          {
+            teamOpinions.map(({ relato, autor }) => (
+              <article class="flex flex-col justify-between min-w-full gap-16 p-10 border-2 opinion-card snap-start border-neutral-200 rounded-2xl md:min-w-96 md:w-96">
+                <p>{relato}</p>
+                <footer class="flex gap-4">
+                  <Image
+                    class="rounded-lg size-12 bg-accent-purple"
+                    src={`${import.meta.env.DIRECTUS_URL}/assets/${autor.foto}`}
+                    alt={`Foto de ${autor.nombre}`}
+                    width={48}
+                    height={48}
+                  />
+                  <div>
+                    <h3 class="text-lg font-bold text-secondary">
+                      {autor.nombre}
+                    </h3>
+                    <small class="text-sm">{autor.cargo}</small>
+                  </div>
+                </footer>
+              </article>
+            ))
+          }
+        </div>
+
+        <div class="flex justify-center gap-4 md:hidden">
+          {
+            teamOpinions.map((opinion, index) => (
+              <button
+                class="rounded-full opinion-btn size-4 bg-neutral-200"
+                class:list={{
+                  "bg-secondary": index == 0,
+                }}
+              />
+            ))
+          }
+
+          <script>
+            const opinionContainer =
+              document.querySelector(".opinion-container");
+
+            const opinionCard = document.querySelector(
+              ".opinion-card",
+            ) as HTMLElement;
+            const cardWidth = opinionCard.offsetWidth;
+
+            const points = document.querySelectorAll(".opinion-btn");
+
+            points.forEach((point, index) => {
+              point.addEventListener("click", () => {
+                opinionContainer.scrollLeft = cardWidth * index;
+              });
+            });
+
+            opinionContainer.addEventListener("scroll", () => {
+              const scroll = opinionContainer.scrollLeft;
+              const index = Math.round(scroll / cardWidth);
+              points.forEach((point) => point.classList.remove("bg-secondary"));
+              points[index].classList.add("bg-secondary");
+            });
+          </script>
+        </div>
       </div>
     </section>
   </main>
