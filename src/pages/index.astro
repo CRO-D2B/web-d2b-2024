@@ -191,20 +191,22 @@ const team2 = team.slice(team.length / 2, team.length);
 				</h3>
 			</div>
 			<div
-				class="relative right-0 flex w-full mb-4 overflow-x-scroll gap-4 opinion-container snap-x snap-mandatory hidden-scrollbar scroll-smooth"
+				class="flex w-full mb-4 overflow-x-scroll gap-4 md:gap-6 opinion-container snap-x snap-mandatory hidden-scrollbar scroll-smooth"
 			>
 				{
 					team1.map(({ foto, nombre, cargo }) => (
 						<ul>
-							<li class="w-[120px]">
+							<li class="w-[120px] md:w-[193px]">
 								<Image
-									class="object-cover rounded-md size-[120px]"
+									class="object-cover rounded-md size-[120px] md:size-[193px]"
 									src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
 									alt={`Foto de ${nombre}`}
 									inferSize
 								/>
-								<span class="text-base font-bold text-secondary">{nombre}</span>
-								<span class="text-sm">{cargo}</span>
+								<span class="block text-base font-bold text-secondary">
+									{nombre}
+								</span>
+								<span class="block text-sm">{cargo}</span>
 							</li>
 						</ul>
 					))
@@ -212,20 +214,22 @@ const team2 = team.slice(team.length / 2, team.length);
 			</div>
 
 			<div
-				class="relative right-0 flex w-full mb-4 overflow-x-scroll gap-4 opinion-container snap-x snap-mandatory hidden-scrollbar scroll-smooth"
+				class="flex w-full mb-4 overflow-x-scroll gap-4 md:gap-6 opinion-container snap-x snap-mandatory hidden-scrollbar scroll-smooth"
 			>
 				{
 					team2.map(({ foto, nombre, cargo }) => (
 						<ul>
-							<li class="w-[120px]">
+							<li class="w-[120px] md:w-[193px]">
 								<Image
-									class="object-cover rounded-md size-[120px]"
+									class="object-cover rounded-md size-[120px] md:size-[193px]"
 									src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
 									alt={`Foto de ${nombre}`}
 									inferSize
 								/>
-								<span class="text-base font-bold text-secondary">{nombre}</span>
-								<span class="text-sm">{cargo}</span>
+								<span class="block text-base font-bold text-secondary">
+									{nombre}
+								</span>
+								<span class="block text-sm">{cargo}</span>
 							</li>
 						</ul>
 					))
