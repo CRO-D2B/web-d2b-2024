@@ -20,12 +20,12 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
     <section class="px-6 pb-24 bg-top bg-cover pt-52 bg-hero">
       <div class="m-auto max-w-screen-xl">
         <h1
-          class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+          class="text-white text-3xl md:text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
         >
           {titulo}
         </h1>
         <p
-          class="text-white text-2xl w-1/2 max-w-[45ch] mb-14 animate-fade-left"
+          class="text-white text-xl md:text-2xl md:w-1/2 md:max-w-[45ch] mb-14 animate-fade-left"
         >
           {subtitulo}
         </p>
@@ -48,8 +48,10 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
               />
 
               <div>
-                <header class="text-2xl font-semibold">Dirección</header>
-                <footer class="flex flex-col" set:html={direccion} />
+                <header class="text-lg font-semibold md:text-2xl">
+                  Dirección
+                </header>
+                <footer class="flex flex-col text-base" set:html={direccion} />
               </div>
             </li>
 
@@ -63,10 +65,10 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
               />
 
               <div>
-                <header class="text-2xl font-semibold">
+                <header class="text-lg font-semibold md:text-2xl">
                   Correo electrónico
                 </header>
-                <footer>{correo}</footer>
+                <footer class="text-base">{correo}</footer>
               </div>
             </li>
 
@@ -80,8 +82,10 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
               />
 
               <div>
-                <header class="text-2xl font-semibold">Teléfono</header>
-                <footer>{telefono}</footer>
+                <header class="text-lg font-semibold md:text-2xl">
+                  Teléfono
+                </header>
+                <footer class="text-base">{telefono}</footer>
               </div>
             </li>
           </ul>
@@ -162,7 +166,7 @@ const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
               <input
                 type="submit"
                 value="Enviar"
-                class="px-8 py-4 mb-8 text-white cursor-pointer rounded-md md:mb-0 bold bg-primary"
+                class="w-full px-8 py-4 mb-8 text-white cursor-pointer rounded-md md:w-auto md:mb-0 bold bg-primary"
               />
             </div>
           </form>
