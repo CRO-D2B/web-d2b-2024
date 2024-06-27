@@ -2,7 +2,13 @@
 import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
 import ServiceCard from "@/components/ServiceCard.astro";
-import { homePage, valueProposition, clients, partners } from "@/services/home";
+import {
+	homePage,
+	valueProposition,
+	clients,
+	partners,
+	team,
+} from "@/services/home";
 import { servicesResume } from "@/services/services";
 
 const {
@@ -16,7 +22,12 @@ const {
 	clientes_subtitulo,
 	partners_titulo,
 	partners_subtitulo,
+	equipo_titulo,
+	equipo_subtitulo,
 } = homePage;
+
+const team1 = team.slice(0, team.length / 2);
+const team2 = team.slice(team.length / 2, team.length);
 ---
 
 <Layout title="D2B Inteligencia Digital" description="Home de D2B">
@@ -24,11 +35,13 @@ const {
 		<section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
 			<div class="m-auto max-w-screen-xl">
 				<h1
-					class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+					class="text-white text-3xl md:text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
 				>
 					{titulo_principal}
 				</h1>
-				<p class="text-white text-2xl max-w-[45ch] mb-14 animate-fade-left">
+				<p
+					class="text-white text-xl md:text-2xl max-w-[45ch] mb-14 animate-fade-left"
+				>
 					{subtitulo}
 				</p>
 				<a
@@ -147,9 +160,9 @@ const {
 					>
 						{partners_titulo}
 					</h2>
-					<p class="mb-10 text-base text-center md:text-lg md:text-left">
+					<h3 class="mb-10 text-base text-center md:text-lg md:text-left">
 						{partners_subtitulo}
-					</p>
+					</h3>
 				</div>
 				<div class="grid grid-cols-3 gap-x-4 gap-y-6">
 					{
@@ -163,6 +176,60 @@ const {
 						))
 					}
 				</div>
+			</div>
+		</section>
+
+		<section class="px-6 py-24">
+			<div class="m-auto max-w-screen-xl">
+				<h2
+					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
+				>
+					{equipo_titulo}
+				</h2>
+				<h3 class="mb-12 text-base text-center md:text-lg">
+					{equipo_subtitulo}
+				</h3>
+			</div>
+			<div
+				class="relative right-0 flex w-full mb-4 overflow-x-scroll gap-4 opinion-container snap-x snap-mandatory hidden-scrollbar scroll-smooth"
+			>
+				{
+					team1.map(({ foto, nombre, cargo }) => (
+						<ul>
+							<li class="w-[120px]">
+								<Image
+									class="object-cover rounded-md size-[120px]"
+									src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
+									alt={`Foto de ${nombre}`}
+									inferSize
+								/>
+								<span class="text-base font-bold text-secondary">{nombre}</span>
+								<span class="text-sm">{cargo}</span>
+							</li>
+						</ul>
+					))
+				}
+			</div>
+
+			<div
+				class="relative right-0 flex w-full mb-4 overflow-x-scroll gap-4 opinion-container snap-x snap-mandatory hidden-scrollbar scroll-smooth"
+			>
+				{
+					team2.map(({ foto, nombre, cargo }) => (
+						<ul>
+							<li class="w-[120px]">
+								<Image
+									class="object-cover rounded-md size-[120px]"
+									src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
+									alt={`Foto de ${nombre}`}
+									inferSize
+								/>
+								<span class="text-base font-bold text-secondary">{nombre}</span>
+								<span class="text-sm">{cargo}</span>
+							</li>
+						</ul>
+					))
+				}
 			</div>
 		</section>
 	</main>
