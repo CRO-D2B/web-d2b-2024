@@ -26,8 +26,10 @@ const {
 	equipo_subtitulo,
 } = homePage;
 
-const team1 = team.slice(0, team.length / 2);
-const team2 = team.slice(team.length / 2, team.length);
+team.sort(() => Math.random() - 0.5);
+const teamLength = team.length;
+const team1 = team.slice(0, teamLength / 2);
+const team2 = team.slice(teamLength / 2, teamLength);
 ---
 
 <Layout title="D2B Inteligencia Digital" description="Home de D2B">
