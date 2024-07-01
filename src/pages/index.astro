@@ -35,7 +35,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 <Layout title="D2B Inteligencia Digital" description="Home de D2B">
 	<main>
 		<section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h1
 					class="text-white text-3xl md:text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
 				>
@@ -56,7 +56,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 		</section>
 
 		<section class="px-6 py-24">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h2
 					class="mb-12 text-3xl font-bold text-center md:text-5xl text-secondary"
 				>
@@ -64,7 +64,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 				</h2>
 			</div>
 			<div
-				class="flex flex-col flex-wrap justify-center m-auto max-w-screen-xl gap-2 xl:flex-nowrap md:flex-row"
+				class="flex flex-col flex-wrap justify-center max-w-screen-xl gap-2 m-auto xl:flex-nowrap md:flex-row"
 			>
 				{
 					servicesResume.map(
@@ -87,7 +87,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 		</section>
 
 		<section class="px-6 py-24 gray-rounded-background">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h2
 					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
 				>
@@ -126,7 +126,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 		</section>
 
 		<section class="px-6 pt-24 pb-12">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h2
 					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
 				>
@@ -137,7 +137,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 				</h3>
 			</div>
 			<div
-				class="flex flex-wrap justify-center m-auto max-w-screen-xl gap-y-12 md:gap-14"
+				class="flex flex-wrap justify-center max-w-screen-xl m-auto gap-y-12 md:gap-14"
 			>
 				{
 					clients.map(({ nombre, logo }) => (
@@ -154,7 +154,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 
 		<section class="px-6 py-12 md:py-24">
 			<div
-				class="flex flex-col px-4 py-6 m-auto rounded-lg max-w-screen-xl gap-2 md:flex-row md:px-28 md:py-10 bg-accent-purple"
+				class="flex flex-col max-w-screen-xl gap-2 px-4 py-6 m-auto rounded-lg md:flex-row md:px-28 md:py-10 bg-accent-purple"
 			>
 				<div>
 					<h2
@@ -182,7 +182,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 		</section>
 
 		<section class="px-6 py-24">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h2
 					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
 				>
@@ -192,15 +192,16 @@ const team2 = team.slice(teamLength / 2, teamLength);
 					{equipo_subtitulo}
 				</h3>
 			</div>
-			<div
-				class="flex w-full mb-4 overflow-x-scroll gap-4 md:gap-6 opinion-container snap-x snap-mandatory hidden-scrollbar scroll-smooth"
-			>
-				{
-					team1.map(({ foto, nombre, cargo }) => (
-						<ul>
-							<li class="w-[120px] md:w-[193px]">
+			<div class="m-auto overflow-hidden">
+				<ul
+					class="relative flex w-full h-64 md:h-72 carrousel-to-left"
+					style={`--quantity:${team1.length}`}
+				>
+					{
+						team1.map(({ foto, nombre, cargo }, index) => (
+							<li class="absolute left-full" style={`--position: ${index}`}>
 								<Image
-									class="object-cover rounded-md size-[120px] md:size-[193px]"
+									class="object-cover w-full rounded-md aspect-square"
 									src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
 									alt={`Foto de ${nombre}`}
 									inferSize
@@ -210,33 +211,68 @@ const team2 = team.slice(teamLength / 2, teamLength);
 								</span>
 								<span class="block text-sm">{cargo}</span>
 							</li>
-						</ul>
-					))
-				}
+						))
+					}
+				</ul>
+
+				<ul
+					class="relative flex w-full h-60 carrousel-to-right"
+					style={`--quantity:${team2.length}`}
+				>
+					{
+						team2.map(({ foto, nombre, cargo }, index) => (
+							<li class="absolute right-full" style={`--position: ${index}`}>
+								<Image
+									class="object-cover w-full rounded-md aspect-square"
+									src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
+									alt={`Foto de ${nombre}`}
+									inferSize
+								/>
+								<span class="block text-base font-bold text-secondary">
+									{nombre}
+								</span>
+								<span class="block text-sm">{cargo}</span>
+							</li>
+						))
+					}
+				</ul>
 			</div>
 
-			<div
-				class="flex w-full mb-4 overflow-x-scroll gap-4 md:gap-6 opinion-container snap-x snap-mandatory hidden-scrollbar scroll-smooth"
-			>
-				{
-					team2.map(({ foto, nombre, cargo }) => (
-						<ul>
-							<li class="w-[120px] md:w-[193px]">
-								<Image
-									class="object-cover rounded-md size-[120px] md:size-[193px]"
-									src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
-									alt={`Foto de ${nombre}`}
-									inferSize
-								/>
-								<span class="block text-base font-bold text-secondary">
-									{nombre}
-								</span>
-								<span class="block text-sm">{cargo}</span>
-							</li>
-						</ul>
-					))
+			<style>
+				ul {
+					--card-width: 120px;
 				}
-			</div>
+				@media (width>=768px) {
+					ul {
+						--card-width: 190px;
+					}
+				}
+				ul {
+					min-width: calc(var(--card-width) * var(--quantity) * 1.1);
+				}
+				li {
+					width: var(--card-width);
+				}
+				ul.carrousel-to-left > li {
+					animation: carrouselLeft 30s linear infinite;
+					animation-delay: calc(30s / var(--quantity) * (var(--position) * -1));
+				}
+				@keyframes carrouselLeft {
+					to {
+						left: calc(var(--card-width) * -1);
+					}
+				}
+
+				ul.carrousel-to-right > li {
+					animation: carrouselRight 30s linear infinite;
+					animation-delay: calc(30s / var(--quantity) * (var(--position) * -1));
+				}
+				@keyframes carrouselRight {
+					to {
+						right: calc(var(--card-width) * -1);
+					}
+				}
+			</style>
 		</section>
 	</main>
 </Layout>
