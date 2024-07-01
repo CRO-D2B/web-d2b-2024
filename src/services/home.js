@@ -1,4 +1,4 @@
-import { client } from './config'
+import { client } from '@/lib/resend'
 import { readSingleton, readItems } from '@directus/sdk'
 
 export const homePage = await client.request(readSingleton('Home'))

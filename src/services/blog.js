@@ -1,4 +1,4 @@
-import { client } from './config'
+import { client } from '@/lib/resend'
 import { readSingleton } from '@directus/sdk'
 
 const { WP_API_URL } = import.meta.env
