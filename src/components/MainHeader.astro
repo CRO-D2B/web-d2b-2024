@@ -31,13 +31,13 @@ import YoutubeIcon from "@/icons/youtube.astro";
       </button>
 
       <nav
-        class="absolute -right-4 -top-4 flex flex-col pt-14 pb-12 text-xl shadow-lg shadow-neutral-500/10 opacity-0 duration-300 bg-white rounded-lg peer-[.active]:opacity-100"
+        class="absolute -right-4 -top-4 flex flex-col pt-14 pb-12 shadow-lg shadow-neutral-500/10 opacity-0 duration-300 bg-white rounded-lg peer-[.active]:opacity-100"
       >
         <div class="flex flex-col px-8 gap-2 md:px-16">
           {
             headerMenuItems.map(({ name, slug }, index) => (
               <a
-                class="px-0 py-2 text-3xl font-semibold opacity-0 rounded-md fade md:px-4 text-nowrap text-secondary hover:bg-accent-purple"
+                class="px-0 py-2 text-2xl font-semibold opacity-0 rounded-md md:text-3xl fade md:px-4 text-nowrap text-secondary hover:bg-accent-purple"
                 href={slug}
                 style={`animation-delay: ${200 + 100 * index}ms`}
               >
