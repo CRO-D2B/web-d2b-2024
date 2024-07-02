@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import { serviceDataByName } from "@/services/services";
 import ApproachSection from "@/sections/ApproachSection.astro";
+import ArrowHead from "@/icons/arrowHead.astro";
 
 const serviceData = await serviceDataByName(Astro.params.serviceName);
 
@@ -19,6 +20,7 @@ const {
 	titulo_aun_no_convencido,
 	texto_aun_no_convencido,
 	titulo_preguntas_frecuentes,
+	preguntas_frecuentes,
 } = serviceData[0];
 ---
 
@@ -109,19 +111,21 @@ const {
 					class="mb-10 max-w-[80ch] md:[&>p]:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_a]:text-primary [&_a]:underline"
 					set:html={texto_aun_no_convencido}
 				/>
+
+				{
+					preguntas_frecuentes.map(({ pregunta, respuesta }) => (
+						<details class="py-6 border-b-2 group border-neutral-300">
+							<summary class="flex justify-between cursor-pointer">
+								<span class="text-base font-semibold">{pregunta}</span>
+								<span class="text-black duration-300 rotate-90 size-8 group-open:rotate-[270deg]">
+									<ArrowHead />
+								</span>
+							</summary>
+							<div class="text-sm" set:html={respuesta} />
+						</details>
+					))
+				}
 			</div>
 		</section>
 	</main>
 </Layout>
-
-<!-- scroll reveal demo -->
-<!-- <script>
-	import ScrollReveal from "scrollreveal";
-
-	ScrollReveal().reveal(".sr-right", {
-		origin: "right",
-		distance: "100px",
-		duration: 1000,
-		delay: 200,
-	});
-</script> -->
