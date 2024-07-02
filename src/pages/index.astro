@@ -241,21 +241,22 @@ const team2 = team.slice(teamLength / 2, teamLength);
 			<style>
 				ul {
 					--card-width: 120px;
+					--animation-time: 30s;
+					min-width: calc(var(--card-width) * var(--quantity) * 1.1);
 				}
 				@media (width>=768px) {
 					ul {
 						--card-width: 190px;
 					}
 				}
-				ul {
-					min-width: calc(var(--card-width) * var(--quantity) * 1.1);
-				}
 				li {
 					width: var(--card-width);
 				}
 				ul.carrousel-to-left > li {
-					animation: carrouselLeft 30s linear infinite;
-					animation-delay: calc(30s / var(--quantity) * (var(--position) * -1));
+					animation: carrouselLeft var(--animation-time) linear infinite;
+					animation-delay: calc(
+						var(--animation-time) / var(--quantity) * (var(--position) * -1)
+					);
 				}
 				@keyframes carrouselLeft {
 					to {
@@ -264,8 +265,10 @@ const team2 = team.slice(teamLength / 2, teamLength);
 				}
 
 				ul.carrousel-to-right > li {
-					animation: carrouselRight 30s linear infinite;
-					animation-delay: calc(30s / var(--quantity) * (var(--position) * -1));
+					animation: carrouselRight var(--animation-time) linear infinite;
+					animation-delay: calc(
+						var(--animation-time) / var(--quantity) * (var(--position) * -1)
+					);
 				}
 				@keyframes carrouselRight {
 					to {
