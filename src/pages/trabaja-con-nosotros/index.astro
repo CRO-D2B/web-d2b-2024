@@ -2,6 +2,8 @@
 import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { workWithUsPage, benefits, teamOpinions } from "@/services/contact";
+import { servicesResume } from "@/services/services";
+import Upload from "@/icons/upload.astro";
 
 const {
   titulo_principal,
@@ -11,7 +13,15 @@ const {
   texto_1,
   titulo_beneficios,
   titulo_opiniones_del_equipo,
+  titulo_cv,
 } = workWithUsPage;
+
+const formFields = {
+  name: "name",
+  email: "email",
+  linkedinProfile: "linkedinProfile",
+  interest: "interest",
+};
 ---
 
 <Layout
@@ -91,7 +101,7 @@ const {
 
     <section class="px-6 py-24">
       <div class="m-auto max-w-screen-xl">
-        <h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
+        <h2 class="mb-6 text-3xl font-bold md:text-4xl text-secondary">
           {titulo_opiniones_del_equipo}
         </h2>
 
@@ -100,7 +110,7 @@ const {
         >
           {
             teamOpinions.map(({ relato, autor }) => (
-              <article class="flex flex-col justify-between min-w-full p-10 border-2 gap-16 opinion-card snap-start border-neutral-200 rounded-2xl md:min-w-96 md:w-96">
+              <article class="flex flex-col justify-between min-w-full p-8 border-2 gap-16 md:p-10 opinion-card snap-start border-neutral-200 rounded-2xl md:min-w-96 md:w-96">
                 <p>{relato}</p>
                 <footer class="flex gap-4">
                   <Image
@@ -161,8 +171,179 @@ const {
         </div>
       </div>
     </section>
+
+    <section class="px-6 py-24">
+      <div class="m-auto max-w-screen-xl">
+        <h2 class="mb-8 text-3xl font-bold md:text-4xl text-secondary">
+          {titulo_cv}
+        </h2>
+
+        <form class="relative">
+          <div class="gap-6 md:flex">
+            <div class="md:w-1/2">
+              <label class="mb-1 font-bold text-primary" for={formFields.name}
+                >Nombre completo
+              </label>
+              <input
+                type="text"
+                id={formFields.name}
+                name={formFields.name}
+                class="w-full p-2 mb-6 border rounded-md border-neutral-300"
+                autocomplete="name"
+                placeholder="Tu nombre"
+              />
+            </div>
+
+            <div class="md:w-1/2">
+              <label class="mb-1 font-bold text-primary" for={formFields.email}
+                >Correo electrónico
+              </label>
+              <input
+                type="email"
+                id={formFields.email}
+                name={formFields.email}
+                class="w-full p-2 mb-6 border rounded-md border-neutral-300"
+                autocomplete="email"
+                placeholder="Tu correo"
+              />
+            </div>
+          </div>
+
+          <div class="gap-6 md:flex">
+            <div class="md:w-1/2">
+              <label
+                class="mb-1 font-bold text-primary"
+                for={formFields.linkedinProfile}
+                >Perfil de LinkedIn
+              </label>
+              <input
+                type="text"
+                id={formFields.linkedinProfile}
+                name={formFields.linkedinProfile}
+                class="w-full p-2 mb-6 border rounded-md border-neutral-300"
+                autocomplete="organization"
+                placeholder="Tu empresa"
+              />
+            </div>
+            <div class="md:w-1/2">
+              <label
+                class="mb-1 font-bold text-primary"
+                for={formFields.interest}>Área de interes</label
+              >
+              <select
+                id={formFields.interest}
+                name={formFields.interest}
+                class="w-full p-2 mb-6 border resize-none rounded-md border-neutral-300"
+              >
+                <option>Selecciona el área</option>
+                {
+                  servicesResume.map((area) => (
+                    <option value={area.nombre_del_servicio}>
+                      {area.nombre_del_servicio}
+                    </option>
+                  ))
+                }
+              </select>
+            </div>
+          </div>
+
+          <!-- <label
+            class="mb-1 font-bold text-primary"
+            for={formFields.linkedinProfile}
+            >CV
+          </label>
+          <div
+            class="flex items-center justify-center p-2 mb-6 border border-dashed gap-1 rounded-md drop-area h-28 border-neutral-300"
+          >
+            <span class="text-primary"><Upload size={24} /></span>
+            <p class="text-base text-neutral-400">
+              Arrastra tu CV aquí o <button
+                type="button"
+                class="underline text-primary"
+              >
+                selecciona un archivo
+              </button> para subir
+            </p>
+            <input
+              id={formFields.interest}
+              name={formFields.interest}
+              type="file"
+              hidden
+            />
+            <script>
+              const $ = (e) => document.querySelector(e);
+              const dropArea = $(".drop-area");
+              const fileInput = $(".drop-area input") as HTMLInputElement;
+              const btn = $(".drop-area button");
+              const fileLabel = $(".drop-area p");
+
+              btn.addEventListener("click", () => {
+                fileInput.click();
+              });
+
+              dropArea.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropArea.classList.add("border-primary", "bg-accent");
+              });
+
+              ["dragleave", "dragend"].forEach((event) => {
+                dropArea.addEventListener(event, (e) => {
+                  e.preventDefault();
+                  dropArea.classList.remove("border-primary", "bg-accent");
+                });
+              });
+
+              fileInput.addEventListener("change", (e) => {
+                e.preventDefault();
+                fileLabel.textContent = "nombre_del_archivo.pdf";
+              });
+            </script>
+          </div> -->
+
+          <p class="invisible text-red-600 error-message">
+            Tu mensaje no se ha podido enviar. Intentalo nuevamente.
+          </p>
+          <input
+            type="submit"
+            value="Postularme"
+            class="w-full px-8 py-4 mb-8 text-white cursor-pointer rounded-md md:w-auto md:mb-0 bold bg-primary"
+          />
+
+          <div
+            class="absolute top-0 hidden w-full h-full bg-white success-message place-items-center"
+          >
+            <span class="text-2xl">¡Tu mensaje se ha enviado con éxito!</span>
+          </div>
+        </form>
+      </div>
+    </section>
   </main>
 </Layout>
+
+<script>
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData);
+
+    fetch("/api/send-email-work-with-us", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      if (res.ok)
+        document
+          .querySelector(".success-message")
+          .classList.replace("hidden", "grid");
+      else
+        document.querySelector(".error-message").classList.remove("invisible");
+    });
+  });
+</script>
 
 <style>
   /* radial and linear at 230px  */
