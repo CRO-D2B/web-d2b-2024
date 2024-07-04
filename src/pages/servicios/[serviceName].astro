@@ -102,7 +102,7 @@ const {
 
 		<section class="px-6 py-24">
 			<div
-				class="p-12 m-auto border-2 max-w-screen-xl bg-neutral-100 rounded-2xl border-neutral-200"
+				class="p-2 m-auto border-2 max-w-screen-xl md:p-12 bg-neutral-100 rounded-2xl border-neutral-200"
 			>
 				<h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
 					{titulo_preguntas_frecuentes}
@@ -110,14 +110,17 @@ const {
 
 				{
 					preguntas_frecuentes.map(({ pregunta, respuesta }) => (
-						<details class="py-6 border-b-2 group border-neutral-300">
-							<summary class="flex justify-between cursor-pointer">
+						<details class="px-2 py-4 border-b-2 group border-neutral-300">
+							<summary class="flex justify-between py-4 cursor-pointer gap-4">
 								<span class="text-base font-semibold">{pregunta}</span>
-								<span class="text-black duration-300 rotate-90 size-8 group-open:rotate-[270deg]">
+								<span class="text-black duration-300 rotate-90 grid place-items-center min-w-6 min-h-6 group-open:rotate-[270deg]">
 									<ArrowHead />
 								</span>
 							</summary>
-							<div class="text-sm" set:html={respuesta} />
+							<div
+								class="text-sm [&>ol]:list-decimal [&>ol]:ml-6"
+								set:html={respuesta}
+							/>
 						</details>
 					))
 				}
