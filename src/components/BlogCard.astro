@@ -5,30 +5,36 @@ const { title, excerpt, img, caption, author, authorSlug, readingTime, slug } =
   Astro.props;
 ---
 
-<article
-  class="flex flex-col w-full h-full overflow-hidden rounded-lg shadow-md gap-4"
->
-  <Image
-    class="object-cover w-full h-56 rounded-b-lg shadow-md"
-    src={img}
-    alt={caption}
-    height={300}
-    width={300}
-    loading="lazy"
-  />
+<article class="w-full h-full overflow-hidden rounded-lg shadow-md">
+  <a class="group peer" href={`/blog/${slug}`}>
+    <div class="overflow-hidden rounded-b-lg shadow-md">
+      <Image
+        class="object-cover w-full h-56 transition-transform duration-300 group-hover:scale-105"
+        src={img}
+        alt={caption}
+        height={300}
+        width={300}
+        loading="lazy"
+      />
+    </div>
+  </a>
 
-  <header class="px-4">
-    <h3 class="text-lg font-bold text-center text-pretty text-neutral-800">
-      {title}
-    </h3>
-  </header>
+  <a class="group peer-hover:[&_h3]:text-primary" href={`/blog/${slug}`}>
+    <header class="p-4">
+      <h3
+        class="text-lg font-bold text-center text-pretty text-neutral-800 group-hover:text-primary"
+      >
+        {title}
+      </h3>
+    </header>
+  </a>
 
-  <div class="px-4">
+  <div class="px-4 mb-3">
     <div class="text-clamp-4 [&>p]:text-neutral-600" set:html={excerpt} />
   </div>
 
   <footer class="px-3 pb-6">
-    <div class="mb-6 text-sm">
+    <div class="mb-3 text-sm">
       <a href=`/blog/autor/${authorSlug}` class="font-semibold text-primary/80">
         {author}
       </a>
