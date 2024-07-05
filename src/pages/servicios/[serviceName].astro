@@ -7,6 +7,8 @@ import ArrowHead from "@/icons/arrowHead.astro";
 const serviceData = await serviceDataByName(Astro.params.serviceName);
 
 const {
+	meta_title,
+	meta_description,
 	nombre_del_servicio,
 	titulo_principal,
 	subtitulo,
@@ -26,7 +28,8 @@ const {
 
 <Layout
 	title=`${nombre_del_servicio} | D2B`
-	description="descripcion del servicio"
+	metaTitle={meta_title}
+	metaDescription={meta_description}
 >
 	<main>
 		<section class="px-6 bg-top bg-cover bg-hero">

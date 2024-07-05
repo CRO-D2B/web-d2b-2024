@@ -6,6 +6,8 @@ import { servicesResume } from "@/services/services";
 // import Upload from "@/icons/upload.astro";
 
 const {
+  meta_title,
+  meta_description,
   titulo_principal,
   subtitulo,
   cta_principal,
@@ -26,7 +28,8 @@ const formFields = {
 
 <Layout
   title="Trabaja con nosotros | D2B"
-  description="descripcion del servicio"
+  metaTitle={meta_title}
+  metaDescription={meta_description}
 >
   <main>
     <section class="px-6 bg-top bg-cover bg-hero">

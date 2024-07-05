@@ -14,10 +14,14 @@ const { id, name, description, avatar_urls } = await getUserBySlug({
 const posts = await getPostsByUserId({ id });
 ---
 
-<Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
+<Layout
+  title="D2B Inteligencia Digital"
+  metaTitle="Post author"
+  metaDescription="Home de la pagina de D2B"
+>
   <main>
     <section class="px-6 pt-48 pb-16">
-      <div class="flex flex-col m-auto max-w-screen-xl md:flex-row gap-6">
+      <div class="flex flex-col m-auto max-w-screen-xl gap-6 md:flex-row">
         <Image
           class="rounded-full size-28"
           src={avatar_urls[96]}
@@ -33,7 +37,7 @@ const posts = await getPostsByUserId({ id });
     </section>
 
     <section class="px-6 py-12">
-      <div class="m-auto grid max-w-screen-xl md:grid-cols-3 gap-12">
+      <div class="m-auto grid max-w-screen-xl gap-12 md:grid-cols-3">
         {
           posts.map((post) => (
             <BlogCard

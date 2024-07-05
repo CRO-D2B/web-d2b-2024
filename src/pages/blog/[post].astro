@@ -10,7 +10,11 @@ const { title, _embedded, content } = await getPostBySlug({ postSlug });
 const author = _embedded.author[0];
 ---
 
-<Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
+<Layout
+  title="D2B Inteligencia Digital"
+  metaTitle="Post"
+  metaDescription="Home de la pagina de D2B"
+>
   <main>
     <section class="px-6 pb-12 pt-36">
       <div class="max-w-[50ch] m-auto text-center mb-8">

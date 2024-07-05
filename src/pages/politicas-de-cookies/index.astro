@@ -3,6 +3,8 @@ import Layout from "@/layouts/Layout.astro";
 import { policyLanding } from "@/services/policy";
 
 const {
+  meta_title,
+  meta_description,
   titulo_principal,
   titulo_1,
   texto_1,
@@ -15,7 +17,11 @@ const {
 } = policyLanding;
 ---
 
-<Layout title="D2B Inteligencia Digital" description="Home de D2B">
+<Layout
+  title="D2B Inteligencia Digital"
+  metaTitle={meta_title}
+  metaDescription={meta_description}
+>
   <main>
     <section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
       <div class="m-auto max-w-screen-xl">

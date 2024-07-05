@@ -5,12 +5,17 @@ import { getPosts } from "@/services/blog";
 import { wordCounter } from "@/lib/utils";
 import { blogPage } from "@/services/blog";
 
-const { titulo, subtitulo, boton_principal } = blogPage;
+const { meta_title, meta_description, titulo, subtitulo, boton_principal } =
+  blogPage;
 
 const posts = await getPosts();
 ---
 
-<Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
+<Layout
+  title="Blog | D2B Inteligencia Digital"
+  metaTitle={meta_title}
+  metaDescription={meta_description}
+>
   <main>
     <section class="px-6 bg-no-repeat bg-cover pb-36 pt-52 bg-hero-blog">
       <div class="m-auto max-w-screen-xl">
@@ -30,7 +35,7 @@ const posts = await getPosts();
     </section>
 
     <section class="px-6 py-36">
-      <div class="m-auto grid max-w-screen-xl md:grid-cols-3 gap-12">
+      <div class="m-auto grid max-w-screen-xl gap-12 md:grid-cols-3">
         {
           posts.map((post) => (
             <BlogCard

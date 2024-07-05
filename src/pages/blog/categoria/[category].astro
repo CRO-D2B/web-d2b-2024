@@ -11,7 +11,10 @@ const { id, name, description } = await getCategoryInfo({ categorySlug });
 const posts = await getPostsByCategoryId({ id });
 ---
 
-<Layout title="D2B Inteligencia Digital" description="Home de la pagina de D2B">
+<Layout
+  title="D2B Inteligencia Digital"
+  metaDescription="Home de la pagina de D2B"
+>
   <main>
     <section class="px-6 pt-48 pb-12">
       <div class="m-auto max-w-screen-xl">

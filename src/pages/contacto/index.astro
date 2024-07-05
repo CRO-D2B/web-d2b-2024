@@ -12,10 +12,22 @@ const formFields = {
   message: "message",
 };
 
-const { titulo, subtitulo, direccion, correo, telefono } = contactPage;
+const {
+  meta_title,
+  meta_description,
+  titulo,
+  subtitulo,
+  direccion,
+  correo,
+  telefono,
+} = contactPage;
 ---
 
-<Layout title=`${"Contacto"} | D2B` description={"Págica de contacto"}>
+<Layout
+  title=`Contacto | D2B`
+  metaTitle={meta_title}
+  metaDescription={meta_description}
+>
   <main>
     <section class="px-6 pb-24 bg-top bg-cover pt-52 bg-hero">
       <div class="m-auto max-w-screen-xl">
