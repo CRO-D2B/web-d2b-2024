@@ -1,7 +1,7 @@
 export const headerMenuItems = [
   { name: 'Home', slug: '/' },
   { name: 'Servicios', slug: '/servicios' },
-  // { name: 'Casos', slug: '#' },
+  { name: 'Casos', slug: '/casos' },
   { name: 'Contacto', slug: '/contacto' },
   { name: 'Trabaja con nosotros', slug: '/trabaja-con-nosotros' },
   { name: 'Blog', slug: '/blog' }
@@ -12,7 +12,7 @@ export const footerMenuItems = [
   { name: 'Trabaja con nosotros', slug: '/trabaja-con-nosotros' },
   { name: 'Servicios', slug: '/servicios' },
   { name: 'Blog', slug: '/blog' },
-  // { name: 'Casos', slug: '#' },
+  { name: 'Casos', slug: '/casos' },
   { name: 'Política de Cookies', slug: '/politicas-de-cookies' },
   { name: 'Contacto', slug: '/contacto' }
 ]
