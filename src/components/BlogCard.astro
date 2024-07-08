@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import Arrow from "@/icons/arrow.astro";
 
 const { title, excerpt, img, caption, author, authorSlug, readingTime, slug } =
   Astro.props;
@@ -47,8 +48,8 @@ const { title, excerpt, img, caption, author, authorSlug, readingTime, slug } =
       </span>
     </div>
     <a
-      class="block px-6 py-3 text-white rounded-lg w-fit bg-primary hover:bg-dark-primary"
-      href={`/blog/${slug}`}>Leer más</a
+      class="flex justify-center w-full px-6 py-3 font-bold text-white rounded-lg gap-2 md:w-fit bg-primary hover:bg-dark-primary"
+      href={`/blog/${slug}`}>Leer más <Arrow size={24} /></a
     >
   </footer>
 </article>

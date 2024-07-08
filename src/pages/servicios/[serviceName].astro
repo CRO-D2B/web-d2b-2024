@@ -1,8 +1,11 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { serviceDataByName } from "@/services/services";
-import ApproachSection from "@/sections/ApproachSection.astro";
+import BlogCard from "@/components/BlogCard.astro";
 import ArrowHead from "@/icons/arrowHead.astro";
+import ApproachSection from "@/sections/ApproachSection.astro";
+import { serviceDataByName } from "@/services/services";
+import { getCategoryInfo, getPostsByCategoryId } from "@/services/blog";
+import { wordCounter } from "@/lib/utils";
 
 const serviceData = await serviceDataByName(Astro.params.serviceName);
 
@@ -21,9 +24,14 @@ const {
 	cta_resultados,
 	titulo_aun_no_convencido,
 	texto_aun_no_convencido,
+	categoria_blog_slug,
 	titulo_preguntas_frecuentes,
 	preguntas_frecuentes,
 } = serviceData[0];
+
+const { id } = await getCategoryInfo({ categorySlug: categoria_blog_slug });
+const posts = await getPostsByCategoryId({ id });
+const first3Posts = posts.slice(0, 3);
 ---
 
 <Layout
@@ -100,6 +108,24 @@ const {
 					class="mb-10 max-w-[80ch] md:[&>p]:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_a]:text-primary [&_a]:underline"
 					set:html={texto_aun_no_convencido}
 				/>
+			</div>
+			<div class="m-auto grid max-w-screen-xl gap-12 md:grid-cols-3">
+				{
+					first3Posts.map((post) => (
+						<BlogCard
+							title={post.title.rendered}
+							excerpt={post.excerpt.rendered}
+							img={post._embedded["wp:featuredmedia"][0].link}
+							caption={post._embedded["wp:featuredmedia"][0].alt_text}
+							author={post._embedded.author[0].name}
+							authorSlug={post._embedded.author[0].slug}
+							readingTime={
+								Math.ceil(wordCounter(post.content.rendered) / 200) + " minutos"
+							}
+							slug={post.slug}
+						/>
+					))
+				}
 			</div>
 		</section>
 
