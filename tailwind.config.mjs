@@ -8,7 +8,7 @@ export default {
         primary: '#008FBE',
         'dark-primary': '#035F7D',
         secondary: '#570B52',
-        accent: '#D7F5FF',
+        accent: '#EAFAFF',
         'accent-purple': '#E6E9FF'
       },
       backgroundImage: {
