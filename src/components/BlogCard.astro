@@ -25,7 +25,7 @@ const { title, excerpt, img, caption, author, authorSlug, readingTime, slug } =
   <a class="group peer-hover:[&_h3]:text-primary" href={`/blog/${slug}`}>
     <header class="p-4">
       <h3
-        class="text-lg font-bold text-center text-pretty text-neutral-800 group-hover:text-primary"
+        class="text-lg font-bold text-left text-pretty text-neutral-800 group-hover:text-primary"
       >
         {title}
       </h3>
@@ -50,7 +50,7 @@ const { title, excerpt, img, caption, author, authorSlug, readingTime, slug } =
       </span>
     </div>
     <a
-      class="flex justify-center w-full px-6 py-3 font-bold bg-white border-2 rounded-lg gap-2 text-primary border-primary md:w-fit hover:bg-accent"
+      class="flex justify-center w-full gap-2 px-6 py-3 font-bold bg-white border-2 rounded-lg text-primary border-primary md:w-fit hover:bg-accent"
       href={`/blog/${slug}`}>Leer más <Arrow size={24} /></a
     >
   </footer>
