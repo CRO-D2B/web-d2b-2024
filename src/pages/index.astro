@@ -205,9 +205,16 @@ const team2 = team.slice(teamLength / 2, teamLength);
 			>
 				{
 					cases.map(
-						({ slug, imagen, titulo_principal, descripcion_principal }) =>
+						({
+							slug,
+							imagen,
+							categoria,
+							titulo_principal,
+							descripcion_principal,
+						}) =>
 							imagen && (
 								<CaseCard
+									category={categoria}
 									slug={`/casos/${slug}`}
 									title={titulo_principal}
 									description={descripcion_principal}
