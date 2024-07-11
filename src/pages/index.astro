@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
+import Arrow from "@/icons/arrow.astro";
 import ServiceCard from "@/components/ServiceCard.astro";
 import CaseCard from "@/components/CaseCard.astro";
 import {
@@ -26,6 +27,8 @@ const {
 	clientes_subtitulo,
 	partners_titulo,
 	partners_subtitulo,
+	casos_titulo,
+	casos_subtitulo,
 	equipo_titulo,
 	equipo_subtitulo,
 } = homePage;
@@ -190,18 +193,52 @@ const team2 = team.slice(teamLength / 2, teamLength);
 		</section>
 
 		<section class="px-6 py-24">
-			<div class="max-w-screen-xl m-auto">
+			<div class="relative max-w-screen-xl m-auto">
 				<h2
 					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
 				>
-					Casos de éxito
+					{casos_titulo}
 				</h2>
 				<h3 class="mb-12 text-base text-center md:text-lg">
-					Conoce nuestros casos de éxito con algunos de nuestros clientes
+					{casos_subtitulo}
 				</h3>
+				<div class="absolute bottom-0 right-0 hidden gap-4 md:flex">
+					<button
+						class="grid rotate-180 border-2 rounded-full cursor-pointer stories-carrousel-scroll-left place-items-center hover:bg-accent text-primary border-primary"
+						><Arrow size={40} /></button
+					>
+					<button
+						class="grid border-2 rounded-full cursor-pointer stories-carrousel-scroll-right place-items-center hover:bg-accent text-primary border-primary"
+						><Arrow size={40} /></button
+					>
+					<script>
+						const carrousel = document.querySelector(".stories-carrousel");
+						const carrouselScrollLeft = document.querySelector(
+							".stories-carrousel-scroll-left",
+						);
+						const carrouselScrollRight = document.querySelector(
+							".stories-carrousel-scroll-right",
+						);
+
+						carrouselScrollLeft.addEventListener("click", () => {
+							carrouselScrollLeft.setAttribute("disabled", "true");
+							carrousel.scrollBy(-1, 0);
+						});
+
+						carrouselScrollRight.addEventListener("click", () => {
+							carrouselScrollRight.setAttribute("disabled", "true");
+							carrousel.scrollBy(1, 0);
+						});
+
+						carrousel.addEventListener("scrollend", (e) => {
+							carrouselScrollLeft.removeAttribute("disabled");
+							carrouselScrollRight.removeAttribute("disabled");
+						});
+					</script>
+				</div>
 			</div>
 			<div
-				class="flex max-w-screen-xl mx-auto overflow-x-scroll snap-mandatory snap-x hidden-scrollbar"
+				class="flex max-w-screen-xl mx-auto overflow-x-scroll stories-carrousel snap-mandatory snap-x hidden-scrollbar scroll-smooth"
 			>
 				{
 					cases.map(
