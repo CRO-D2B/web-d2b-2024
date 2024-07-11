@@ -2,11 +2,13 @@
 import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
 import ServiceCard from "@/components/ServiceCard.astro";
+import CaseCard from "@/components/CaseCard.astro";
 import {
 	homePage,
 	valueProposition,
 	clients,
 	partners,
+	cases,
 	team,
 } from "@/services/home";
 import { servicesResume } from "@/services/services";
@@ -41,7 +43,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 >
 	<main>
 		<section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h1
 					class="text-white text-3xl md:text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
 				>
@@ -62,7 +64,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 		</section>
 
 		<section class="px-6 py-24">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h2
 					class="mb-12 text-3xl font-bold text-center md:text-5xl text-secondary"
 				>
@@ -70,7 +72,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 				</h2>
 			</div>
 			<div
-				class="flex flex-col flex-wrap justify-center m-auto max-w-screen-xl gap-2 xl:flex-nowrap md:flex-row"
+				class="flex flex-col flex-wrap justify-center max-w-screen-xl gap-2 m-auto xl:flex-nowrap md:flex-row"
 			>
 				{
 					servicesResume.map(
@@ -93,7 +95,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 		</section>
 
 		<section class="px-6 py-24 gray-rounded-background">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h2
 					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
 				>
@@ -132,7 +134,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 		</section>
 
 		<section class="px-6 pt-24 pb-12">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h2
 					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
 				>
@@ -143,7 +145,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 				</h3>
 			</div>
 			<div
-				class="flex flex-wrap justify-center m-auto max-w-screen-xl gap-y-12 md:gap-14"
+				class="flex flex-wrap justify-center max-w-screen-xl m-auto gap-y-12 md:gap-14"
 			>
 				{
 					clients.map(({ nombre, logo }) => (
@@ -160,7 +162,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 
 		<section class="px-6 py-12 md:py-24">
 			<div
-				class="flex flex-col px-4 py-6 m-auto rounded-lg max-w-screen-xl gap-2 md:flex-row md:px-28 md:py-10 bg-accent-purple"
+				class="flex flex-col max-w-screen-xl gap-2 px-4 py-6 m-auto rounded-lg md:flex-row md:px-28 md:py-10 bg-accent-purple"
 			>
 				<div>
 					<h2
@@ -188,7 +190,38 @@ const team2 = team.slice(teamLength / 2, teamLength);
 		</section>
 
 		<section class="px-6 py-24">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
+				<h2
+					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
+				>
+					Casos de éxito
+				</h2>
+				<h3 class="mb-12 text-base text-center md:text-lg">
+					Conoce nuestros casos de éxito con algunos de nuestros clientes
+				</h3>
+			</div>
+			<div
+				class="flex w-full overflow-x-scroll snap-mandatory snap-x hidden-scrollbar"
+			>
+				{
+					cases.map(
+						({ slug, imagen, titulo_principal, descripcion_principal }) =>
+							imagen && (
+								<CaseCard
+									slug={`/casos/${slug}`}
+									title={titulo_principal}
+									description={descripcion_principal}
+									img={`${import.meta.env.DIRECTUS_URL}/assets/${imagen}`}
+									caption={`Imagen referencial del caso ${titulo_principal}`}
+								/>
+							),
+					)
+				}
+			</div>
+		</section>
+
+		<section class="px-6 py-24">
+			<div class="max-w-screen-xl m-auto">
 				<h2
 					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
 				>

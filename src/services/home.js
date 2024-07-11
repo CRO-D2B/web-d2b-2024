@@ -10,3 +10,5 @@ export const clients = await client.request(readItems('Clientes'))
 export const partners = await client.request(readItems('Partners'))
 
 export const team = await client.request(readItems('Equipo'))
+
+export const cases = await client.request(readItems('Casos'))

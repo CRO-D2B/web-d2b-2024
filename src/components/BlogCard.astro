@@ -7,16 +7,15 @@ const { title, excerpt, img, caption, author, authorSlug, readingTime, slug } =
 ---
 
 <article
-  class="w-full h-full overflow-hidden border-2 rounded-lg border-neutral-200 bg-accent-purple"
+  class="flex flex-col w-full h-full overflow-hidden border-2 rounded-lg border-neutral-200 bg-accent-purple"
 >
   <a class="group peer" href={`/blog/${slug}`}>
-    <div class="overflow-hidden rounded-b-lg shadow-md">
+    <div class="overflow-hidden bg-white rounded-b-lg">
       <Image
-        class="object-cover w-full h-56 transition-transform duration-300 group-hover:scale-105"
+        class="object-contain w-full h-56 transition-transform duration-300 group-hover:scale-105"
         src={img}
         alt={caption}
-        height={300}
-        width={300}
+        inferSize
         loading="lazy"
       />
     </div>
@@ -36,7 +35,7 @@ const { title, excerpt, img, caption, author, authorSlug, readingTime, slug } =
     <div class="text-clamp-4 [&>p]:text-neutral-600" set:html={excerpt} />
   </div>
 
-  <footer class="px-3 pb-6">
+  <footer class="content-end flex-1 px-3 pb-6">
     <div class="mb-3 text-sm">
       <a
         href=`/blog/autor/${authorSlug}`

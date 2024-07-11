@@ -33,7 +33,7 @@ const formFields = {
 >
   <main>
     <section class="px-6 bg-top bg-cover bg-hero">
-      <div class="m-auto max-w-screen-xl pb-36 pt-52">
+      <div class="max-w-screen-xl m-auto pb-36 pt-52">
         <h1
           class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
         >
@@ -52,7 +52,7 @@ const formFields = {
     </section>
 
     <section class="px-6 py-24">
-      <div class="m-auto max-w-screen-xl md:flex md:gap-36">
+      <div class="max-w-screen-xl m-auto md:flex md:gap-36">
         <h2 class="mb-8 text-3xl font-bold md:mb-0 md:text-4xl text-secondary">
           {titulo_1}
         </h2>
@@ -65,8 +65,8 @@ const formFields = {
       </div>
     </section>
 
-    <section class="flex flex-col px-6 py-24 gap-5 gray-rounded-background">
-      <div class="m-auto max-w-screen-xl">
+    <section class="flex flex-col gap-5 px-6 py-24 gray-rounded-background">
+      <div class="max-w-screen-xl m-auto">
         <h2
           class="mb-8 text-3xl font-bold text-center md:text-4xl text-secondary"
         >
@@ -103,17 +103,17 @@ const formFields = {
     </section>
 
     <section class="px-6 py-24">
-      <div class="m-auto max-w-screen-xl">
+      <div class="max-w-screen-xl m-auto">
         <h2 class="mb-6 text-3xl font-bold md:text-4xl text-secondary">
           {titulo_opiniones_del_equipo}
         </h2>
 
         <div
-          class="flex w-full mb-4 overflow-x-scroll gap-6 opinion-container snap-x snap-mandatory hidden-scrollbar scroll-smooth"
+          class="flex w-full gap-6 mb-4 overflow-x-scroll opinion-container snap-x snap-mandatory hidden-scrollbar scroll-smooth"
         >
           {
             teamOpinions.map(({ relato, autor }) => (
-              <article class="flex flex-col justify-between min-w-full p-8 border-2 gap-16 md:p-10 opinion-card snap-start border-neutral-200 rounded-2xl md:min-w-96 md:w-96">
+              <article class="flex flex-col justify-between min-w-full gap-16 p-8 border-2 md:p-10 opinion-card snap-start border-neutral-200 rounded-2xl md:min-w-96 md:w-96">
                 <p>{relato}</p>
                 <footer class="flex gap-4">
                   <Image
@@ -176,7 +176,7 @@ const formFields = {
     </section>
 
     <section class="px-6 py-24">
-      <div class="m-auto max-w-screen-xl">
+      <div class="max-w-screen-xl m-auto">
         <h2 class="mb-8 text-3xl font-bold md:text-4xl text-secondary">
           {titulo_cv}
         </h2>
@@ -236,7 +236,7 @@ const formFields = {
               <select
                 id={formFields.interest}
                 name={formFields.interest}
-                class="w-full p-2 mb-6 border resize-none rounded-md border-neutral-300"
+                class="w-full p-2 mb-6 border rounded-md resize-none border-neutral-300"
               >
                 <option>Selecciona el área</option>
                 {
@@ -256,7 +256,7 @@ const formFields = {
             >CV
           </label>
           <div
-            class="flex items-center justify-center p-2 mb-6 border border-dashed gap-1 rounded-md drop-area h-28 border-neutral-300"
+            class="flex items-center justify-center gap-1 p-2 mb-6 border border-dashed rounded-md drop-area h-28 border-neutral-300"
           >
             <span class="text-primary"><Upload size={24} /></span>
             <p class="text-base text-neutral-400">
@@ -309,7 +309,7 @@ const formFields = {
           <input
             type="submit"
             value="Postularme"
-            class="w-full px-8 py-4 mb-8 text-white cursor-pointer rounded-md md:w-auto md:mb-0 bold bg-primary"
+            class="w-full px-8 py-4 mb-8 text-white rounded-md cursor-pointer md:w-auto md:mb-0 bold bg-primary"
           />
 
           <div
