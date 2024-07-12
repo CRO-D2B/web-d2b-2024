@@ -211,6 +211,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 						class="grid border-2 rounded-full cursor-pointer stories-carrousel-scroll-right place-items-center hover:bg-accent text-primary border-primary"
 						><Arrow size={40} /></button
 					>
+
 					<script>
 						const carrousel = document.querySelector(".stories-carrousel");
 						const carrouselScrollLeft = document.querySelector(
@@ -219,6 +220,8 @@ const team2 = team.slice(teamLength / 2, teamLength);
 						const carrouselScrollRight = document.querySelector(
 							".stories-carrousel-scroll-right",
 						);
+
+						const points = document.querySelectorAll(".case-btn");
 
 						carrouselScrollLeft.addEventListener("click", () => {
 							carrouselScrollLeft.setAttribute("disabled", "true");
@@ -233,6 +236,9 @@ const team2 = team.slice(teamLength / 2, teamLength);
 						carrousel.addEventListener("scrollend", (e) => {
 							carrouselScrollLeft.removeAttribute("disabled");
 							carrouselScrollRight.removeAttribute("disabled");
+							points.forEach((point) => {
+								point.removeAttribute("disabled");
+							});
 						});
 					</script>
 				</div>
@@ -261,6 +267,44 @@ const team2 = team.slice(teamLength / 2, teamLength);
 							),
 					)
 				}
+			</div>
+
+			<div class="flex justify-center gap-4 py-6 md:hidden">
+				{
+					cases.map((_, index) => (
+						<button
+							class="rounded-full case-btn size-4 bg-neutral-200"
+							class:list={{
+								"bg-secondary": index == 0,
+							}}
+						/>
+					))
+				}
+
+				<script>
+					const carrousel = document.querySelector(".stories-carrousel");
+
+					const caseCard = document.querySelector(
+						".stories-carrousel > div",
+					) as HTMLElement;
+					const cardWidth = caseCard.offsetWidth;
+
+					const points = document.querySelectorAll(".case-btn");
+
+					points.forEach((point, index) => {
+						point.addEventListener("click", () => {
+							point.setAttribute("disabled", "true");
+							carrousel.scrollLeft = cardWidth * index;
+						});
+					});
+
+					carrousel.addEventListener("scroll", () => {
+						const scroll = carrousel.scrollLeft;
+						const index = Math.round(scroll / cardWidth);
+						points.forEach((point) => point.classList.remove("bg-secondary"));
+						points[index].classList.add("bg-secondary");
+					});
+				</script>
 			</div>
 		</section>
 
