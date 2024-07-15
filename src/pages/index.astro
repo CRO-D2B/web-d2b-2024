@@ -204,45 +204,67 @@ const team2 = team.slice(teamLength / 2, teamLength);
 				</h3>
 				<div class="absolute bottom-0 right-0 hidden gap-4 md:flex">
 					<button
-						class="grid rotate-180 border-2 rounded-full cursor-pointer stories-carrousel-scroll-left place-items-center hover:bg-accent text-primary border-primary"
+						class="grid rotate-180 border-2 rounded-full cursor-pointer stories-carrousel-arrow-left place-items-center hover:bg-accent text-primary border-primary"
 						><Arrow size={40} /></button
 					>
 					<button
-						class="grid border-2 rounded-full cursor-pointer stories-carrousel-scroll-right place-items-center hover:bg-accent text-primary border-primary"
+						class="grid border-2 rounded-full cursor-pointer stories-carrousel-arrow-right place-items-center hover:bg-accent text-primary border-primary"
 						><Arrow size={40} /></button
 					>
 
 					<script>
+						// Script for DESKTOP carrousel buttons
 						const carrousel = document.querySelector(".stories-carrousel");
-						const carrouselScrollLeft = document.querySelector(
-							".stories-carrousel-scroll-left",
-						);
-						const carrouselScrollRight = document.querySelector(
-							".stories-carrousel-scroll-right",
-						);
+						const carrouselArrowLeft = document.querySelector(
+							".stories-carrousel-arrow-left",
+						) as HTMLElement;
+						const carrouselArrowRight = document.querySelector(
+							".stories-carrousel-arrow-right",
+						) as HTMLElement;
 
-						const points = document.querySelectorAll(".case-btn");
-
-						carrouselScrollLeft.addEventListener("click", () => {
-							carrouselScrollLeft.setAttribute("disabled", "true");
+						carrouselArrowLeft.addEventListener("click", () => {
+							carrouselArrowLeft.setAttribute("disabled", "true");
 							carrousel.scrollBy(-1, 0);
 						});
 
-						carrouselScrollRight.addEventListener("click", () => {
-							carrouselScrollRight.setAttribute("disabled", "true");
+						carrouselArrowRight.addEventListener("click", () => {
+							carrouselArrowRight.setAttribute("disabled", "true");
 							carrousel.scrollBy(1, 0);
 						});
 
-						carrousel.addEventListener("scrollend", (e) => {
-							carrouselScrollLeft.removeAttribute("disabled");
-							carrouselScrollRight.removeAttribute("disabled");
-							points.forEach((point) => {
-								point.removeAttribute("disabled");
-							});
+						const disableArrow = (element: HTMLElement) => {
+							element.style.borderColor = "#cacaca";
+							element.style.color = "#cacaca";
+							element.style.pointerEvents = "none";
+						};
+
+						const activateArrow = (element: HTMLElement) => {
+							element.style.removeProperty("border-color");
+							element.style.removeProperty("color");
+							element.style.removeProperty("pointer-events");
+						};
+
+						if (carrousel.scrollLeft === 0) disableArrow(carrouselArrowLeft);
+
+						carrousel.addEventListener("scroll", () => {
+							carrousel.scrollLeft === 0
+								? disableArrow(carrouselArrowLeft)
+								: activateArrow(carrouselArrowLeft);
+
+							carrousel.scrollLeft >=
+							carrousel.scrollWidth - carrousel.clientWidth
+								? disableArrow(carrouselArrowRight)
+								: activateArrow(carrouselArrowRight);
+						});
+
+						carrousel.addEventListener("scrollend", () => {
+							carrouselArrowLeft.removeAttribute("disabled");
+							carrouselArrowRight.removeAttribute("disabled");
 						});
 					</script>
 				</div>
 			</div>
+
 			<div
 				class="flex max-w-screen-xl mx-auto overflow-x-scroll stories-carrousel snap-mandatory snap-x hidden-scrollbar scroll-smooth"
 			>
@@ -282,6 +304,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 				}
 
 				<script>
+					// Script for MOBILE carrousel buttons
 					const carrousel = document.querySelector(".stories-carrousel");
 
 					const caseCard = document.querySelector(
@@ -303,6 +326,12 @@ const team2 = team.slice(teamLength / 2, teamLength);
 						const index = Math.round(scroll / cardWidth);
 						points.forEach((point) => point.classList.remove("bg-secondary"));
 						points[index].classList.add("bg-secondary");
+					});
+
+					carrousel.addEventListener("scrollend", () => {
+						points.forEach((point) => {
+							point.removeAttribute("disabled");
+						});
 					});
 				</script>
 			</div>
