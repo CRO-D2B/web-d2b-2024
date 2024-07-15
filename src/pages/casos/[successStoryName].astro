@@ -1,0 +1,85 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import {
+  successStoryLanding,
+  successStoryByName,
+} from "@/services/successStories";
+
+const successStoryData = await successStoryByName(
+  Astro.params.successStoryName,
+);
+
+console.log(successStoryData);
+
+const {
+  categoria,
+  titulo_principal,
+  descripcion_principal,
+  titulo_enfoque,
+  descripcion_enfoque,
+  titulo_resultado,
+  descripcion_resultado,
+} = successStoryData[0];
+---
+
+<Layout
+  title="Casos de éxito | D2B Inteligencia Digital"
+  metaTitle="Casos de exito de D2B"
+  metaDescription="Casos de exito de D2B"
+>
+  <main>
+    <section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
+      <div class="max-w-screen-xl m-auto">
+        <h1
+          class="text-white text-3xl md:text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+        >
+          {successStoryLanding.titulo_principal}
+        </h1>
+        <div
+          class="text-white text-xl md:text-2xl max-w-[70ch] [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
+          set:html={successStoryLanding.descripcion}
+        />
+      </div>
+    </section>
+
+    <section class="px-6 py-12">
+      <div class="max-w-screen-xl m-auto">
+        <small class="block px-5 py-1 mb-4 bg-accent-purple rounded-3xl w-fit"
+          >{categoria}</small
+        >
+        <h2
+          class="mb-8 text-3xl font-bold md:text-5xl text-secondary"
+        >
+          {titulo_principal}
+        </h2>
+        <div
+          class="mb-10 text-lg md:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
+          set:html={descripcion_principal}
+        />
+        <h3
+          class="mb-4 text-2xl font-bold md:text-5xl text-secondary"
+        >
+          {titulo_enfoque}
+        </h3>
+        <div
+          class="mb-10 text-lg md:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
+          set:html={descripcion_enfoque}
+        />
+      </div>
+    </section>
+
+    <section class="px-6 pb-12">
+      <div
+        class="max-w-screen-xl p-4 m-auto border-2 md:p-12 bg-neutral-100 rounded-2xl border-neutral-200"
+      >
+        <h3 class="block mb-6 text-2xl font-bold md:text-4xl text-secondary">
+          {titulo_resultado}
+        </h3>
+        <div
+          class="mb-10 text-lg md:text-xl [&>ul]:list-image-[url(/checkmark.webp)] [&>ul]:mb-4 [&>ul>li]:mb-7 [&>ul>li:last-child]:mb-0 [&>ul]:ml-6 [&>ul>li]:pl-2 [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
+          set:html={descripcion_resultado}
+        />
+      </div>
+    </section>
+  </main>
+</Layout>

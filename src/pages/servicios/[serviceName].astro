@@ -41,7 +41,7 @@ const first3Posts = posts.slice(0, 3);
 >
 	<main>
 		<section class="px-6 bg-top bg-cover bg-hero">
-			<div class="m-auto max-w-screen-xl pb-36 pt-52">
+			<div class="max-w-screen-xl m-auto pb-36 pt-52">
 				<h1
 					class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
 				>
@@ -60,7 +60,7 @@ const first3Posts = posts.slice(0, 3);
 		</section>
 
 		<section class="px-6 py-24">
-			<div class="m-auto max-w-screen-xl md:flex md:gap-12">
+			<div class="max-w-screen-xl m-auto md:flex md:gap-12">
 				<h2
 					class="w-full mb-8 text-3xl font-bold md:mb-0 md:text-4xl text-secondary"
 				>
@@ -82,7 +82,7 @@ const first3Posts = posts.slice(0, 3);
 		<ApproachSection />
 
 		<section class="px-6 py-24">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
 					{titulo_resultados}
 				</h2>
@@ -100,7 +100,7 @@ const first3Posts = posts.slice(0, 3);
 		</section>
 
 		<section class="px-6 py-24">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
 					{titulo_aun_no_convencido}
 				</h2>
@@ -109,7 +109,7 @@ const first3Posts = posts.slice(0, 3);
 					set:html={texto_aun_no_convencido}
 				/>
 			</div>
-			<div class="m-auto grid max-w-screen-xl gap-12 md:grid-cols-3">
+			<div class="grid max-w-screen-xl gap-12 m-auto md:grid-cols-3">
 				{
 					first3Posts.map((post) => (
 						<BlogCard
@@ -131,7 +131,7 @@ const first3Posts = posts.slice(0, 3);
 
 		<section class="px-6 py-24">
 			<div
-				class="p-4 m-auto border-2 max-w-screen-xl md:p-12 bg-neutral-100 rounded-2xl border-neutral-200"
+				class="max-w-screen-xl p-4 m-auto border-2 md:p-12 bg-neutral-100 rounded-2xl border-neutral-200"
 			>
 				<h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
 					{titulo_preguntas_frecuentes}
@@ -140,7 +140,7 @@ const first3Posts = posts.slice(0, 3);
 				{
 					preguntas_frecuentes.map(({ pregunta, respuesta }) => (
 						<details class="px-2 py-4 border-b-2 group border-neutral-300">
-							<summary class="flex justify-between py-4 cursor-pointer gap-4">
+							<summary class="flex justify-between gap-4 py-4 cursor-pointer">
 								<span class="text-base font-semibold">{pregunta}</span>
 								<span class="text-black duration-300 rotate-90 grid place-items-center min-w-6 min-h-6 group-open:rotate-[270deg]">
 									<ArrowHead />

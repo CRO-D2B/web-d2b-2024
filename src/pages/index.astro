@@ -9,10 +9,10 @@ import {
 	valueProposition,
 	clients,
 	partners,
-	cases,
 	team,
 } from "@/services/home";
 import { servicesResume } from "@/services/services";
+import { successStories } from "@/services/successStories";
 
 const {
 	meta_title,
@@ -247,7 +247,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 				class="flex max-w-screen-xl mx-auto overflow-x-scroll stories-carrousel snap-mandatory snap-x hidden-scrollbar scroll-smooth"
 			>
 				{
-					cases.map(
+					successStories.map(
 						({
 							slug,
 							imagen,
@@ -271,7 +271,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 
 			<div class="flex justify-center gap-4 py-6 md:hidden">
 				{
-					cases.map((_, index) => (
+					successStories.map((_, index) => (
 						<button
 							class="rounded-full case-btn size-4 bg-neutral-200"
 							class:list={{
