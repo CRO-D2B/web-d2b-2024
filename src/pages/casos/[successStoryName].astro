@@ -12,6 +12,8 @@ const successStoryData = await successStoryByName(
 console.log(successStoryData);
 
 const {
+  meta_title,
+  meta_description,
   categoria,
   titulo_principal,
   descripcion_principal,
@@ -24,8 +26,8 @@ const {
 
 <Layout
   title="Casos de éxito | D2B Inteligencia Digital"
-  metaTitle="Casos de exito de D2B"
-  metaDescription="Casos de exito de D2B"
+  metaTitle={meta_title}
+  metaDescription={meta_description}
 >
   <main>
     <section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
