@@ -5,21 +5,21 @@ import { getPostBySlug } from "@/services/blog";
 
 const { post: postSlug } = Astro.params;
 
-const { title, _embedded, content } = await getPostBySlug({ postSlug });
+const { title, _embedded, content,yoast_head_json } = await getPostBySlug({ postSlug });
 
 const author = _embedded.author[0];
 ---
 
 <Layout
-  title=`${title.rendered} | D2B Inteligencia Digital`
-  metaTitle="Post"
-  metaDescription="Home de la pagina de D2B"
+  title={yoast_head_json.title}
+  metaTitle={yoast_head_json.title}
+  metaDescription={yoast_head_json.og_description}
 >
   <main>
     <section class="px-6 pb-12 pt-36">
       <div class="max-w-[50ch] m-auto text-center mb-8">
         <h1 class="text-2xl md:text-3xl" set:html={title.rendered} />
-        <small class="text-sm">{author.name}</small>
+        <a class="text-sm hover:text-primary" href=`/blog/autor/${author.slug}`>{author.name}</a>
       </div>
       <div
         class="max-w-[75ch] m-auto [&_p]:mb-4 [&_p]:!text-left [&_h5]:mb-4 [&_h5]:text-xl [&_h6]:mb-4 [&_h6]:text-xl [&_h2]:mb-4 [&_h2]:text-xl [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:ml-8 [&_img]:w-full [&_a]:underline [&_a]:text-primary [&_a:hover]:text-accent [&_blockquote]:bg-gray-100 [&_blockquote]:p-4 [&_blockquote]:border-l-4 [&_blockquote]:border-accent [&_blockquote]:text-gray-800 [&_blockquote]:font-serif [&_blockquote]:text-lg [&_blockquote]:mb-4 [&_div]:max-w-[75ch]"

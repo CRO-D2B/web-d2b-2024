@@ -34,7 +34,7 @@ export const getPosts = async () => {
 
 export const getPostBySlug = async ({ postSlug }) => {
   const endpoint = '/posts'
-  const params = `_embed&_fields=title,_links,content&slug=${postSlug}`
+  const params = `_embed&_fields=title,_links,content,yoast_head_json&slug=${postSlug}`
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()

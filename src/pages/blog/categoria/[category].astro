@@ -6,19 +6,19 @@ import { wordCounter } from "@/lib/utils";
 
 const { category: categorySlug } = Astro.params;
 
-const { id, name, description } = await getCategoryInfo({ categorySlug });
+const { id, name, description, yoast_head_json } = await getCategoryInfo({ categorySlug });
 
 const posts = await getPostsByCategoryId({ id });
 ---
 
 <Layout
-  title=`${name} | D2B Inteligencia Digital`
-  metaTitle="Post"
-  metaDescription="Home de la pagina de D2B"
+  title={yoast_head_json.title}
+  metaTitle={yoast_head_json.title}
+  metaDescription={description}
 >
   <main>
     <section class="px-6 pt-48 pb-12">
-      <div class="m-auto max-w-screen-xl">
+      <div class="max-w-screen-xl m-auto">
         <h1 class="text-xl md:text-3xl max-w-[25ch] mb-12">{name}</h1>
         <p class="md:text-lg">
           {description}
@@ -27,7 +27,7 @@ const posts = await getPostsByCategoryId({ id });
     </section>
 
     <section class="px-6 py-12">
-      <div class="m-auto grid max-w-screen-xl gap-12 md:grid-cols-3">
+      <div class="grid max-w-screen-xl gap-12 m-auto md:grid-cols-3">
         {
           posts.map((post) => (
             <BlogCard
