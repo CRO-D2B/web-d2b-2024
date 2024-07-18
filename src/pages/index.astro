@@ -357,7 +357,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 						team1.map(({ foto, nombre, cargo }, index) => (
 							<li class="absolute left-full" style={`--position: ${index}`}>
 								<Image
-									class="object-cover w-full rounded-md aspect-square"
+									class="object-cover w-full rounded-md grayscale aspect-square"
 									src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
 									alt={`Foto de ${nombre}`}
 									inferSize
@@ -379,7 +379,7 @@ const team2 = team.slice(teamLength / 2, teamLength);
 						team2.map(({ foto, nombre, cargo }, index) => (
 							<li class="absolute right-full" style={`--position: ${index}`}>
 								<Image
-									class="object-cover w-full rounded-md aspect-square"
+									class="object-cover w-full rounded-md grayscale aspect-square"
 									src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
 									alt={`Foto de ${nombre}`}
 									inferSize
