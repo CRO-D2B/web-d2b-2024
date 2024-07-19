@@ -6,7 +6,13 @@ import { wordCounter } from "@/lib/utils";
 
 const { category: categorySlug } = Astro.params;
 
-const { id, name, description, yoast_head_json } = await getCategoryInfo({ categorySlug });
+const categoryData = await getCategoryInfo({ categorySlug });
+
+if (!categoryData) {
+  return Astro.redirect("/blog/404");
+}
+
+const { id, name, description, yoast_head_json } = categoryData;
 
 const posts = await getPostsByCategoryId({ id });
 ---

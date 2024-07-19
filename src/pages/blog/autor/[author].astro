@@ -7,9 +7,15 @@ import { getUserBySlug, getPostsByUserId } from "@/services/blog";
 
 const { author: userSlug } = Astro.params;
 
-const { id, name, description, avatar_urls, yoast_head_json } = await getUserBySlug({
+const authorData = await getUserBySlug({
   userSlug,
 });
+
+if (!authorData) {
+  return Astro.redirect("/blog/404");
+}
+
+const { id, name, description, avatar_urls, yoast_head_json } = authorData;
 
 const posts = await getPostsByUserId({ id });
 ---
