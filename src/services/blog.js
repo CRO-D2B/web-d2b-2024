@@ -16,7 +16,7 @@ export const getCategories = async () => {
 
 export const getCategoryInfo = async ({ categorySlug }) => {
   const endpoint = '/categories'
-  const params = `slug=${categorySlug}`
+  const params = `_embed&_fields=id,name,description,yoast_head_json&slug=${categorySlug}`
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()
@@ -61,7 +61,7 @@ export const getPostsByUserId = async ({ id }) => {
 
 export const getUserBySlug = async ({ userSlug }) => {
   const endpoint = '/users'
-  const params = `slug=${userSlug}`
+  const params = `_embed&_fields=id,name,description,avatar_urls,yoast_head_json&slug=${userSlug}`
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()
