@@ -30,7 +30,7 @@ const {
 >
   <main>
     <section class="px-6 pb-24 bg-top bg-cover pt-52 bg-hero">
-      <div class="m-auto max-w-screen-xl">
+      <div class="max-w-screen-xl m-auto">
         <h1
           class="text-white text-3xl md:text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
         >
@@ -46,7 +46,7 @@ const {
 
     <section class="px-6 py-8 md:py-20 min-h-[500px]">
       <div
-        class="flex flex-col-reverse m-auto max-w-screen-xl gap-8 md:grid md:grid-cols-2"
+        class="flex flex-col-reverse max-w-screen-xl gap-8 m-auto md:grid md:grid-cols-2"
       >
         <div>
           <ul class="[&>li]:mb-6 [&>li]:flex [&>li]:gap-4">
@@ -60,10 +60,8 @@ const {
               />
 
               <div>
-                <header class="text-lg font-semibold md:text-2xl">
-                  Dirección
-                </header>
-                <footer class="flex flex-col text-base" set:html={direccion} />
+                <p class="text-lg font-semibold md:text-2xl">Dirección</p>
+                <p class="flex flex-col text-base" set:html={direccion} />
               </div>
             </li>
 
@@ -77,10 +75,12 @@ const {
               />
 
               <div>
-                <header class="text-lg font-semibold md:text-2xl">
+                <p class="text-lg font-semibold md:text-2xl">
                   Correo electrónico
-                </header>
-                <footer class="text-base">{correo}</footer>
+                </p>
+                <p class="text-base">
+                  <a href={`mailto:${correo}`}>{correo}</a>
+                </p>
               </div>
             </li>
 
@@ -94,10 +94,10 @@ const {
               />
 
               <div>
-                <header class="text-lg font-semibold md:text-2xl">
-                  Teléfono
-                </header>
-                <footer class="text-base">{telefono}</footer>
+                <p class="text-lg font-semibold md:text-2xl">Teléfono</p>
+                <p class="text-base">
+                  <a href={`tel:${telefono}`}>{telefono}</a>
+                </p>
               </div>
             </li>
           </ul>
@@ -171,7 +171,7 @@ const {
               id={formFields.message}
               name={formFields.message}
               rows="4"
-              class="w-full p-2 mb-6 border resize-none rounded-md border-neutral-300"
+              class="w-full p-2 mb-6 border rounded-md resize-none border-neutral-300"
               placeholder="Escribe aquí tu mensaje"></textarea>
 
             <p class="invisible text-red-600 error-message">
@@ -180,7 +180,7 @@ const {
             <input
               type="submit"
               value="Enviar"
-              class="w-full px-8 py-4 mb-8 text-white cursor-pointer rounded-md md:w-auto md:mb-0 bold bg-primary"
+              class="w-full px-8 py-4 mb-8 text-white rounded-md cursor-pointer md:w-auto md:mb-0 bold bg-primary"
             />
             <div
               class="absolute top-0 left-0 hidden w-full h-full bg-white success-message place-items-center"
