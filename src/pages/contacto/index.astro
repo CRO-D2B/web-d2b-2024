@@ -119,6 +119,7 @@ const {
               class="w-full p-2 mb-6 border rounded-md border-neutral-300"
               autocomplete="name"
               placeholder="Tu nombre"
+              required
             />
 
             <label
@@ -133,6 +134,7 @@ const {
               class="w-full p-2 mb-6 border rounded-md border-neutral-300"
               autocomplete="email"
               placeholder="Tu correo"
+              required
             />
 
             <label
@@ -172,10 +174,10 @@ const {
               name={formFields.message}
               rows="4"
               class="w-full p-2 mb-6 border rounded-md resize-none border-neutral-300"
-              placeholder="Escribe aquí tu mensaje"></textarea>
+              placeholder="Escribe aquí tu mensaje" required></textarea>
 
             <p class="invisible text-red-600 error-message">
-              Tu mensaje no se ha podido enviar. Intentalo nuevamente.
+              Completa los campos antes de enviar.
             </p>
             <input
               type="submit"
