@@ -28,13 +28,14 @@
     "@types/react-dom": "^18.3.0",
     "astro": "^4.2.4",
     "md5": "^2.3.0",
+    "pm2": "^5.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "resend": "^3.2.0",
     "scrollreveal": "^4.0.9",
+    "swr": "^2.2.5",
     "tailwindcss": "^3.4.1",
-    "tailwindcss-animated": "^1.0.1",
-    "pm2": "^5.4.0"
+    "tailwindcss-animated": "^1.0.1"
   },
   "devDependencies": {
     "standard": "^17.1.0"
