@@ -7,10 +7,10 @@ const menuItems = await getCategories();
 
 <header class="fixed z-10 w-full px-6 backdrop-blur-sm bg-neutral-950/40">
   <section
-    class="flex items-center justify-between py-4 m-auto max-w-screen-xl"
+    class="flex items-center justify-between max-w-screen-xl py-4 m-auto"
   >
     <a href="/blog">
-      <Image src="/D2B-logo.svg" alt="Logo de D2B" width={64} height={64} />
+      <Image src="/d2b-logo.svg" alt="Logo de D2B" width={64} height={64} />
     </a>
 
     <nav class="hidden gap-4 md:flex">
@@ -53,11 +53,11 @@ const menuItems = await getCategories();
       <nav
         class="blog-nav absolute -right-4 -top-4 flex flex-col pt-14 pb-12 shadow-lg shadow-neutral-500/10 opacity-0 duration-300 bg-white rounded-lg peer-[.active]:opacity-100"
       >
-        <div class="flex flex-col px-8 gap-2 md:px-16">
+        <div class="flex flex-col gap-2 px-8 md:px-16">
           {
             menuItems.map(({ name, slug }, index) => (
               <a
-                class="px-0 py-2 text-2xl font-semibold opacity-0 rounded-md md:text-3xl fade md:px-4 text-nowrap text-secondary hover:bg-accent-purple"
+                class="px-0 py-2 text-2xl font-semibold rounded-md opacity-0 md:text-3xl fade md:px-4 text-nowrap text-secondary hover:bg-accent-purple"
                 href={`/blog/categoria/${slug}`}
                 style={`animation-delay: ${200 + 100 * index}ms`}
               >
@@ -71,7 +71,7 @@ const menuItems = await getCategories();
           >
           </div>
           <a
-            class="px-0 py-2 text-2xl font-semibold opacity-0 rounded-md md:text-3xl fade md:px-4 text-nowrap text-secondary hover:bg-accent-purple"
+            class="px-0 py-2 text-2xl font-semibold rounded-md opacity-0 md:text-3xl fade md:px-4 text-nowrap text-secondary hover:bg-accent-purple"
             style="animation-delay: 600ms;"
             href="/">Volver a D2B</a
           >
