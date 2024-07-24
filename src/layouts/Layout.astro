@@ -10,7 +10,7 @@ interface Props {
 	metaDescription: string;
 }
 
-const { title, metaTitle, metaDescription } = Astro.props;
+const { metaTitle, metaDescription } = Astro.props;
 
 const { origin, pathname } = Astro.url;
 const isBlog = pathname.startsWith("/blog");
@@ -21,7 +21,6 @@ const isBlog = pathname.startsWith("/blog");
 	<head>
 		<meta charset="UTF-8" />
 		<title>{metaTitle}</title>
-		<meta name="title" content={metaTitle} />
 		<meta name="description" content={metaDescription} />
 		<link rel="canonical" href={origin + pathname} />
 		<meta name="viewport" content="width=device-width" />

@@ -15,7 +15,7 @@ const { meta_title, meta_description, titulo_principal, subtitulo } =
 >
 	<main>
 		<section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
-			<div class="m-auto max-w-screen-xl">
+			<div class="max-w-screen-xl m-auto">
 				<h1
 					class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
 				>
@@ -37,7 +37,7 @@ const { meta_title, meta_description, titulo_principal, subtitulo } =
 		</section>
 
 		<section class="px-6 py-24 gray-rounded-background">
-			<div class="m-auto max-w-screen-lg">
+			<div class="max-w-screen-lg m-auto">
 				<h2>
 					{
 						servicesResume.map(
@@ -53,7 +53,10 @@ const { meta_title, meta_description, titulo_principal, subtitulo } =
 								<article
 									class:list={[
 										"md:flex md:gap-36 justify-between",
-										{ "flex-row-reverse": index % 2 === 1 },
+										{
+											"sr-right flex-row-reverse": index % 2 === 1,
+											"sr-left": index % 2 === 0,
+										},
 									]}
 								>
 									<div class="content-center">
@@ -69,11 +72,11 @@ const { meta_title, meta_description, titulo_principal, subtitulo } =
 										/>
 										<p class="mb-6 ">{descripcion_del_servicio}</p>
 										<a
-											class="inline-flex items-center font-bold gap-4 hover:underline text-primary"
+											class="inline-flex items-center gap-4 font-bold hover:underline text-primary"
 											href={`/servicios/${slug}`}
 										>
 											Leer más
-											<span class="border-2 rounded-full grid w-fit border-primary h-fit place-items-center">
+											<span class="grid border-2 rounded-full w-fit border-primary h-fit place-items-center">
 												<Arrow size={24} />
 											</span>
 										</a>
@@ -95,8 +98,7 @@ const { meta_title, meta_description, titulo_principal, subtitulo } =
 	</main>
 </Layout>
 
-<!-- scroll reveal demo -->
-<!-- <script>
+<script>
 	import ScrollReveal from "scrollreveal";
 
 	ScrollReveal().reveal(".sr-right", {
@@ -104,4 +106,10 @@ const { meta_title, meta_description, titulo_principal, subtitulo } =
 		distance: "100px",
 		duration: 1000,
 	});
-</script> -->
+
+	ScrollReveal().reveal(".sr-left", {
+		origin: "left",
+		distance: "100px",
+		duration: 1000,
+	});
+</script>
