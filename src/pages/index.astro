@@ -114,15 +114,19 @@ const team2 = team.slice(teamLength / 2, teamLength);
 								class:list={[
 									"p-6 md:p-10 border-2 rounded-lg border-neutral-200",
 									{
-										"bg-white col-start-1 md:col-start-2 col-span-12  md:col-span-5":
-											index == 0 || index == 4 || index == 8,
+										"bg-white col-start-1 col-span-12 md:col-span-6":
+											index == 0 || index == 4 
 									},
 									{
-										"bg-accent-purple col-span-12 md:col-span-6":
-											index == 1 || index == 2 || index == 5 || index == 6,
+										"bg-accent-purple col-span-12 md:col-span-5":
+											index == 1|| index == 5 
 									},
 									{
-										"bg-white col-span-12 md:col-span-5":
+										"bg-accent-purple col-span-12 md:col-start-2 md:col-span-5":
+											index == 2 || index == 6,
+									},
+									{
+										"bg-white col-span-12 md:col-span-6":
 											index == 3 || index == 7,
 									},
 								]}
