@@ -17,8 +17,8 @@ const {
 } = serviceData[0];
 ---
 
-<section class="flex flex-col px-6 py-24 gap-5 gray-rounded-background">
-  <div class="w-full m-auto max-w-screen-xl">
+<section class="flex flex-col gap-5 px-6 py-24 gray-rounded-background">
+  <div class="w-full max-w-screen-xl m-auto">
     <h2
       class="mb-8 text-3xl font-bold text-center md:text-4xl md:text-left text-secondary"
     >
@@ -28,10 +28,10 @@ const {
 
   <!-- Bloque 1 -->
   <div
-    class="flex flex-col m-auto max-w-screen-xl gap-4 md:grid md:grid-cols-11 md:gap-16"
+    class="flex flex-col max-w-screen-xl gap-4 m-auto md:grid md:grid-cols-11 md:gap-16"
   >
     <article
-      class="p-10 bg-white border-2 col-span-6 rounded-2xl border-neutral-200"
+      class="col-span-6 p-10 bg-white border-2 rounded-2xl border-neutral-200"
     >
       <div class="flex justify-between mb-2">
         <h3 class="text-xl font-bold text-secondary">
@@ -48,7 +48,7 @@ const {
     {
       imagen_enfoque_1 && (
         <Image
-          class="object-cover object-center w-full mx-auto col-span-4 rounded-2xl md:max-w-96"
+          class="object-cover object-center w-full col-span-4 mx-auto rounded-2xl md:max-w-96"
           src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_enfoque_1}`}
           alt={`Imagen de ${enfoques_de_trabajo[0].titulo}`}
           width={353}
@@ -59,10 +59,10 @@ const {
   </div>
 
   <!-- Bloque 2 -->
-  <div class="m-auto max-w-screen-xl">
+  <div class="max-w-screen-xl m-auto">
     <div class="flex flex-col md:grid md:grid-cols-7">
       <article
-        class="p-10 border-2 col-start-3 col-end-7 bg-accent-purple rounded-2xl border-neutral-200"
+        class="col-start-3 col-end-7 p-10 border-2 bg-accent-purple rounded-2xl border-neutral-200"
       >
         <div class="flex justify-between mb-2">
           <h3 class="text-xl font-bold text-secondary">
@@ -81,7 +81,7 @@ const {
   <!-- Frase 1 -->
   {
     frase_1 && (
-      <div class="m-auto max-w-screen-xl">
+      <div class="w-full max-w-screen-xl mx-auto">
         <Image
           class="mb-4"
           src="/quote.webp"
@@ -105,8 +105,8 @@ const {
   <!-- Bloque 3 -->
   {
     enfoques_de_trabajo[2] && (
-      <div class="flex flex-col m-auto max-w-screen-xl gap-4 md:grid md:grid-cols-11 md:gap-16">
-        <article class="order-2 p-10 bg-white border-2 col-span-6 col-start-6 rounded-2xl border-neutral-200">
+      <div class="flex flex-col max-w-screen-xl gap-4 m-auto md:grid md:grid-cols-11 md:gap-16">
+        <article class="order-2 col-span-6 col-start-6 p-10 bg-white border-2 rounded-2xl border-neutral-200">
           <div class="flex justify-between mb-2">
             <h3 class="text-xl font-bold text-secondary">
               {enfoques_de_trabajo[2].titulo}
@@ -121,7 +121,7 @@ const {
 
         {imagen_enfoque_2 && (
           <Image
-            class="order-1 object-cover object-center w-full mx-auto col-span-4 col-start-2 rounded-2xl md:max-w-96"
+            class="order-1 object-cover object-center w-full col-span-4 col-start-2 mx-auto rounded-2xl md:max-w-96"
             src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_enfoque_2}`}
             alt={`Imagen de ${enfoques_de_trabajo[2].titulo}`}
             width={353}
@@ -135,9 +135,9 @@ const {
   <!-- Bloque 4 -->
   {
     enfoques_de_trabajo[3] && (
-      <div class="m-auto max-w-screen-xl">
+      <div class="max-w-screen-xl m-auto">
         <div class="flex flex-col md:grid md:grid-cols-7">
-          <article class="p-10 border-2 col-start-3 col-end-7 bg-accent-purple rounded-2xl border-neutral-200">
+          <article class="col-start-3 col-end-7 p-10 border-2 bg-accent-purple rounded-2xl border-neutral-200">
             <div class="flex justify-between mb-2">
               <h3 class="text-xl font-bold text-secondary">
                 {enfoques_de_trabajo[3].titulo}
@@ -157,8 +157,8 @@ const {
   <!-- Bloque 5 -->
   {
     enfoques_de_trabajo[4] && (
-      <div class="flex flex-col m-auto max-w-screen-xl gap-4 md:grid md:grid-cols-11 md:gap-16">
-        <article class="p-10 bg-white border-2 col-span-6 rounded-2xl border-neutral-200">
+      <div class="flex flex-col max-w-screen-xl gap-4 m-auto md:grid md:grid-cols-11 md:gap-16">
+        <article class="col-span-6 p-10 bg-white border-2 rounded-2xl border-neutral-200">
           <div class="flex justify-between mb-2">
             <h3 class="text-xl font-bold text-secondary">
               {enfoques_de_trabajo[4].titulo}
@@ -173,7 +173,7 @@ const {
 
         {imagen_enfoque_3 && (
           <Image
-            class="object-cover object-center w-full mx-auto col-span-4 rounded-2xl md:max-w-96"
+            class="object-cover object-center w-full col-span-4 mx-auto rounded-2xl md:max-w-96"
             src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_enfoque_3}`}
             alt={`Imagen de ${enfoques_de_trabajo[4].titulo}`}
             width={353}
@@ -187,7 +187,7 @@ const {
   <!-- Frase 2 -->
   {
     frase_2 && (
-      <div class="m-auto max-w-screen-xl">
+      <div class="w-full max-w-screen-xl mx-auto">
         <Image
           class="mb-4"
           src="/quote.webp"
