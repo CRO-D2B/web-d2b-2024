@@ -63,7 +63,8 @@ const { meta_title, meta_description, titulo, subtitulo, boton_principal } =
 </Layout>
 
 <script>
-  const form = document.querySelector("form");
+  import { $ } from "@/lib/dom-selector";
+  const form = $("form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -78,12 +79,9 @@ const { meta_title, meta_description, titulo, subtitulo, boton_principal } =
       body: JSON.stringify(data),
     }).then((res) => {
       if (res.ok) {
-        document
-          .querySelector(".success-message")
-          .classList.replace("hidden", "grid");
+        $(".success-message").classList.replace("hidden", "grid");
         form.classList.add("invisible");
-      } else
-        document.querySelector(".error-message").classList.remove("invisible");
+      } else $(".error-message").classList.remove("invisible");
     });
   });
 </script>

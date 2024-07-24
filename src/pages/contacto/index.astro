@@ -174,7 +174,8 @@ const {
               name={formFields.message}
               rows="4"
               class="w-full p-2 mb-6 border rounded-md resize-none border-neutral-300"
-              placeholder="Escribe aquí tu mensaje" required></textarea>
+              placeholder="Escribe aquí tu mensaje"
+              required></textarea>
 
             <p class="invisible text-red-600 error-message">
               Completa los campos antes de enviar.
@@ -197,7 +198,8 @@ const {
 </Layout>
 
 <script>
-  const form = document.querySelector("form");
+  import { $ } from "@/lib/dom-selector";
+  const form = $("form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -211,12 +213,8 @@ const {
       },
       body: JSON.stringify(data),
     }).then((res) => {
-      if (res.ok)
-        document
-          .querySelector(".success-message")
-          .classList.replace("hidden", "grid");
-      else
-        document.querySelector(".error-message").classList.remove("invisible");
+      if (res.ok) $(".success-message").classList.replace("hidden", "grid");
+      else $(".error-message").classList.remove("invisible");
     });
   });
 </script>

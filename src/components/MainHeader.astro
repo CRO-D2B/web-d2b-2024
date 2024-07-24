@@ -72,7 +72,8 @@ import YoutubeIcon from "@/icons/youtube.astro";
 </header>
 
 <script>
-  const openCloseButton = document.querySelector("#open-close-button");
+  import { $ } from "@/lib/dom-selector";
+  const openCloseButton = $("#open-close-button");
 
   openCloseButton.addEventListener("click", () => {
     openCloseButton.classList.toggle("active");

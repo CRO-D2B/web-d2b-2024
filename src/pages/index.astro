@@ -115,11 +115,11 @@ const team2 = team.slice(teamLength / 2, teamLength);
 									"p-6 md:p-10 border-2 rounded-lg border-neutral-200",
 									{
 										"bg-white col-start-1 col-span-12 md:col-span-6":
-											index == 0 || index == 4 
+											index == 0 || index == 4,
 									},
 									{
 										"bg-accent-purple col-span-12 md:col-span-5":
-											index == 1|| index == 5 
+											index == 1 || index == 5,
 									},
 									{
 										"bg-accent-purple col-span-12 md:col-start-2 md:col-span-5":
@@ -218,13 +218,10 @@ const team2 = team.slice(teamLength / 2, teamLength);
 
 					<script>
 						// Script for DESKTOP carrousel buttons
-						const carrousel = document.querySelector(".stories-carrousel");
-						const carrouselArrowLeft = document.querySelector(
-							".stories-carrousel-arrow-left",
-						) as HTMLElement;
-						const carrouselArrowRight = document.querySelector(
-							".stories-carrousel-arrow-right",
-						) as HTMLElement;
+						import { $ } from "@/lib/dom-selector";
+						const carrousel = $(".stories-carrousel");
+						const carrouselArrowLeft = $(".stories-carrousel-arrow-left") as HTMLElement;
+						const carrouselArrowRight = $(".stories-carrousel-arrow-right") as HTMLElement;
 
 						carrouselArrowLeft.addEventListener("click", () => {
 							carrouselArrowLeft.setAttribute("disabled", "true");
@@ -309,14 +306,13 @@ const team2 = team.slice(teamLength / 2, teamLength);
 
 				<script>
 					// Script for MOBILE carrousel buttons
-					const carrousel = document.querySelector(".stories-carrousel");
+					import { $, $$ } from "@/lib/dom-selector";
+					const carrousel = $(".stories-carrousel");
 
-					const caseCard = document.querySelector(
-						".stories-carrousel > div",
-					) as HTMLElement;
+					const caseCard = $(".stories-carrousel > div") as HTMLElement;
 					const cardWidth = caseCard.offsetWidth;
 
-					const points = document.querySelectorAll(".case-btn");
+					const points = $$(".case-btn");
 
 					points.forEach((point, index) => {
 						point.addEventListener("click", () => {

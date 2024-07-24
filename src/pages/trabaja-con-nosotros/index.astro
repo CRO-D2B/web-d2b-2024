@@ -148,15 +148,13 @@ const formFields = {
           }
 
           <script>
-            const opinionContainer =
-              document.querySelector(".opinion-container");
+            import { $, $$ } from "@/lib/dom-selector";
+            const opinionContainer = $(".opinion-container");
 
-            const opinionCard = document.querySelector(
-              ".opinion-card",
-            ) as HTMLElement;
+            const opinionCard = $(".opinion-card") as HTMLElement;
             const cardWidth = opinionCard.offsetWidth;
 
-            const points = document.querySelectorAll(".opinion-btn");
+            const points = $$(".opinion-btn");
 
             points.forEach((point, index) => {
               point.addEventListener("click", () => {
@@ -277,7 +275,7 @@ const formFields = {
               hidden
             />
             <script>
-              const $ = (e) => document.querySelector(e);
+              const $ = (e) => $(e);
               const dropArea = $(".drop-area");
               const fileInput = $(".drop-area input") as HTMLInputElement;
               const btn = $(".drop-area button");
@@ -327,7 +325,8 @@ const formFields = {
 </Layout>
 
 <script>
-  const form = document.querySelector("form");
+  import { $ } from "@/lib/dom-selector";
+  const form = $("form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -341,12 +340,8 @@ const formFields = {
       },
       body: JSON.stringify(data),
     }).then((res) => {
-      if (res.ok)
-        document
-          .querySelector(".success-message")
-          .classList.replace("hidden", "grid");
-      else
-        document.querySelector(".error-message").classList.remove("invisible");
+      if (res.ok) $(".success-message").classList.replace("hidden", "grid");
+      else $(".error-message").classList.remove("invisible");
     });
   });
 </script>
