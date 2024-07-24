@@ -1,4 +1,4 @@
 git pull
-npm i
-npm run build
-npm run restart-deploy
+pnpm i
+pnpm run build
+pnpm run restart-deploy
