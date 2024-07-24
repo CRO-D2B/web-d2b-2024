@@ -12,9 +12,9 @@
     "dev-build": "NODE_ENV=development astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "start-dev-deploy": "pm2 start dist/server/entry.mjs --name dev.d2b.cl",
-    "stop-dev-deploy": "pm2 stop dev.d2b.cl",
-    "restart-dev-deploy": "pm2 restart dev.d2b.cl"
+    "start-deploy": "pm2 start dist/server/entry.mjs --name d2b.cl",
+    "stop-deploy": "pm2 stop d2b.cl",
+    "restart-deploy": "pm2 restart d2b.cl"
   },
   "dependencies": {
     "@astrojs/node": "^8.2.0",

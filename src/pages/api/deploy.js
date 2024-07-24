@@ -1,7 +1,6 @@
 import { exec } from 'node:child_process'
-import { isProd } from '@/lib/utils'
 
-const deployFile = isProd ? '_prod-deploy.sh' : '_dev-deploy.sh'
+const deployFile = '_deploy.sh'
 
 export const POST = async ({ params, request }) => {
   // if (!request.url.includes('github')) { return new Response('Not valid request', { status: 500 }) }
