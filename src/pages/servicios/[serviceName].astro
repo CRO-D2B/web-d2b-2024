@@ -1,11 +1,10 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import BlogCard from "@/components/BlogCard.astro";
+import ReactBlogCard from "@/components/ReactBlogCard";
 import ArrowHead from "@/icons/arrowHead.astro";
 import ApproachSection from "@/sections/ApproachSection.astro";
 import { serviceDataByName } from "@/services/services";
 import { getCategoryInfo, getPostsByCategoryId } from "@/services/blog";
-import { wordCounter } from "@/lib/utils";
 
 const serviceData = await serviceDataByName(Astro.params.serviceName);
 
@@ -112,16 +111,14 @@ const first3Posts = posts.slice(0, 3);
 			<div class="grid max-w-screen-xl gap-12 m-auto md:grid-cols-3">
 				{
 					first3Posts.map((post) => (
-						<BlogCard
+						<ReactBlogCard
 							title={post.title.rendered}
 							excerpt={post.excerpt.rendered}
 							img={post._embedded["wp:featuredmedia"][0].link}
 							caption={post._embedded["wp:featuredmedia"][0].alt_text}
 							author={post._embedded.author[0].name}
 							authorSlug={post._embedded.author[0].slug}
-							readingTime={
-								Math.ceil(wordCounter(post.content.rendered) / 200) + " minutos"
-							}
+							content={post.content.rendered}
 							slug={post.slug}
 						/>
 					))

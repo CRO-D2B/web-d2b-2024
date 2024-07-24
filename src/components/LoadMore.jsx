@@ -38,7 +38,7 @@ export default function LoadMore ({ wpUrl }) {
               caption={post._embedded['wp:featuredmedia'][0].alt_text}
               author={post._embedded.author[0].name}
               authorSlug={post._embedded.author[0].slug}
-              readingTime={readingTime(post.content.rendered)}
+              content={post.content.rendered}
               slug={post.slug}
             />
           ))
@@ -50,8 +50,4 @@ export default function LoadMore ({ wpUrl }) {
       {!isLimit && <button className="block mx-auto underline text-primary hover:text-dark-primary" onClick={handleClick}>Ver más</button>}
     </>
   )
-}
-
-const readingTime = (text) => {
-  return Math.ceil(text.split(' ').length / 200) + ' minutos'
 }

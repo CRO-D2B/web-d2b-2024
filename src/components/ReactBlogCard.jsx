@@ -1,6 +1,6 @@
 import Arrow from '@/icons/arrow'
 
-export default function ReactBlogCard ({ title, excerpt, img, caption, author, authorSlug, readingTime, slug }) {
+export default function ReactBlogCard ({ title, excerpt, img, caption, author, authorSlug, content, slug }) {
   return (
     <article className="flex flex-col w-full h-full overflow-hidden border-2 rounded-lg border-neutral-200 bg-accent-purple">
       <a className="group peer" href={`/blog/${slug}`}>
@@ -34,7 +34,7 @@ export default function ReactBlogCard ({ title, excerpt, img, caption, author, a
           >
             {author}
           </a>
-          <span> - Lectura: {readingTime}</span>
+          <span> - Lectura: {readingTime(content)}</span>
         </div>
         <a
           className="flex justify-center w-full gap-2 px-6 py-3 font-bold bg-white border-2 rounded-lg text-primary border-primary md:w-fit hover:bg-accent"
@@ -42,4 +42,8 @@ export default function ReactBlogCard ({ title, excerpt, img, caption, author, a
       </footer>
     </article>
   )
+}
+
+const readingTime = (text) => {
+  return Math.ceil(text.split(' ').length / 200) + ' minutos'
 }
