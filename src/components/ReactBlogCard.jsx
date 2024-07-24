@@ -34,10 +34,7 @@ export default function ReactBlogCard ({ title, excerpt, img, caption, author, a
           >
             {author}
           </a>
-          <span>
-            - Lectura:
-            {readingTime}
-          </span>
+          <span> - Lectura: {readingTime}</span>
         </div>
         <a
           className="flex justify-center w-full gap-2 px-6 py-3 font-bold bg-white border-2 rounded-lg text-primary border-primary md:w-fit hover:bg-accent"
