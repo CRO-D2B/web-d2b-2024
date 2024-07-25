@@ -37,7 +37,7 @@ const { meta_title, meta_description, titulo_principal, subtitulo } =
 		</section>
 
 		<section class="px-6 py-24 gray-rounded-background">
-			<div class="max-w-screen-lg m-auto">
+			<div class="max-w-screen-xl m-auto">
 				<div class="flex flex-col gap-16">
 					{
 						servicesResume.map(
@@ -50,9 +50,10 @@ const { meta_title, meta_description, titulo_principal, subtitulo } =
 								},
 								index,
 							) => (
-								<article
+								<a
+									href={`/servicios/${slug}`}
 									class:list={[
-										"md:flex md:gap-36 justify-between",
+										"md:flex md:gap-36 px-36 py-8 justify-between group hover:bg-accent-purple/30 transition-colors  rounded-3xl",
 										{
 											"sr-right flex-row-reverse": index % 2 === 1,
 											"sr-left": index % 2 === 0,
@@ -70,16 +71,13 @@ const { meta_title, meta_description, titulo_principal, subtitulo } =
 											height={400}
 											width={400}
 										/>
-										<p class="mb-6 ">{descripcion_del_servicio}</p>
-										<a
-											class="inline-flex items-center gap-4 font-bold hover:underline text-primary"
-											href={`/servicios/${slug}`}
-										>
+										<p class="mb-3 ">{descripcion_del_servicio}</p>
+										<p class="inline-flex items-center gap-4 py-3 pr-3 font-bold group-hover:underline text-primary">
 											Leer más
-											<span class="grid border-2 rounded-full w-fit border-primary h-fit place-items-center">
+											<span class="grid border-2 rounded-full group-hover:bg-accent w-fit border-primary h-fit place-items-center">
 												<Arrow size={24} />
 											</span>
-										</a>
+										</p>
 									</div>
 									<Image
 										class="hidden m-auto md:block"
@@ -88,7 +86,7 @@ const { meta_title, meta_description, titulo_principal, subtitulo } =
 										height={400}
 										width={400}
 									/>
-								</article>
+								</a>
 							),
 						)
 					}
