@@ -25,3 +25,6 @@ pnpm-debug.log*
 # lock files
 package-lock.json
 pnpm-lock.yaml
+
+# unlighthouse
+.unlighthouse
