@@ -3,13 +3,13 @@ export const headerMenuItems = [
   { name: 'Servicios', slug: '/servicios' },
   // { name: 'Casos', slug: '/casos' },
   { name: 'Contacto', slug: '/contacto' },
-  { name: 'Trabaja con nosotros', slug: '/trabaja-con-nosotros' },
+  { name: 'Quiénes somos', slug: '/quienes-somos' },
   { name: 'Blog', slug: '/blog' }
 ]
 
 export const footerMenuItems = [
   { name: 'Home', slug: '/' },
-  { name: 'Trabaja con nosotros', slug: '/trabaja-con-nosotros' },
+  { name: 'Quiénes somos', slug: '/quienes-somos' },
   { name: 'Servicios', slug: '/servicios' },
   { name: 'Blog', slug: '/blog' },
   // { name: 'Casos', slug: '/casos' },

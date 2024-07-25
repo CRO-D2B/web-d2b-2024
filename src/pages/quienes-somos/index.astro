@@ -16,6 +16,7 @@ const {
   titulo_beneficios,
   titulo_opiniones_del_equipo,
   titulo_cv,
+  descripcion_cv,
 } = workWithUsPage;
 
 const formFields = {
@@ -173,11 +174,14 @@ const formFields = {
       </div>
     </section>
 
-    <section class="px-6 py-24">
+    <section class="px-6 pt-12 pb-24">
       <div class="max-w-screen-xl m-auto">
         <h2 class="mb-8 text-3xl font-bold md:text-4xl text-secondary">
           {titulo_cv}
         </h2>
+        <h3 class="mb-16 text-base md:text-lg">
+          {descripcion_cv}
+        </h3>
 
         <form class="relative">
           <div class="gap-6 md:flex">
