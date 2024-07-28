@@ -4,6 +4,8 @@ import Layout from "@/layouts/Layout.astro";
 import Arrow from "@/icons/arrow.astro";
 import { servicesLanding, servicesResume } from "@/services/services";
 
+export const prerender = true
+
 const { meta_title, meta_description, titulo_principal, subtitulo } =
 	servicesLanding;
 ---

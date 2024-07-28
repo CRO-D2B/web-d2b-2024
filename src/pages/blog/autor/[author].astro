@@ -1,8 +1,15 @@
 ---
+import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
-import ReactBlogCard from '@/components/ReactBlogCard'
-import { getUserBySlug, getPostsByUserId } from "@/services/blog";
+import ReactBlogCard from "@/components/ReactBlogCard";
+import { getUsers, getUserBySlug, getPostsByUserId } from "@/services/blog";
+
+export const prerender = true;
+export const getStaticPaths = (async () => {
+  const data = await getUsers();
+  return data.map(({ slug }) => ({ params: { author: slug } }));
+}) satisfies GetStaticPaths;
 
 const { author: userSlug } = Astro.params;
 
@@ -10,18 +17,14 @@ const authorData = await getUserBySlug({
   userSlug,
 });
 
-if (!authorData) {
-  return Astro.redirect("/blog/404");
-}
-
 const { id, name, description, avatar_urls, yoast_head_json } = authorData;
 
 const posts = await getPostsByUserId({ id });
 ---
 
 <Layout
-  title={yoast_head_json.title}
-  metaTitle={yoast_head_json.title}
+  title={yoast_head_json?.title}
+  metaTitle={yoast_head_json?.title}
   metaDescription={description}
 >
   <main>

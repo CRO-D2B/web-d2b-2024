@@ -1,15 +1,22 @@
 ---
+import type { GetStaticPaths } from "astro";
 import Layout from "@/layouts/Layout.astro";
 import {
   successStoryLanding,
+  successStories,
   successStoryByName,
 } from "@/services/successStories";
+
+export const prerender = true;
+export const getStaticPaths = (() => {
+  return successStories.map(({ slug }) => ({
+    params: { successStoryName: slug },
+  }));
+}) satisfies GetStaticPaths;
 
 const successStoryData = await successStoryByName(
   Astro.params.successStoryName,
 );
-
-console.log(successStoryData);
 
 const {
   meta_title,
@@ -49,18 +56,14 @@ const {
         <small class="block px-5 py-1 mb-4 bg-accent-purple rounded-3xl w-fit"
           >{categoria}</small
         >
-        <h2
-          class="mb-8 text-3xl font-bold md:text-5xl text-secondary"
-        >
+        <h2 class="mb-8 text-3xl font-bold md:text-5xl text-secondary">
           {titulo_principal}
         </h2>
         <div
           class="mb-10 text-lg md:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
           set:html={descripcion_principal}
         />
-        <h3
-          class="mb-4 text-2xl font-bold md:text-5xl text-secondary"
-        >
+        <h3 class="mb-4 text-2xl font-bold md:text-5xl text-secondary">
           {titulo_enfoque}
         </h3>
         <div

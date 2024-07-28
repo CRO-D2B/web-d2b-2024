@@ -1,16 +1,18 @@
 ---
+import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
-import { getPostBySlug } from "@/services/blog";
+import { getPosts, getPostBySlug } from "@/services/blog";
+
+export const prerender = true;
+export const getStaticPaths = (async () => {
+  const data = await getPosts();
+  return data.map(({ slug }) => ({ params: { post: slug } }));
+}) satisfies GetStaticPaths;
 
 const { post: postSlug } = Astro.params;
 
 const postData = await getPostBySlug({ postSlug });
-
-if (!postData) {
-  return Astro.redirect("/blog/404");
-}
-
 const { title, _embedded, content, yoast_head_json } = postData;
 const author = _embedded.author[0];
 ---

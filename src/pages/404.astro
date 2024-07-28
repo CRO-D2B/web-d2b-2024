@@ -1,30 +1,33 @@
 ---
+import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
+export const prerender = true
 ---
-
-<main>
-  <section
-    class="h-screen px-6 grid place-items-center bg-top bg-cover bg-hero"
-  >
-    <div class="max-w-screen-xl flex flex-col gap-4">
-      <Image
-        class="mx-auto"
-        src="/d2b-logo.svg"
-        alt="Logo de D2B"
-        width={256}
-        height={256}
-      />
-      <h1 class="text-white font-bold text-5xl text-center">UPS!</h1>
-      <p class="text-white font-semibold text-center text-3xl">
-        <span class="text-blue-300 font-bold">Error 404:</span> La ruta que buscas
-        no existe
-      </p>
-      <a
-        class="px-8 block text-center py-4 font-bold text-white rounded-lg bg-primary hover:bg-dark-primary"
-        href="/"
-      >
-        Volver al Home
-      </a>
-    </div>
-  </section>
-</main>
+<Layout title="404" metaTitle="404 | D2B" metaDescription="Página de error 404">
+  <main>
+    <section
+      class="h-screen px-6 grid place-items-center bg-top bg-cover bg-hero"
+    >
+      <div class="max-w-screen-xl flex flex-col gap-4">
+        <Image
+          class="mx-auto"
+          src="/d2b-logo.svg"
+          alt="Logo de D2B"
+          width={256}
+          height={256}
+        />
+        <h1 class="text-white font-bold text-5xl text-center">UPS!</h1>
+        <p class="text-white font-semibold text-center text-3xl">
+          <span class="text-blue-300 font-bold">Error 404:</span> La ruta que buscas
+          no existe
+        </p>
+        <a
+          class="px-8 block text-center py-4 font-bold text-white rounded-lg bg-primary hover:bg-dark-primary"
+          href="/"
+        >
+          Volver al Home
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -7,7 +7,7 @@ export const blogPage = await client.request(readSingleton('Blog'))
 
 export const getCategories = async () => {
   const endpoint = '/categories'
-  const params = '_fields=id,name,slug'
+  const params = '_fields=id,name,slug&per_page=100'
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()
@@ -25,7 +25,7 @@ export const getCategoryInfo = async ({ categorySlug }) => {
 
 export const getPosts = async () => {
   const endpoint = '/posts'
-  const params = '_embed&_fields=title,excerpt,content,slug,_links&per_page=6'
+  const params = '_fields=title,excerpt,content,slug&per_page=100'
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()
@@ -34,7 +34,7 @@ export const getPosts = async () => {
 
 export const getPostBySlug = async ({ postSlug }) => {
   const endpoint = '/posts'
-  const params = `_embed&_fields=title,_links,content,yoast_head_json&slug=${postSlug}`
+  const params = `_embed&_fields=title,_links,content,yoast_head_json,_embedded&slug=${postSlug}`
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()
@@ -44,6 +44,15 @@ export const getPostBySlug = async ({ postSlug }) => {
 export const getPostsByCategoryId = async ({ id }) => {
   const endpoint = '/posts'
   const params = `_embed&categories=${id}&per_page=100`
+  const url = buildUrl({ endpoint, params })
+  const res = await fetch(url)
+  const data = await res.json()
+  return data
+}
+
+export const getUsers = async () => {
+  const endpoint = '/users'
+  const params = '_fields=id,name,description,slug&per_page=100'
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()

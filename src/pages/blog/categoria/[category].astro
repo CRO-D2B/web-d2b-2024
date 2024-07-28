@@ -1,15 +1,22 @@
 ---
+import type { GetStaticPaths } from "astro";
 import ReactBlogCard from "@/components/ReactBlogCard";
 import Layout from "@/layouts/Layout.astro";
-import { getCategoryInfo, getPostsByCategoryId } from "@/services/blog";
+import {
+  getCategories,
+  getCategoryInfo,
+  getPostsByCategoryId,
+} from "@/services/blog";
+
+export const prerender = true;
+export const getStaticPaths = (async () => {
+  const data = await getCategories();
+  return data.map(({ slug }) => ({ params: { category: slug } }));
+}) satisfies GetStaticPaths;
 
 const { category: categorySlug } = Astro.params;
 
 const categoryData = await getCategoryInfo({ categorySlug });
-
-if (!categoryData) {
-  return Astro.redirect("/blog/404");
-}
 
 const { id, name, description, yoast_head_json } = categoryData;
 

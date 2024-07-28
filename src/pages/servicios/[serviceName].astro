@@ -1,10 +1,16 @@
 ---
+import type { GetStaticPaths } from "astro";
 import Layout from "@/layouts/Layout.astro";
 import ReactBlogCard from "@/components/ReactBlogCard";
 import ArrowHead from "@/icons/arrowHead.astro";
 import ApproachSection from "@/sections/ApproachSection.astro";
-import { serviceDataByName } from "@/services/services";
+import { servicesResume ,serviceDataByName } from "@/services/services";
 import { getCategoryInfo, getPostsByCategoryId } from "@/services/blog";
+
+export const prerender = true
+export const getStaticPaths = (() => {
+	return servicesResume.map(({ slug }) => ({ params: { serviceName: slug } }));
+}) satisfies GetStaticPaths;
 
 const serviceData = await serviceDataByName(Astro.params.serviceName);
 

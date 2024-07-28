@@ -1,8 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
-
 import { contactPage } from "@/services/contact";
+
+export const prerender = true
 
 const formFields = {
   name: "name",
