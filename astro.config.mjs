@@ -6,7 +6,7 @@ import react from '@astrojs/react'
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react()],
-  site: import.meta.env.BASE_URL,
+  // site: 'https://d2b.cl',
   output: 'server',
   adapter: node({
     mode: 'standalone'

@@ -10,7 +10,7 @@ interface Props {
 	metaDescription: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { metaTitle, metaDescription } = Astro.props;
 const { pathname } = Astro.url;
@@ -23,7 +23,7 @@ const isBlog = pathname.startsWith("/blog");
 		<meta charset="UTF-8" />
 		<title>{metaTitle}</title>
 		<meta name="description" content={metaDescription} />
-		<link rel="canonical" href={canonicalURL} />
+		<!-- <link rel="canonical" href={canonicalURL} /> -->
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/d2b-favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
