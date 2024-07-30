@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { legalLanding } from "@/services/policy";
+
+export const prerender = true;
+
+const { meta_title, meta_description, titulo_principal, contenido } =
+  legalLanding;
+---
+
+<Layout metaTitle={meta_title} metaDescription={meta_description}>
+  <main>
+    <section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
+      <div class="max-w-screen-xl m-auto">
+        <h1
+          class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+        >
+          {titulo_principal}
+        </h1>
+      </div>
+    </section>
+
+    <section class="px-6 py-24">
+      <div class="max-w-screen-xl m-auto">
+        <div
+          class="mb-10 [&>p]:mb-6 [&_td]:p-2 [&_td]:border-2 [&_h2]:text-secondary [&_h2]:text-2xl [&_h3]:text-xl [&_h2]:font-bold [&_h2]:my-4 [&_h3]:my-4 [&_h3]:font-semibold [&_td]:border-neutral-200 md:[&>p]:mb-4 [&>p:last-child]:mb-12 [&>ul]:list-disc [&>ul]:mb-4 [&>ul>li]:ml-12 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
+          set:html={contenido}
+        />
+      </div>
+    </section>
+  </main>
+</Layout>
