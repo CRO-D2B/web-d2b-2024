@@ -11,3 +11,10 @@ export const successStoryByName = (slug) => client.request(readItems('Casos',
     filter: { slug }
   }
 ))
+
+export const getSuccessStoriesByIds = (ids) => client.request(readItems('Casos',
+  {
+    fields: ['*'],
+    filter: { id: { _in: ids } }
+  }
+))

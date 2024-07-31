@@ -2,12 +2,14 @@
 import type { GetStaticPaths } from "astro";
 import Layout from "@/layouts/Layout.astro";
 import ReactBlogCard from "@/components/ReactBlogCard";
+import CaseCard from "@/components/CaseCard.astro";
 import ArrowHead from "@/icons/arrowHead.astro";
 import ApproachSection from "@/sections/ApproachSection.astro";
-import { servicesResume ,serviceDataByName } from "@/services/services";
+import { servicesResume, serviceDataByName } from "@/services/services";
 import { getCategoryInfo, getPostsByCategoryId } from "@/services/blog";
+import { getSuccessStoriesByIds } from "@/services/successStories";
 
-export const prerender = true
+export const prerender = true;
 export const getStaticPaths = (() => {
 	return servicesResume.map(({ slug }) => ({ params: { serviceName: slug } }));
 }) satisfies GetStaticPaths;
@@ -17,7 +19,6 @@ const serviceData = await serviceDataByName(Astro.params.serviceName);
 const {
 	meta_title,
 	meta_description,
-	nombre_del_servicio,
 	titulo_principal,
 	subtitulo,
 	cta_principal,
@@ -37,12 +38,14 @@ const {
 const { id } = await getCategoryInfo({ categorySlug: categoria_blog_slug });
 const posts = await getPostsByCategoryId({ id });
 const first3Posts = posts.slice(0, 3);
+
+const successStories = await getSuccessStoriesByIds(
+	serviceData[0].casos_asociados.map((caso) => caso.Casos_id),
+);
+console.log(successStories);
 ---
 
-<Layout
-	metaTitle={meta_title}
-	metaDescription={meta_description}
->
+<Layout metaTitle={meta_title} metaDescription={meta_description}>
 	<main>
 		<section class="px-6 bg-top bg-cover bg-hero">
 			<div class="max-w-screen-xl m-auto pb-36 pt-52">
@@ -91,9 +94,79 @@ const first3Posts = posts.slice(0, 3);
 					{titulo_resultados}
 				</h2>
 				<div
-					class="mb-10 max-w-[100ch] md:[&>p]:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_a]:text-primary [&_a]:underline"
+					class="mb-8 max-w-[100ch] md:[&>p]:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_a]:text-primary [&_a]:underline"
 					set:html={texto_resultados}
 				/>
+				<div
+					class="flex max-w-screen-xl mx-auto mb-8 overflow-x-scroll stories-carrousel snap-mandatory snap-x hidden-scrollbar scroll-smooth"
+				>
+					{
+						successStories.map(
+							({
+								slug,
+								imagen,
+								categoria,
+								titulo_principal,
+								descripcion_principal,
+							}) =>
+								imagen && (
+									<CaseCard
+										category={categoria}
+										slug={`/casos/${slug}`}
+										title={titulo_principal}
+										description={descripcion_principal}
+										img={`${import.meta.env.DIRECTUS_URL}/assets/${imagen}`}
+										caption={`Imagen referencial del caso ${titulo_principal}`}
+									/>
+								),
+						)
+					}
+				</div>
+
+				<div class="flex justify-center gap-4 py-6 md:hidden">
+					{
+						successStories.map((_, index) => (
+							<button
+								class="rounded-full case-btn size-4 bg-neutral-200"
+								class:list={{
+									"bg-secondary": index == 0,
+								}}
+							/>
+						))
+					}
+
+					<script>
+						// Script for MOBILE carrousel buttons
+						import { $, $$ } from "@/lib/dom-selector";
+						const carrousel = $(".stories-carrousel");
+
+						const caseCard = $(".stories-carrousel > div") as HTMLElement;
+						const cardWidth = caseCard.offsetWidth;
+
+						const points = $$(".case-btn");
+
+						points.forEach((point, index) => {
+							point.addEventListener("click", () => {
+								point.setAttribute("disabled", "true");
+								carrousel.scrollLeft = cardWidth * index;
+							});
+						});
+
+						carrousel.addEventListener("scroll", () => {
+							const scroll = carrousel.scrollLeft;
+							const index = Math.round(scroll / cardWidth);
+							points.forEach((point) => point.classList.remove("bg-secondary"));
+							points[index].classList.add("bg-secondary");
+						});
+
+						carrousel.addEventListener("scrollend", () => {
+							points.forEach((point) => {
+								point.removeAttribute("disabled");
+							});
+						});
+					</script>
+				</div>
+
 				<a
 					class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-dark-primary animate-fade animate-delay-300"
 					href="/contacto"
