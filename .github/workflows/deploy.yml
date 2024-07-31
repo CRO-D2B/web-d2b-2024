@@ -14,4 +14,4 @@ jobs:
     steps:
       - name: Make POST request
         run: |
-          curl -X POST https://dev.d2b.cl/api/deploy
+          curl -X POST $DEPLOY_URL
