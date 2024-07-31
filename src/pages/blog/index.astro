@@ -3,18 +3,15 @@ import Layout from "@/layouts/Layout.astro";
 import { blogPage } from "@/services/blog";
 import LoadMore from "@/components/LoadMore";
 
-export const prerender = true
+export const prerender = true;
 
 const { meta_title, meta_description, titulo, subtitulo, boton_principal } =
   blogPage;
 ---
 
-<Layout
-  metaTitle={meta_title}
-  metaDescription={meta_description}
->
+<Layout metaTitle={meta_title} metaDescription={meta_description}>
   <main>
-    <section class="px-6 bg-no-repeat bg-cover pb-36 pt-52 bg-hero-blog">
+    <section class="px-6 bg-no-repeat bg-cover pb-36 pt-52 bg-hero">
       <div class="relative max-w-screen-xl m-auto">
         <h1 class="text-white text-3xl md:text-5xl max-w-[25ch] mb-12">
           {titulo}
