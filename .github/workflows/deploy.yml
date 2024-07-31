@@ -1,0 +1,16 @@
+name: Deploy every hour
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Ejecuta cada hora en el minuto 0
+
+jobs:
+  post_request:
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_URL: https://dev.d2b.cl/api/deploy
+
+    steps:
+      - name: Make POST request
+        run: |
+          curl -X POST $DEPLOY_URL
