@@ -3,6 +3,7 @@ name: Deploy every hour
 on:
   schedule:
     - cron: '0 * * * *'  # Ejecuta cada hora en el minuto 0
+  workflow_dispatch:  # Permite ejecutar el workflow manualmente desde la UI de GitHub
 
 jobs:
   post_request:
@@ -13,4 +14,4 @@ jobs:
     steps:
       - name: Make POST request
         run: |
-          curl -X POST $DEPLOY_URL
+          curl -X POST https://dev.d2b.cl/api/deploy
