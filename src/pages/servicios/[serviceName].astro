@@ -39,9 +39,10 @@ const { id } = await getCategoryInfo({ categorySlug: categoria_blog_slug });
 const posts = await getPostsByCategoryId({ id });
 const first3Posts = posts.slice(0, 3);
 
-const successStories = await getSuccessStoriesByIds(
-	serviceData[0].casos_asociados.map((caso) => caso.Casos_id),
-);
+const storiesIds = serviceData[0].casos_asociados.map((caso) => caso.Casos_id);
+const successStories = storiesIds.length
+	? await getSuccessStoriesByIds(storiesIds)
+	: [];
 ---
 
 <Layout metaTitle={meta_title} metaDescription={meta_description}>
@@ -100,25 +101,26 @@ const successStories = await getSuccessStoriesByIds(
 					class="flex max-w-screen-xl mx-auto mb-8 overflow-x-scroll stories-carrousel snap-mandatory snap-x hidden-scrollbar scroll-smooth"
 				>
 					{
-						successStories.map(
-							({
-								slug,
-								imagen,
-								categoria,
-								titulo_principal,
-								descripcion_principal,
-							}) =>
-								imagen && (
-									<CaseCard
-										category={categoria}
-										slug={`/casos/${slug}`}
-										title={titulo_principal}
-										description={descripcion_principal}
-										img={`${import.meta.env.DIRECTUS_URL}/assets/${imagen}`}
-										caption={`Imagen referencial del caso ${titulo_principal}`}
-									/>
-								),
-						)
+						successStories.length &&
+							successStories.map(
+								({
+									slug,
+									imagen,
+									categoria,
+									titulo_principal,
+									descripcion_principal,
+								}) =>
+									imagen && (
+										<CaseCard
+											category={categoria}
+											slug={`/casos/${slug}`}
+											title={titulo_principal}
+											description={descripcion_principal}
+											img={`${import.meta.env.DIRECTUS_URL}/assets/${imagen}`}
+											caption={`Imagen referencial del caso ${titulo_principal}`}
+										/>
+									),
+							)
 					}
 				</div>
 
