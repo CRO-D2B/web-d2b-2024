@@ -42,7 +42,6 @@ const first3Posts = posts.slice(0, 3);
 const successStories = await getSuccessStoriesByIds(
 	serviceData[0].casos_asociados.map((caso) => caso.Casos_id),
 );
-console.log(successStories);
 ---
 
 <Layout metaTitle={meta_title} metaDescription={meta_description}>
