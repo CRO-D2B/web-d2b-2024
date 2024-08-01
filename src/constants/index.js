@@ -14,6 +14,7 @@ export const footerMenuItems = [
   { name: 'Blog', slug: '/blog' },
   // { name: 'Casos', slug: '/casos' },
   { name: 'Política de Cookies', slug: '/politicas-de-cookies' },
+  { name: 'Avisos legales', slug: '/avisos-legales' },
   { name: 'Contacto', slug: '/contacto' }
 ]
 
