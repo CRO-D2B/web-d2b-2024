@@ -40,7 +40,7 @@ const posts = await getPostsByCategoryId({ id });
 const first3Posts = posts.slice(0, 3);
 
 const storiesIds = serviceData[0].casos_asociados.map((caso) => caso.Casos_id);
-const successStories = storiesIds.length
+const successStories = !!storiesIds.length
 	? await getSuccessStoriesByIds(storiesIds)
 	: [];
 ---
