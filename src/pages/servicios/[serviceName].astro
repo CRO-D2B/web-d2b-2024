@@ -101,7 +101,7 @@ const successStories = storiesIds.length
 					class="flex max-w-screen-xl mx-auto mb-8 overflow-x-scroll stories-carrousel snap-mandatory snap-x hidden-scrollbar scroll-smooth"
 				>
 					{
-						successStories.length &&
+						!!successStories.length &&
 							successStories.map(
 								({
 									slug,
