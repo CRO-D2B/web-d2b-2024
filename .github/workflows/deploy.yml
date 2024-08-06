@@ -9,7 +9,7 @@ jobs:
   post_request:
     runs-on: ubuntu-latest
     env:
-      DEPLOY_URL: https://dev.d2b.cl/api/deploy
+      DEPLOY_URL: https://d2b.cl/api/deploy
 
     steps:
       - name: Make POST request

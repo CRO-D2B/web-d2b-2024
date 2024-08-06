@@ -1,8 +1,8 @@
 echo "Rebuild iniciado en $(date)"
 
 # Definir la ruta del proyecto
-PROJECT_DIR="/var/www/dev.d2b.cl/"
-DEPLOY_SCRIPT="/var/www/dev.d2b.cl/src/pages/api/_deploy.sh"
+PROJECT_DIR="/var/www/d2b.cl/"
+DEPLOY_SCRIPT="/var/www/d2b.cl/src/pages/api/_deploy.sh"
 
 # Navegar al directorio del proyecto
 cd $PROJECT_DIR || { echo "No se pudo acceder al directorio del proyecto"; exit 1; }
