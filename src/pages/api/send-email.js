@@ -6,8 +6,8 @@ export const POST = async ({ _params, request }) => {
   const resend = new Resend(import.meta.env.RESEND_API_KEY)
   const { error } = await resend.emails.send({
     from: `${name} <onboarding@resend.dev>`,
-    to: 'fabianmorag0405@gmail.com',
-    subject: 'Desde d2b.cl',
+    to: import.meta.env.CONTACT_MAIL,
+    subject: 'Contacto desde d2b.cl',
     html: `
         <strong>Nombre</strong>: ${name} <br>
         <strong>Email</strong>: ${email} <br>
