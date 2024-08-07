@@ -9,6 +9,7 @@ export default defineConfig({
   integrations: [tailwind(), react(), sitemap()],
   site: 'https://d2b.cl',
   output: 'server',
+  trailingSlash: 'never',
   adapter: node({
     mode: 'standalone'
   }),
