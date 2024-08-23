@@ -14,7 +14,7 @@ import {
 import { servicesResume } from "@/services/services";
 import { successStories } from "@/services/successStories";
 
-export const prerender = true
+export const prerender = true;
 
 const {
 	meta_title,
@@ -41,10 +41,7 @@ const team1 = team.slice(0, teamLength / 2);
 const team2 = team.slice(teamLength / 2, teamLength);
 ---
 
-<Layout
-	metaTitle={meta_title}
-	metaDescription={meta_description}
->
+<Layout metaTitle={meta_title} metaDescription={meta_description}>
 	<main>
 		<section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
 			<div class="max-w-screen-xl m-auto">
@@ -182,15 +179,17 @@ const team2 = team.slice(teamLength / 2, teamLength);
 						{partners_subtitulo}
 					</h3>
 				</div>
-				<div class="grid grid-cols-3 gap-x-4 gap-y-6">
+				<div class="flex flex-wrap gap-x-4 gap-y-6">
 					{
-						partners.map(({ nombre, logo }) => (
-							<Image
-								class="object-contain w-full h-12 m-auto grayscale"
-								src={`${import.meta.env.DIRECTUS_URL}/assets/${logo}`}
-								alt={`Imagen de ${nombre}`}
-								inferSize
-							/>
+						partners.map(({ nombre, url, logo }) => (
+							<a class="grid grow" href={url} target="_blank">
+								<Image
+									class="object-contain w-28 m-auto grayscale"
+									src={`${import.meta.env.DIRECTUS_URL}/assets/${logo}`}
+									alt={`Imagen de ${nombre}`}
+									inferSize
+								/>
+							</a>
 						))
 					}
 				</div>
@@ -221,8 +220,12 @@ const team2 = team.slice(teamLength / 2, teamLength);
 						// Script for DESKTOP carrousel buttons
 						import { $ } from "@/lib/dom-selector";
 						const carrousel = $(".stories-carrousel");
-						const carrouselArrowLeft = $(".stories-carrousel-arrow-left") as HTMLElement;
-						const carrouselArrowRight = $(".stories-carrousel-arrow-right") as HTMLElement;
+						const carrouselArrowLeft = $(
+							".stories-carrousel-arrow-left",
+						) as HTMLElement;
+						const carrouselArrowRight = $(
+							".stories-carrousel-arrow-right",
+						) as HTMLElement;
 
 						carrouselArrowLeft.addEventListener("click", () => {
 							carrouselArrowLeft.setAttribute("disabled", "true");
