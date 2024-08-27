@@ -14,9 +14,11 @@ const { icon, title, description, href } = Astro.props;
 
 <a href={href}>
 	<article
-		class="flex flex-col h-full p-4 rounded-lg gap-2 bg-accent-purple md:w-52"
+		class="flex flex-col h-full gap-2 p-4 rounded-lg group bg-accent-purple md:w-52"
 	>
-		<header class="flex flex-col border-b-2 border-black gap-2">
+		<header
+			class="flex flex-col gap-2 transition-all duration-500 border-b-2 border-black md:border-opacity-0 md:group-hover:border-opacity-100"
+		>
 			<Image
 				class="p-2 bg-white rounded-lg"
 				src={icon}
@@ -25,17 +27,21 @@ const { icon, title, description, href } = Astro.props;
 				height={40}
 			/>
 			<div class="flex justify-between mb-2">
-				<h2 class="font-bold md:min-h-20">
+				<h2
+					class="relative font-bold transition-transform duration-500 md:min-h-20 md:translate-y-28 md:group-hover:translate-y-0"
+				>
 					{title}
 				</h2>
 				<span
-					class="border-2 border-black rounded-full grid h-fit place-items-center"
+					class="grid transition-opacity duration-500 border-2 border-black rounded-full h-fit place-items-center md:opacity-0 md:group-hover:opacity-100"
 				>
 					<Arrow size={24} />
 				</span>
 			</div>
 		</header>
-		<p class="text-xs leading-relaxed">
+		<p
+			class="text-xs leading-relaxed transition-opacity duration-500 md:opacity-0 md:group-hover:opacity-100"
+		>
 			{description}
 		</p>
 	</article>
