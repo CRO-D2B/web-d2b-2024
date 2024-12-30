@@ -17,7 +17,7 @@ const authorData = await getUserBySlug({
   userSlug,
 });
 
-const { id, name, description, avatar_urls, yoast_head_json } = authorData;
+const { id="", name="", description="", avatar_urls={}, yoast_head_json={} } = authorData;
 
 const posts = await getPostsByUserId({ id });
 ---
@@ -31,7 +31,7 @@ const posts = await getPostsByUserId({ id });
       <div class="flex flex-col max-w-screen-xl gap-6 m-auto md:flex-row">
         <!-- <Image
           class="rounded-full size-28"
-          src={avatar_urls[96]}
+          src={avatar_urls?.[96]}
           alt={`Imagen de ${name}`}
           width={96}
           height={96}
@@ -48,14 +48,14 @@ const posts = await getPostsByUserId({ id });
         {
           posts.map((post) => (
             <ReactBlogCard
-              title={post.title.rendered}
-              excerpt={post.excerpt.rendered}
-              img={post._embedded["wp:featuredmedia"][0].link}
-              caption={post._embedded["wp:featuredmedia"][0].alt_text}
-              author={post._embedded.author[0].name}
-              authorSlug={post._embedded.author[0].slug}
-              content={post.content.rendered}
-              slug={post.slug}
+              title={post?.title?.rendered}
+              excerpt={post?.excerpt?.rendered}
+              img={post?._embedded?.["wp:featuredmedia"]?.[0]?.link}
+              caption={post?._embedded?.["wp:featuredmedia"]?.[0]?.alt_text}
+              author={post?._embedded?.author?.[0]?.name}
+              authorSlug={post?._embedded?.author?.[0]?.slug}
+              content={post?.content?.rendered}
+              slug={post?.slug}
             />
           ))
         }

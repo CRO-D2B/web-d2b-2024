@@ -32,14 +32,14 @@ export default function LoadMore ({ wpUrl }) {
           posts.map((post, index) => (
             <ReactBlogCard
               key={index}
-              title={post.title.rendered}
-              excerpt={post.excerpt.rendered}
-              img={post._embedded['wp:featuredmedia'][0].link}
-              caption={post._embedded['wp:featuredmedia'][0].alt_text}
-              author={post._embedded.author[0].name}
-              authorSlug={post._embedded.author[0].slug}
-              content={post.content.rendered}
-              slug={post.slug}
+              title={post?.title?.rendered}
+              excerpt={post?.excerpt?.rendered}
+              img={post?._embedded?.['wp:featuredmedia']?.[0]?.link}
+              caption={post?._embedded?.['wp:featuredmedia']?.[0]?.alt_text}
+              author={post?._embedded?.author?.[0]?.name}
+              authorSlug={post?._embedded?.author?.[0].slug}
+              content={post?.content?.rendered}
+              slug={post?.slug}
             />
           ))
         }

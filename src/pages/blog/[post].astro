@@ -13,41 +13,41 @@ export const getStaticPaths = (async () => {
 const { post: postSlug } = Astro.params;
 
 const postData = await getPostBySlug({ postSlug });
-const { title, _embedded, content, yoast_head_json } = postData;
-const author = _embedded.author[0];
+const { title="", _embedded={}, content={}, yoast_head_json={} } = postData;
+const author = _embedded?.author?.[0];
 ---
 
 <Layout
-  metaTitle={yoast_head_json.title}
-  metaDescription={yoast_head_json.og_description}
+  metaTitle={yoast_head_json?.title}
+  metaDescription={yoast_head_json?.og_description}
 >
   <main>
     <section class="px-6 mb-12 pt-36">
       <div class="max-w-[50ch] m-auto text-center mb-8">
-        <h1 class="text-2xl md:text-3xl mb-4" set:html={title.rendered} />
-        <a class="text-sm hover:text-primary" href=`/blog/autor/${author.slug}`
-          >{author.name}</a
+        <h1 class="text-2xl md:text-3xl mb-4" set:html={title?.rendered} />
+        <a class="text-sm hover:text-primary" href=`/blog/autor/${author?.slug}`
+          >{author?.name}</a
         >
       </div>
       <div
         class="max-w-[75ch] m-auto [&_p]:mb-6 [&_p]:!text-left [&_h5]:mt-10 [&_h5]:mb-4 [&_h5]:text-lg [&_h4]:mt-10 [&_h4]:mb-4 [&_h4]:text-lg [&_h3]:mt-10 [&_h3]:mb-4 [&_h3]:text-xl [&_h6]:mt-10 [&_h6]:mb-4 [&_h6]:text-lg [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:text-2xl [&_li]:mb-4 [&_ol]:mb-4 [&_ol]:list-decimal [&_ol]:ml-8 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:ml-8 [&_img]:w-full [&_a]:underline [&_a]:text-primary [&_a:hover]:text-accent [&_blockquote]:bg-gray-100 [&_blockquote]:p-4 [&_blockquote]:border-l-4 [&_blockquote]:border-accent [&_blockquote]:text-gray-800 [&_blockquote]:font-serif [&_blockquote]:text-lg [&_blockquote]:mb-4 [&_div]:max-w-[75ch]"
-        set:html={content.rendered}
+        set:html={content?.rendered}
       />
     </section>
 
     <section class="px-6 py-12">
       <div class="max-w-[75ch] m-auto border-t border-neutral-500 pt-6">
-        <a href=`/blog/autor/${author.slug}`>
+        <a href=`/blog/autor/${author?.slug}`>
           <!-- <Image
             class="object-cover rounded-full"
-            src={author.avatar_urls[96]}
-            alt={`Imagen de ${author.name}`}
+            src={author?.avatar_urls?.[96]}
+            alt={`Imagen de ${author?.name}`}
             height={100}
             width={100}
           /> -->
-          <h3 class="text-lg text-primary">{author.name}</h3>
+          <h3 class="text-lg text-primary">{author?.name}</h3>
         </a>
-        <p>{author.description}</p>
+        <p>{author?.description}</p>
       </div>
     </section>
   </main>

@@ -18,13 +18,13 @@ const { category: categorySlug } = Astro.params;
 
 const categoryData = await getCategoryInfo({ categorySlug });
 
-const { id, name, description, yoast_head_json } = categoryData;
+const { id="", name="", description="", yoast_head_json={} } = categoryData;
 
 const posts = await getPostsByCategoryId({ id });
 ---
 
 <Layout
-  metaTitle={yoast_head_json.title}
+  metaTitle={yoast_head_json?.title}
   metaDescription={description}
 >
   <main>
@@ -42,14 +42,14 @@ const posts = await getPostsByCategoryId({ id });
         {
           posts.map((post) => (
             <ReactBlogCard
-              title={post.title.rendered}
-              excerpt={post.excerpt.rendered}
-              img={post._embedded["wp:featuredmedia"][0].link}
-              caption={post._embedded["wp:featuredmedia"][0].alt_text}
-              author={post._embedded.author[0].name}
-              authorSlug={post._embedded.author[0].slug}
-              content={post.content.rendered}
-              slug={post.slug}
+              title={post?.title?.rendered}
+              excerpt={post?.excerpt?.rendered}
+              img={post?._embedded?.["wp:featuredmedia"]?.[0]?.link}
+              caption={post?._embedded?.["wp:featuredmedia"]?.[0]?.alt_text}
+              author={post?._embedded?.author?.[0]?.name}
+              authorSlug={post?._embedded?.author?.[0]?.slug}
+              content={post?.content?.rendered}
+              slug={post?.slug}
             />
           ))
         }
