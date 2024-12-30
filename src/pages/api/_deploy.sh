@@ -16,6 +16,12 @@ pnpm install || { echo "Error al instalar dependencias"; exit 1; }
 # Construir el proyecto 
 pnpm build || { echo "Error al hacer build del proyecto"; exit 1; }
 
+# Borrar directorio de destino
+rm -rf dist || { echo "Error al eliminar directorio de destino"; exit 1; }
+
+# Mover directorio de destino
+mv dist-temp/dist dist || { echo "Error al mover directorio de destino"; exit 1; }
+
 # Reiniciar el proyecto en pm2
 pnpm restart-deploy || { echo "Error al reiniciar el proyecto en pm2"; exit 1; }
 

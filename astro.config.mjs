@@ -10,6 +10,7 @@ export default defineConfig({
   site: 'https://d2b.cl',
   output: 'server',
   trailingSlash: 'never',
+  outDir: './dist-temp',
   adapter: node({
     mode: 'standalone'
   }),
