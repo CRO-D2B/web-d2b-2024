@@ -220,6 +220,8 @@ const team2 = team?.slice(teamLength / 2, teamLength);
             // Script for DESKTOP carrousel buttons
             import { $ } from "@/lib/dom-selector";
             const carrousel = $(".stories-carrousel");
+            const cards = $(".stories-carrousel > div");
+            const cardWidth = cards?.offsetWidth;
             const carrouselArrowLeft = $(
               ".stories-carrousel-arrow-left"
             ) as HTMLElement;
@@ -229,12 +231,12 @@ const team2 = team?.slice(teamLength / 2, teamLength);
 
             carrouselArrowLeft.addEventListener("click", () => {
               carrouselArrowLeft.setAttribute("disabled", "true");
-              carrousel.scrollBy(-1, 0);
+              carrousel.scrollBy(-cardWidth, 0);
             });
 
             carrouselArrowRight.addEventListener("click", () => {
               carrouselArrowRight.setAttribute("disabled", "true");
-              carrousel.scrollBy(1, 0);
+              carrousel.scrollBy(cardWidth, 0);
             });
 
             const disableArrow = (element: HTMLElement) => {
