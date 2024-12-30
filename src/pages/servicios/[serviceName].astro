@@ -11,225 +11,227 @@ import { getSuccessStoriesByIds } from "@/services/successStories";
 
 export const prerender = true;
 export const getStaticPaths = (() => {
-	return servicesResume.map(({ slug }) => ({ params: { serviceName: slug } }));
+  return servicesResume.map(({ slug }) => ({ params: { serviceName: slug } }));
 }) satisfies GetStaticPaths;
 
 const serviceData = await serviceDataByName(Astro.params.serviceName);
 
 const {
-	meta_title,
-	meta_description,
-	titulo_principal,
-	subtitulo,
-	cta_principal,
-	titulo_1,
-	texto_1,
-	cta_1,
-	titulo_resultados,
-	texto_resultados,
-	cta_resultados,
-	titulo_aun_no_convencido,
-	texto_aun_no_convencido,
-	categoria_blog_slug,
-	titulo_preguntas_frecuentes,
-	preguntas_frecuentes,
-} = serviceData[0];
+  meta_title,
+  meta_description,
+  titulo_principal,
+  subtitulo,
+  cta_principal,
+  titulo_1,
+  texto_1,
+  cta_1,
+  titulo_resultados,
+  texto_resultados,
+  cta_resultados,
+  titulo_aun_no_convencido,
+  texto_aun_no_convencido,
+  categoria_blog_slug,
+  titulo_preguntas_frecuentes,
+  preguntas_frecuentes,
+} = serviceData?.[0] ?? {};
 
 const { id } = await getCategoryInfo({ categorySlug: categoria_blog_slug });
 const posts = await getPostsByCategoryId({ id });
-const first3Posts = posts.slice(0, 3);
+const first3Posts = posts?.slice(0, 3);
 
-const storiesIds = serviceData[0].casos_asociados.map((caso) => caso.Casos_id);
-const successStories = !!storiesIds.length
-	? await getSuccessStoriesByIds(storiesIds)
-	: [];
+const storiesIds = serviceData?.[0]?.casos_asociados?.map(
+  (caso) => caso?.Casos_id
+);
+const successStories = !!storiesIds?.length
+  ? await getSuccessStoriesByIds(storiesIds)
+  : [];
 ---
 
 <Layout metaTitle={meta_title} metaDescription={meta_description}>
-	<main>
-		<section class="px-6 bg-top bg-cover bg-hero">
-			<div class="max-w-screen-xl m-auto pb-36 pt-52">
-				<h1
-					class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
-				>
-					{titulo_principal}
-				</h1>
-				<p class="text-white text-2xl max-w-[45ch] mb-14 animate-fade-left">
-					{subtitulo}
-				</p>
-				<a
-					class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-dark-primary animate-fade animate-delay-300"
-					href="/contacto"
-				>
-					{cta_principal}
-				</a>
-			</div>
-		</section>
+  <main>
+    <section class="px-6 bg-top bg-cover bg-hero">
+      <div class="max-w-screen-xl m-auto pb-36 pt-52">
+        <h1
+          class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+        >
+          {titulo_principal}
+        </h1>
+        <p class="text-white text-2xl max-w-[45ch] mb-14 animate-fade-left">
+          {subtitulo}
+        </p>
+        <a
+          class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-dark-primary animate-fade animate-delay-300"
+          href="/contacto"
+        >
+          {cta_principal}
+        </a>
+      </div>
+    </section>
 
-		<section class="px-6 py-24">
-			<div class="max-w-screen-xl m-auto md:flex md:gap-12">
-				<h2
-					class="w-full mb-8 text-3xl font-bold md:mb-0 md:text-4xl text-secondary"
-				>
-					{titulo_1}
-				</h2>
-				<div>
-					<div
-						class="mb-10 md:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
-						set:html={texto_1}
-					/>
-					<a
-						class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-dark-primary"
-						href="/contacto">{cta_1}</a
-					>
-				</div>
-			</div>
-		</section>
+    <section class="px-6 py-24">
+      <div class="max-w-screen-xl m-auto md:flex md:gap-12">
+        <h2
+          class="w-full mb-8 text-3xl font-bold md:mb-0 md:text-4xl text-secondary"
+        >
+          {titulo_1}
+        </h2>
+        <div>
+          <div
+            class="mb-10 md:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
+            set:html={texto_1}
+          />
+          <a
+            class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-dark-primary"
+            href="/contacto">{cta_1}</a
+          >
+        </div>
+      </div>
+    </section>
 
-		<ApproachSection />
+    <ApproachSection />
 
-		<section class="px-6 py-24">
-			<div class="max-w-screen-xl m-auto">
-				<h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
-					{titulo_resultados}
-				</h2>
-				<div
-					class="mb-8 max-w-[100ch] md:[&>p]:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_a]:text-primary [&_a]:underline"
-					set:html={texto_resultados}
-				/>
-				<div
-					class="flex max-w-screen-xl mx-auto mb-8 overflow-x-scroll stories-carrousel snap-mandatory snap-x hidden-scrollbar scroll-smooth"
-				>
-					{
-						!!successStories.length &&
-							successStories.map(
-								({
-									slug,
-									imagen,
-									categoria,
-									titulo_principal,
-									descripcion_principal,
-								}) =>
-									imagen && (
-										<CaseCard
-											category={categoria}
-											slug={`/casos/${slug}`}
-											title={titulo_principal}
-											description={descripcion_principal}
-											img={`${import.meta.env.DIRECTUS_URL}/assets/${imagen}`}
-											caption={`Imagen referencial del caso ${titulo_principal}`}
-										/>
-									),
-							)
-					}
-				</div>
+    <section class="px-6 py-24">
+      <div class="max-w-screen-xl m-auto">
+        <h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
+          {titulo_resultados}
+        </h2>
+        <div
+          class="mb-8 max-w-[100ch] md:[&>p]:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_a]:text-primary [&_a]:underline"
+          set:html={texto_resultados}
+        />
+        <div
+          class="flex max-w-screen-xl mx-auto mb-8 overflow-x-scroll stories-carrousel snap-mandatory snap-x hidden-scrollbar scroll-smooth"
+        >
+          {
+            !!successStories?.length &&
+              successStories?.map(
+                ({
+                  slug,
+                  imagen,
+                  categoria,
+                  titulo_principal,
+                  descripcion_principal,
+                }) =>
+                  imagen && (
+                    <CaseCard
+                      category={categoria}
+                      slug={`/casos/${slug}`}
+                      title={titulo_principal}
+                      description={descripcion_principal}
+                      img={`${import.meta.env.DIRECTUS_URL}/assets/${imagen}`}
+                      caption={`Imagen referencial del caso ${titulo_principal}`}
+                    />
+                  )
+              )
+          }
+        </div>
 
-				<div class="flex justify-center gap-4 py-6 md:hidden">
-					{
-						successStories.map((_, index) => (
-							<button
-								class="rounded-full case-btn size-4 bg-neutral-200"
-								class:list={{
-									"bg-secondary": index == 0,
-								}}
-							/>
-						))
-					}
+        <div class="flex justify-center gap-4 py-6 md:hidden">
+          {
+            successStories?.map((_, index) => (
+              <button
+                class="rounded-full case-btn size-4 bg-neutral-200"
+                class:list={{
+                  "bg-secondary": index == 0,
+                }}
+              />
+            ))
+          }
 
-					<script>
-						// Script for MOBILE carrousel buttons
-						import { $, $$ } from "@/lib/dom-selector";
-						const carrousel = $(".stories-carrousel");
+          <script>
+            // Script for MOBILE carrousel buttons
+            import { $, $$ } from "@/lib/dom-selector";
+            const carrousel = $(".stories-carrousel");
 
-						const caseCard = $(".stories-carrousel > div") as HTMLElement;
-						const cardWidth = caseCard.offsetWidth;
+            const caseCard = $(".stories-carrousel > div") as HTMLElement;
+            const cardWidth = caseCard?.offsetWidth ?? 0;
 
-						const points = $$(".case-btn");
+            const points = $$(".case-btn");
 
-						points.forEach((point, index) => {
-							point.addEventListener("click", () => {
-								point.setAttribute("disabled", "true");
-								carrousel.scrollLeft = cardWidth * index;
-							});
-						});
+            points?.forEach((point, index) => {
+              point.addEventListener("click", () => {
+                point.setAttribute("disabled", "true");
+                carrousel.scrollLeft = cardWidth * index;
+              });
+            });
 
-						carrousel.addEventListener("scroll", () => {
-							const scroll = carrousel.scrollLeft;
-							const index = Math.round(scroll / cardWidth);
-							points.forEach((point) => point.classList.remove("bg-secondary"));
-							points[index].classList.add("bg-secondary");
-						});
+            carrousel.addEventListener("scroll", () => {
+              const scroll = carrousel.scrollLeft;
+              const index = Math.round(scroll / cardWidth);
+              points?.forEach((point) => point.classList.remove("bg-secondary"));
+              points?.[index]?.classList.add("bg-secondary");
+            });
 
-						carrousel.addEventListener("scrollend", () => {
-							points.forEach((point) => {
-								point.removeAttribute("disabled");
-							});
-						});
-					</script>
-				</div>
+            carrousel.addEventListener("scrollend", () => {
+              points?.forEach((point) => {
+                point.removeAttribute("disabled");
+              });
+            });
+          </script>
+        </div>
 
-				<a
-					class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-dark-primary animate-fade animate-delay-300"
-					href="/contacto"
-				>
-					{cta_resultados}
-				</a>
-			</div>
-		</section>
+        <a
+          class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-dark-primary animate-fade animate-delay-300"
+          href="/contacto"
+        >
+          {cta_resultados}
+        </a>
+      </div>
+    </section>
 
-		<section class="px-6 py-24">
-			<div class="max-w-screen-xl m-auto">
-				<h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
-					{titulo_aun_no_convencido}
-				</h2>
-				<div
-					class="mb-10 max-w-[100ch] md:[&>p]:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_a]:text-primary [&_a]:underline"
-					set:html={texto_aun_no_convencido}
-				/>
-			</div>
-			<div class="grid max-w-screen-xl gap-12 m-auto md:grid-cols-3">
-				{
-					first3Posts.map((post) => (
-						<ReactBlogCard
-							title={post.title.rendered}
-							excerpt={post.excerpt.rendered}
-							img={post._embedded["wp:featuredmedia"][0].link}
-							caption={post._embedded["wp:featuredmedia"][0].alt_text}
-							author={post._embedded.author[0].name}
-							authorSlug={post._embedded.author[0].slug}
-							content={post.content.rendered}
-							slug={post.slug}
-						/>
-					))
-				}
-			</div>
-		</section>
+    <section class="px-6 py-24">
+      <div class="max-w-screen-xl m-auto">
+        <h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
+          {titulo_aun_no_convencido}
+        </h2>
+        <div
+          class="mb-10 max-w-[100ch] md:[&>p]:text-xl [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_a]:text-primary [&_a]:underline"
+          set:html={texto_aun_no_convencido}
+        />
+      </div>
+      <div class="grid max-w-screen-xl gap-12 m-auto md:grid-cols-3">
+        {
+          first3Posts?.map((post) => (
+            <ReactBlogCard
+              title={post?.title?.rendered}
+              excerpt={post?.excerpt?.rendered}
+              img={post?._embedded?.["wp:featuredmedia"]?.[0]?.link}
+              caption={post?._embedded?.["wp:featuredmedia"]?.[0]?.alt_text}
+              author={post?._embedded?.author?.[0]?.name}
+              authorSlug={post?._embedded?.author?.[0]?.slug}
+              content={post?.content?.rendered}
+              slug={post?.slug}
+            />
+          ))
+        }
+      </div>
+    </section>
 
-		<section class="px-6 py-24">
-			<div
-				class="max-w-screen-xl p-4 m-auto border-2 md:p-12 bg-neutral-100 rounded-2xl border-neutral-200"
-			>
-				<h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
-					{titulo_preguntas_frecuentes}
-				</h2>
+    <section class="px-6 py-24">
+      <div
+        class="max-w-screen-xl p-4 m-auto border-2 md:p-12 bg-neutral-100 rounded-2xl border-neutral-200"
+      >
+        <h2 class="block mb-6 text-3xl font-bold md:text-4xl text-secondary">
+          {titulo_preguntas_frecuentes}
+        </h2>
 
-				{
-					preguntas_frecuentes.map(({ pregunta, respuesta }) => (
-						<details class="px-2 py-4 border-b-2 group border-neutral-300">
-							<summary class="flex justify-between gap-4 py-4 cursor-pointer">
-								<span class="text-base font-semibold">{pregunta}</span>
-								<span class="text-black duration-300 rotate-90 grid place-items-center min-w-6 min-h-6 group-open:rotate-[270deg]">
-									<ArrowHead />
-								</span>
-							</summary>
-							<div
-								class="text-sm [&>ol]:list-decimal [&>ol]:ml-6"
-								set:html={respuesta}
-							/>
-						</details>
-					))
-				}
-			</div>
-		</section>
-	</main>
+        {
+          preguntas_frecuentes?.map(({ pregunta, respuesta }) => (
+            <details class="px-2 py-4 border-b-2 group border-neutral-300">
+              <summary class="flex justify-between gap-4 py-4 cursor-pointer">
+                <span class="text-base font-semibold">{pregunta}</span>
+                <span class="text-black duration-300 rotate-90 grid place-items-center min-w-6 min-h-6 group-open:rotate-[270deg]">
+                  <ArrowHead />
+                </span>
+              </summary>
+              <div
+                class="text-sm [&>ol]:list-decimal [&>ol]:ml-6"
+                set:html={respuesta}
+              />
+            </details>
+          ))
+        }
+      </div>
+    </section>
+  </main>
 </Layout>

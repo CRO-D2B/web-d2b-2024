@@ -5,11 +5,11 @@ import Arrow from "@/icons/arrow.astro";
 import ServiceCard from "@/components/ServiceCard.astro";
 import CaseCard from "@/components/CaseCard.astro";
 import {
-	homePage,
-	valueProposition,
-	clients,
-	partners,
-	team,
+  homePage,
+  valueProposition,
+  clients,
+  partners,
+  team,
 } from "@/services/home";
 import { servicesResume } from "@/services/services";
 import { successStories } from "@/services/successStories";
@@ -17,448 +17,448 @@ import { successStories } from "@/services/successStories";
 export const prerender = true;
 
 const {
-	meta_title,
-	meta_description,
-	titulo_principal,
-	subtitulo,
-	cta_principal,
-	servicios_titulo,
-	propuesta_de_valor_titulo,
-	propuesta_de_valor_subtitulo,
-	clientes_titulo,
-	clientes_subtitulo,
-	partners_titulo,
-	partners_subtitulo,
-	casos_titulo,
-	casos_subtitulo,
-	equipo_titulo,
-	equipo_subtitulo,
-} = homePage;
+  meta_title,
+  meta_description,
+  titulo_principal,
+  subtitulo,
+  cta_principal,
+  servicios_titulo,
+  propuesta_de_valor_titulo,
+  propuesta_de_valor_subtitulo,
+  clientes_titulo,
+  clientes_subtitulo,
+  partners_titulo,
+  partners_subtitulo,
+  casos_titulo,
+  casos_subtitulo,
+  equipo_titulo,
+  equipo_subtitulo,
+} = homePage ?? {};
 
-team.sort(() => Math.random() - 0.5);
-const teamLength = team.length;
-const team1 = team.slice(0, teamLength / 2);
-const team2 = team.slice(teamLength / 2, teamLength);
+team?.sort(() => Math.random() - 0.5);
+const teamLength = team?.length;
+const team1 = team?.slice(0, teamLength / 2);
+const team2 = team?.slice(teamLength / 2, teamLength);
 ---
 
 <Layout metaTitle={meta_title} metaDescription={meta_description}>
-	<main>
-		<section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
-			<div class="max-w-screen-xl m-auto">
-				<h1
-					class="text-white text-3xl md:text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
-				>
-					{titulo_principal}
-				</h1>
-				<p
-					class="text-white text-xl md:text-2xl max-w-[45ch] mb-14 animate-fade-left"
-				>
-					{subtitulo}
-				</p>
-				<a
-					class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-dark-primary animate-fade animate-delay-300"
-					href="/contacto"
-				>
-					{cta_principal}
-				</a>
-			</div>
-		</section>
+  <main>
+    <section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
+      <div class="max-w-screen-xl m-auto">
+        <h1
+          class="text-white text-3xl md:text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+        >
+          {titulo_principal}
+        </h1>
+        <p
+          class="text-white text-xl md:text-2xl max-w-[45ch] mb-14 animate-fade-left"
+        >
+          {subtitulo}
+        </p>
+        <a
+          class="block px-8 py-4 font-bold text-center text-white rounded-lg md:inline-block bg-primary hover:bg-dark-primary animate-fade animate-delay-300"
+          href="/contacto"
+        >
+          {cta_principal}
+        </a>
+      </div>
+    </section>
 
-		<section class="px-6 py-24">
-			<div class="max-w-screen-xl m-auto">
-				<h2
-					class="mb-12 text-3xl font-bold text-center md:text-5xl text-secondary"
-				>
-					{servicios_titulo}
-				</h2>
-			</div>
-			<div
-				class="flex flex-col flex-wrap justify-center max-w-screen-xl gap-2 m-auto xl:flex-nowrap md:flex-row"
-			>
-				{
-					servicesResume.map(
-						({
-							nombre_del_servicio,
-							icono,
-							descripcion_del_servicio,
-							slug,
-						}) => (
-							<ServiceCard
-								icon={`${import.meta.env.DIRECTUS_URL}/assets/${icono}`}
-								title={nombre_del_servicio}
-								description={descripcion_del_servicio}
-								href={`/servicios/${slug}`}
-							/>
-						),
-					)
-				}
-			</div>
-		</section>
+    <section class="px-6 py-24">
+      <div class="max-w-screen-xl m-auto">
+        <h2
+          class="mb-12 text-3xl font-bold text-center md:text-5xl text-secondary"
+        >
+          {servicios_titulo}
+        </h2>
+      </div>
+      <div
+        class="flex flex-col flex-wrap justify-center max-w-screen-xl gap-2 m-auto xl:flex-nowrap md:flex-row"
+      >
+        {
+          servicesResume?.map(
+            ({
+              nombre_del_servicio,
+              icono,
+              descripcion_del_servicio,
+              slug,
+            }) => (
+              <ServiceCard
+                icon={`${import.meta.env.DIRECTUS_URL}/assets/${icono}`}
+                title={nombre_del_servicio}
+                description={descripcion_del_servicio}
+                href={`/servicios/${slug}`}
+              />
+            )
+          )
+        }
+      </div>
+    </section>
 
-		<section class="px-6 py-24 gray-rounded-background">
-			<div class="max-w-screen-xl m-auto">
-				<h2
-					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
-				>
-					{propuesta_de_valor_titulo}
-				</h2>
-				<h3 class="mb-12 text-base text-center md:text-lg">
-					{propuesta_de_valor_subtitulo}
-				</h3>
-				<div class="grid grid-cols-12 gap-6">
-					{
-						valueProposition.map(({ titulo, descripcion }, index) => (
-							<article
-								class:list={[
-									"p-6 md:p-10 border-2 rounded-lg border-neutral-200",
-									{
-										"bg-white col-start-1 col-span-12 md:col-span-6":
-											index == 0 || index == 4,
-									},
-									{
-										"bg-accent-purple col-span-12 md:col-span-5":
-											index == 1 || index == 5,
-									},
-									{
-										"bg-accent-purple col-span-12 md:col-start-2 md:col-span-5":
-											index == 2 || index == 6,
-									},
-									{
-										"bg-white col-span-12 md:col-span-6":
-											index == 3 || index == 7,
-									},
-								]}
-							>
-								<h4 class="text-xl font-bold text-secondary">{titulo}</h4>
-								<p class="mt-4">{descripcion}</p>
-							</article>
-						))
-					}
-				</div>
-			</div>
-		</section>
+    <section class="px-6 py-24 gray-rounded-background">
+      <div class="max-w-screen-xl m-auto">
+        <h2
+          class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
+        >
+          {propuesta_de_valor_titulo}
+        </h2>
+        <h3 class="mb-12 text-base text-center md:text-lg">
+          {propuesta_de_valor_subtitulo}
+        </h3>
+        <div class="grid grid-cols-12 gap-6">
+          {
+            valueProposition?.map(({ titulo, descripcion }, index) => (
+              <article
+                class:list={[
+                  "p-6 md:p-10 border-2 rounded-lg border-neutral-200",
+                  {
+                    "bg-white col-start-1 col-span-12 md:col-span-6":
+                      index == 0 || index == 4,
+                  },
+                  {
+                    "bg-accent-purple col-span-12 md:col-span-5":
+                      index == 1 || index == 5,
+                  },
+                  {
+                    "bg-accent-purple col-span-12 md:col-start-2 md:col-span-5":
+                      index == 2 || index == 6,
+                  },
+                  {
+                    "bg-white col-span-12 md:col-span-6":
+                      index == 3 || index == 7,
+                  },
+                ]}
+              >
+                <h4 class="text-xl font-bold text-secondary">{titulo}</h4>
+                <p class="mt-4">{descripcion}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
 
-		<section class="px-6 pt-24 pb-12">
-			<div class="max-w-screen-xl m-auto">
-				<h2
-					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
-				>
-					{clientes_titulo}
-				</h2>
-				<h3 class="mb-16 text-base text-center md:text-lg">
-					{clientes_subtitulo}
-				</h3>
-			</div>
-			<div
-				class="flex flex-wrap justify-center max-w-screen-xl m-auto gap-y-12 md:gap-14"
-			>
-				{
-					clients.map(({ nombre, logo }) => (
-						<Image
-							class="object-contain w-1/2 h-16 md:w-auto grayscale"
-							src={`${import.meta.env.DIRECTUS_URL}/assets/${logo}`}
-							alt={`Image de ${nombre}`}
-							inferSize
-						/>
-					))
-				}
-			</div>
-		</section>
+    <section class="px-6 pt-24 pb-12">
+      <div class="max-w-screen-xl m-auto">
+        <h2
+          class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
+        >
+          {clientes_titulo}
+        </h2>
+        <h3 class="mb-16 text-base text-center md:text-lg">
+          {clientes_subtitulo}
+        </h3>
+      </div>
+      <div
+        class="flex flex-wrap justify-center max-w-screen-xl m-auto gap-y-12 md:gap-14"
+      >
+        {
+          clients?.map(({ nombre, logo }) => (
+            <Image
+              class="object-contain w-1/2 h-16 md:w-auto grayscale"
+              src={`${import.meta.env.DIRECTUS_URL}/assets/${logo}`}
+              alt={`Image de ${nombre}`}
+              inferSize
+            />
+          ))
+        }
+      </div>
+    </section>
 
-		<section class="px-6 py-12 md:py-24">
-			<div
-				class="flex flex-col max-w-screen-xl gap-2 px-4 py-6 m-auto rounded-lg md:flex-row md:px-28 md:py-10 bg-accent-purple"
-			>
-				<div>
-					<h2
-						class="mb-6 text-3xl font-bold text-center md:text-left md:text-5xl text-secondary"
-					>
-						{partners_titulo}
-					</h2>
-					<h3 class="mb-10 text-base text-center md:text-lg md:text-left">
-						{partners_subtitulo}
-					</h3>
-				</div>
-				<div class="flex flex-wrap gap-x-4 gap-y-6">
-					{
-						partners.map(({ nombre, url, logo }) => (
-							<a class="grid grow" href={url} target="_blank">
-								<Image
-									class="object-contain w-28 m-auto grayscale"
-									src={`${import.meta.env.DIRECTUS_URL}/assets/${logo}`}
-									alt={`Imagen de ${nombre}`}
-									inferSize
-								/>
-							</a>
-						))
-					}
-				</div>
-			</div>
-		</section>
+    <section class="px-6 py-12 md:py-24">
+      <div
+        class="flex flex-col max-w-screen-xl gap-2 px-4 py-6 m-auto rounded-lg md:flex-row md:px-28 md:py-10 bg-accent-purple"
+      >
+        <div>
+          <h2
+            class="mb-6 text-3xl font-bold text-center md:text-left md:text-5xl text-secondary"
+          >
+            {partners_titulo}
+          </h2>
+          <h3 class="mb-10 text-base text-center md:text-lg md:text-left">
+            {partners_subtitulo}
+          </h3>
+        </div>
+        <div class="flex flex-wrap gap-x-4 gap-y-6">
+          {
+            partners?.map(({ nombre, url, logo }) => (
+              <a class="grid grow" href={url} target="_blank">
+                <Image
+                  class="object-contain m-auto w-28 grayscale"
+                  src={`${import.meta.env.DIRECTUS_URL}/assets/${logo}`}
+                  alt={`Imagen de ${nombre}`}
+                  inferSize
+                />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
 
-		<section class="px-6 py-24">
-			<div class="relative max-w-screen-xl m-auto">
-				<h2
-					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
-				>
-					{casos_titulo}
-				</h2>
-				<h3 class="mb-12 text-base text-center md:text-lg">
-					{casos_subtitulo}
-				</h3>
-				<div class="absolute bottom-0 right-0 hidden gap-4 md:flex">
-					<button
-						class="grid rotate-180 border-2 rounded-full cursor-pointer stories-carrousel-arrow-left place-items-center hover:bg-accent text-primary border-primary"
-						><Arrow size={40} /></button
-					>
-					<button
-						class="grid border-2 rounded-full cursor-pointer stories-carrousel-arrow-right place-items-center hover:bg-accent text-primary border-primary"
-						><Arrow size={40} /></button
-					>
+    <section class="px-6 py-24">
+      <div class="relative max-w-screen-xl m-auto">
+        <h2
+          class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
+        >
+          {casos_titulo}
+        </h2>
+        <h3 class="mb-12 text-base text-center md:text-lg">
+          {casos_subtitulo}
+        </h3>
+        <div class="absolute bottom-0 right-0 hidden gap-4 md:flex">
+          <button
+            class="grid rotate-180 border-2 rounded-full cursor-pointer stories-carrousel-arrow-left place-items-center hover:bg-accent text-primary border-primary"
+            ><Arrow size={40} /></button
+          >
+          <button
+            class="grid border-2 rounded-full cursor-pointer stories-carrousel-arrow-right place-items-center hover:bg-accent text-primary border-primary"
+            ><Arrow size={40} /></button
+          >
 
-					<script>
-						// Script for DESKTOP carrousel buttons
-						import { $ } from "@/lib/dom-selector";
-						const carrousel = $(".stories-carrousel");
-						const carrouselArrowLeft = $(
-							".stories-carrousel-arrow-left",
-						) as HTMLElement;
-						const carrouselArrowRight = $(
-							".stories-carrousel-arrow-right",
-						) as HTMLElement;
+          <script>
+            // Script for DESKTOP carrousel buttons
+            import { $ } from "@/lib/dom-selector";
+            const carrousel = $(".stories-carrousel");
+            const carrouselArrowLeft = $(
+              ".stories-carrousel-arrow-left"
+            ) as HTMLElement;
+            const carrouselArrowRight = $(
+              ".stories-carrousel-arrow-right"
+            ) as HTMLElement;
 
-						carrouselArrowLeft.addEventListener("click", () => {
-							carrouselArrowLeft.setAttribute("disabled", "true");
-							carrousel.scrollBy(-1, 0);
-						});
+            carrouselArrowLeft.addEventListener("click", () => {
+              carrouselArrowLeft.setAttribute("disabled", "true");
+              carrousel.scrollBy(-1, 0);
+            });
 
-						carrouselArrowRight.addEventListener("click", () => {
-							carrouselArrowRight.setAttribute("disabled", "true");
-							carrousel.scrollBy(1, 0);
-						});
+            carrouselArrowRight.addEventListener("click", () => {
+              carrouselArrowRight.setAttribute("disabled", "true");
+              carrousel.scrollBy(1, 0);
+            });
 
-						const disableArrow = (element: HTMLElement) => {
-							element.style.borderColor = "#cacaca";
-							element.style.color = "#cacaca";
-							element.style.pointerEvents = "none";
-						};
+            const disableArrow = (element: HTMLElement) => {
+              element.style.borderColor = "#cacaca";
+              element.style.color = "#cacaca";
+              element.style.pointerEvents = "none";
+            };
 
-						const activateArrow = (element: HTMLElement) => {
-							element.style.removeProperty("border-color");
-							element.style.removeProperty("color");
-							element.style.removeProperty("pointer-events");
-						};
+            const activateArrow = (element: HTMLElement) => {
+              element.style.removeProperty("border-color");
+              element.style.removeProperty("color");
+              element.style.removeProperty("pointer-events");
+            };
 
-						if (carrousel.scrollLeft === 0) disableArrow(carrouselArrowLeft);
+            if (carrousel.scrollLeft === 0) disableArrow(carrouselArrowLeft);
 
-						carrousel.addEventListener("scroll", () => {
-							carrousel.scrollLeft === 0
-								? disableArrow(carrouselArrowLeft)
-								: activateArrow(carrouselArrowLeft);
+            carrousel.addEventListener("scroll", () => {
+              carrousel.scrollLeft === 0
+                ? disableArrow(carrouselArrowLeft)
+                : activateArrow(carrouselArrowLeft);
 
-							carrousel.scrollLeft >=
-							carrousel.scrollWidth - carrousel.clientWidth
-								? disableArrow(carrouselArrowRight)
-								: activateArrow(carrouselArrowRight);
-						});
+              carrousel.scrollLeft >=
+              carrousel.scrollWidth - carrousel.clientWidth
+                ? disableArrow(carrouselArrowRight)
+                : activateArrow(carrouselArrowRight);
+            });
 
-						carrousel.addEventListener("scrollend", () => {
-							carrouselArrowLeft.removeAttribute("disabled");
-							carrouselArrowRight.removeAttribute("disabled");
-						});
-					</script>
-				</div>
-			</div>
+            carrousel.addEventListener("scrollend", () => {
+              carrouselArrowLeft.removeAttribute("disabled");
+              carrouselArrowRight.removeAttribute("disabled");
+            });
+          </script>
+        </div>
+      </div>
 
-			<div
-				class="flex max-w-screen-xl mx-auto overflow-x-scroll stories-carrousel snap-mandatory snap-x hidden-scrollbar scroll-smooth"
-			>
-				{
-					successStories.map(
-						({
-							slug,
-							imagen,
-							categoria,
-							titulo_principal,
-							descripcion_principal,
-						}) =>
-							imagen && (
-								<CaseCard
-									category={categoria}
-									slug={`/casos/${slug}`}
-									title={titulo_principal}
-									description={descripcion_principal}
-									img={`${import.meta.env.DIRECTUS_URL}/assets/${imagen}`}
-									caption={`Imagen referencial del caso ${titulo_principal}`}
-								/>
-							),
-					)
-				}
-			</div>
+      <div
+        class="flex max-w-screen-xl mx-auto overflow-x-scroll stories-carrousel snap-mandatory snap-x hidden-scrollbar scroll-smooth"
+      >
+        {
+          successStories?.map(
+            ({
+              slug,
+              imagen,
+              categoria,
+              titulo_principal,
+              descripcion_principal,
+            }) =>
+              imagen && (
+                <CaseCard
+                  category={categoria}
+                  slug={`/casos/${slug}`}
+                  title={titulo_principal}
+                  description={descripcion_principal}
+                  img={`${import.meta.env.DIRECTUS_URL}/assets/${imagen}`}
+                  caption={`Imagen referencial del caso ${titulo_principal}`}
+                />
+              )
+          )
+        }
+      </div>
 
-			<div class="flex justify-center gap-4 py-6 md:hidden">
-				{
-					successStories.map((_, index) => (
-						<button
-							class="rounded-full case-btn size-4 bg-neutral-200"
-							class:list={{
-								"bg-secondary": index == 0,
-							}}
-						/>
-					))
-				}
+      <div class="flex justify-center gap-4 py-6 md:hidden">
+        {
+          successStories?.map((_, index) => (
+            <button
+              class="rounded-full case-btn size-4 bg-neutral-200"
+              class:list={{
+                "bg-secondary": index == 0,
+              }}
+            />
+          ))
+        }
 
-				<script>
-					// Script for MOBILE carrousel buttons
-					import { $, $$ } from "@/lib/dom-selector";
-					const carrousel = $(".stories-carrousel");
+        <script>
+          // Script for MOBILE carrousel buttons
+          import { $, $$ } from "@/lib/dom-selector";
+          const carrousel = $(".stories-carrousel");
 
-					const caseCard = $(".stories-carrousel > div") as HTMLElement;
-					const cardWidth = caseCard.offsetWidth;
+          const caseCard = $(".stories-carrousel > div") as HTMLElement;
+          const cardWidth = caseCard?.offsetWidth ?? 0;
 
-					const points = $$(".case-btn");
+          const points = $$(".case-btn");
 
-					points.forEach((point, index) => {
-						point.addEventListener("click", () => {
-							point.setAttribute("disabled", "true");
-							carrousel.scrollLeft = cardWidth * index;
-						});
-					});
+          points?.forEach((point, index) => {
+            point.addEventListener("click", () => {
+              point.setAttribute("disabled", "true");
+              carrousel.scrollLeft = cardWidth * index;
+            });
+          });
 
-					carrousel.addEventListener("scroll", () => {
-						const scroll = carrousel.scrollLeft;
-						const index = Math.round(scroll / cardWidth);
-						points.forEach((point) => point.classList.remove("bg-secondary"));
-						points[index].classList.add("bg-secondary");
-					});
+          carrousel.addEventListener("scroll", () => {
+            const scroll = carrousel.scrollLeft;
+            const index = Math.round(scroll / cardWidth);
+            points?.forEach((point) => point.classList.remove("bg-secondary"));
+            points?.[index]?.classList.add("bg-secondary");
+          });
 
-					carrousel.addEventListener("scrollend", () => {
-						points.forEach((point) => {
-							point.removeAttribute("disabled");
-						});
-					});
-				</script>
-			</div>
-		</section>
+          carrousel.addEventListener("scrollend", () => {
+            points?.forEach((point) => {
+              point.removeAttribute("disabled");
+            });
+          });
+        </script>
+      </div>
+    </section>
 
-		<section class="px-6 py-24">
-			<div class="max-w-screen-xl m-auto">
-				<h2
-					class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
-				>
-					{equipo_titulo}
-				</h2>
-				<h3 class="mb-12 text-base text-center md:text-lg">
-					{equipo_subtitulo}
-				</h3>
-			</div>
-			<div class="m-auto overflow-hidden">
-				<ul
-					class="relative flex w-full h-64 md:h-72 carrousel-to-left"
-					style={`--quantity:${team1.length}`}
-				>
-					{
-						team1.map(({ foto, nombre, cargo }, index) => (
-							<li class="absolute left-full" style={`--position: ${index}`}>
-								<Image
-									class="object-cover w-full rounded-md grayscale aspect-square"
-									src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
-									alt={`Foto de ${nombre}`}
-									inferSize
-								/>
-								<span class="block text-base font-bold text-secondary">
-									{nombre}
-								</span>
-								<span class="block text-sm">{cargo}</span>
-							</li>
-						))
-					}
-				</ul>
+    <section class="px-6 py-24">
+      <div class="max-w-screen-xl m-auto">
+        <h2
+          class="mb-6 text-3xl font-bold text-center md:text-5xl text-secondary"
+        >
+          {equipo_titulo}
+        </h2>
+        <h3 class="mb-12 text-base text-center md:text-lg">
+          {equipo_subtitulo}
+        </h3>
+      </div>
+      <div class="m-auto overflow-hidden">
+        <ul
+          class="relative flex w-full h-64 md:h-72 carrousel-to-left"
+          style={`--quantity:${team1?.length}`}
+        >
+          {
+            team1?.map(({ foto, nombre, cargo }, index) => (
+              <li class="absolute left-full" style={`--position: ${index}`}>
+                <Image
+                  class="object-cover w-full rounded-md grayscale aspect-square"
+                  src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
+                  alt={`Foto de ${nombre}`}
+                  inferSize
+                />
+                <span class="block text-base font-bold text-secondary">
+                  {nombre}
+                </span>
+                <span class="block text-sm">{cargo}</span>
+              </li>
+            ))
+          }
+        </ul>
 
-				<ul
-					class="relative flex w-full md:h-72 h-60 carrousel-to-right"
-					style={`--quantity:${team2.length}`}
-				>
-					{
-						team2.map(({ foto, nombre, cargo }, index) => (
-							<li class="absolute right-full" style={`--position: ${index}`}>
-								<Image
-									class="object-cover w-full rounded-md grayscale aspect-square"
-									src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
-									alt={`Foto de ${nombre}`}
-									inferSize
-								/>
-								<span class="block text-base font-bold text-secondary">
-									{nombre}
-								</span>
-								<span class="block text-sm">{cargo}</span>
-							</li>
-						))
-					}
-				</ul>
-			</div>
+        <ul
+          class="relative flex w-full md:h-72 h-60 carrousel-to-right"
+          style={`--quantity:${team2?.length}`}
+        >
+          {
+            team2?.map(({ foto, nombre, cargo }, index) => (
+              <li class="absolute right-full" style={`--position: ${index}`}>
+                <Image
+                  class="object-cover w-full rounded-md grayscale aspect-square"
+                  src={`${import.meta.env.DIRECTUS_URL}/assets/${foto}`}
+                  alt={`Foto de ${nombre}`}
+                  inferSize
+                />
+                <span class="block text-base font-bold text-secondary">
+                  {nombre}
+                </span>
+                <span class="block text-sm">{cargo}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
 
-			<style>
-				ul {
-					--card-width: 120px;
-					--animation-time: 30s;
-					min-width: calc(var(--card-width) * var(--quantity) * 1.1);
-				}
-				@media (width>=768px) {
-					ul {
-						--card-width: 190px;
-					}
-				}
-				li {
-					width: var(--card-width);
-				}
-				ul.carrousel-to-left > li {
-					animation: carrouselLeft var(--animation-time) linear infinite;
-					animation-delay: calc(
-						var(--animation-time) / var(--quantity) * (var(--position) * -1)
-					);
-				}
-				@keyframes carrouselLeft {
-					to {
-						left: calc(var(--card-width) * -1);
-					}
-				}
+      <style>
+        ul {
+          --card-width: 120px;
+          --animation-time: 30s;
+          min-width: calc(var(--card-width) * var(--quantity) * 1.1);
+        }
+        @media (width>=768px) {
+          ul {
+            --card-width: 190px;
+          }
+        }
+        li {
+          width: var(--card-width);
+        }
+        ul.carrousel-to-left > li {
+          animation: carrouselLeft var(--animation-time) linear infinite;
+          animation-delay: calc(
+            var(--animation-time) / var(--quantity) * (var(--position) * -1)
+          );
+        }
+        @keyframes carrouselLeft {
+          to {
+            left: calc(var(--card-width) * -1);
+          }
+        }
 
-				ul.carrousel-to-right > li {
-					animation: carrouselRight var(--animation-time) linear infinite;
-					animation-delay: calc(
-						var(--animation-time) / var(--quantity) * (var(--position) * -1)
-					);
-				}
-				@keyframes carrouselRight {
-					to {
-						right: calc(var(--card-width) * -1);
-					}
-				}
-			</style>
-		</section>
-	</main>
+        ul.carrousel-to-right > li {
+          animation: carrouselRight var(--animation-time) linear infinite;
+          animation-delay: calc(
+            var(--animation-time) / var(--quantity) * (var(--position) * -1)
+          );
+        }
+        @keyframes carrouselRight {
+          to {
+            right: calc(var(--card-width) * -1);
+          }
+        }
+      </style>
+    </section>
+  </main>
 </Layout>
 
 <style>
-	/* radial and linear at 230px  */
-	.gray-rounded-background {
-		background: radial-gradient(
-				150% 300px at 50% 230px,
-				#f5f8f8 75%,
-				transparent 75.2%
-			),
-			linear-gradient(180deg, transparent 230px, #f5f8f8 230px), #fff;
-	}
+  /* radial and linear at 230px  */
+  .gray-rounded-background {
+    background: radial-gradient(
+        150% 300px at 50% 230px,
+        #f5f8f8 75%,
+        transparent 75.2%
+      ),
+      linear-gradient(180deg, transparent 230px, #f5f8f8 230px), #fff;
+  }
 
-	@media (width>=768px) {
-		.gray-rounded-background {
-			background: radial-gradient(
-					100% 300px at 50% 230px,
-					#f5f8f8 75%,
-					transparent 75.2%
-				),
-				linear-gradient(180deg, transparent 230px, #f5f8f8 230px), #fff;
-		}
-	}
+  @media (width>=768px) {
+    .gray-rounded-background {
+      background: radial-gradient(
+          100% 300px at 50% 230px,
+          #f5f8f8 75%,
+          transparent 75.2%
+        ),
+        linear-gradient(180deg, transparent 230px, #f5f8f8 230px), #fff;
+    }
+  }
 </style>

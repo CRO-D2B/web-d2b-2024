@@ -11,22 +11,24 @@ import {
 export const prerender = true;
 export const getStaticPaths = (async () => {
   const data = await getCategories();
-  return data.map(({ slug }) => ({ params: { category: slug } }));
+  return data?.map(({ slug }) => ({ params: { category: slug } }));
 }) satisfies GetStaticPaths;
 
 const { category: categorySlug } = Astro.params;
 
 const categoryData = await getCategoryInfo({ categorySlug });
 
-const { id="", name="", description="", yoast_head_json={} } = categoryData;
+const {
+  id ,
+  name ,
+  description ,
+  yoast_head_json,
+} = categoryData ?? {};
 
 const posts = await getPostsByCategoryId({ id });
 ---
 
-<Layout
-  metaTitle={yoast_head_json?.title}
-  metaDescription={description}
->
+<Layout metaTitle={yoast_head_json?.title} metaDescription={description}>
   <main>
     <section class="px-6 pt-48 pb-12">
       <div class="max-w-screen-xl m-auto">
@@ -40,7 +42,7 @@ const posts = await getPostsByCategoryId({ id });
     <section class="px-6 py-12">
       <div class="grid max-w-screen-xl gap-12 m-auto md:grid-cols-3">
         {
-          posts.map((post) => (
+          posts?.map((post) => (
             <ReactBlogCard
               title={post?.title?.rendered}
               excerpt={post?.excerpt?.rendered}

@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { contactPage } from "@/services/contact";
 
-export const prerender = true
+export const prerender = true;
 
 const formFields = {
   name: "name",
@@ -24,10 +24,7 @@ const {
 } = contactPage;
 ---
 
-<Layout
-  metaTitle={meta_title}
-  metaDescription={meta_description}
->
+<Layout metaTitle={meta_title} metaDescription={meta_description}>
   <main>
     <section class="px-6 pb-24 bg-top bg-cover pt-52 bg-hero">
       <div class="max-w-screen-xl m-auto">

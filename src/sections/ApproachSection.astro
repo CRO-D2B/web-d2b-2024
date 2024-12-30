@@ -16,7 +16,7 @@ const {
   cta_enfoque_1,
   frase_2,
   cta_enfoque_2,
-} = serviceData[0];
+} = serviceData[0] ?? {};
 ---
 
 <section class="flex flex-col gap-5 px-6 py-24 gray-rounded-background">
@@ -37,13 +37,13 @@ const {
     >
       <div class="flex justify-between mb-2">
         <h3 class="text-xl font-bold text-secondary">
-          {enfoques_de_trabajo[0].titulo}
+          {enfoques_de_trabajo?.[0]?.titulo}
         </h3>
         <span class="font-bold text-secondary/60">01</span>
       </div>
       <div
         class="[&_strong]:text-primary [&_a]:text-primary [&_a]:underline [&_p]:mb-2 [&_p]:text-sm"
-        set:html={enfoques_de_trabajo[0].texto}
+        set:html={enfoques_de_trabajo?.[0]?.texto}
       />
     </article>
 
@@ -52,7 +52,7 @@ const {
         <Image
           class="object-cover object-center w-full col-span-4 mx-auto rounded-2xl md:max-w-96"
           src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_enfoque_1}`}
-          alt={`Imagen de ${enfoques_de_trabajo[0].titulo}`}
+          alt={`Imagen de ${enfoques_de_trabajo?.[0]?.titulo}`}
           width={353}
           height={239}
         />
@@ -68,13 +68,13 @@ const {
       >
         <div class="flex justify-between mb-2">
           <h3 class="text-xl font-bold text-secondary">
-            {enfoques_de_trabajo[1].titulo}
+            {enfoques_de_trabajo?.[1]?.titulo}
           </h3>
           <span class="font-bold text-secondary/60">02</span>
         </div>
         <div
           class="[&_strong]:text-primary [&_a]:text-primary [&_a]:underline [&_p]:mb-2 [&_p]:text-sm"
-          set:html={enfoques_de_trabajo[1].texto}
+          set:html={enfoques_de_trabajo?.[1]?.texto}
         />
       </article>
     </div>
@@ -106,18 +106,18 @@ const {
 
   <!-- Bloque 3 -->
   {
-    enfoques_de_trabajo[2] && (
+    enfoques_de_trabajo?.[2] && (
       <div class="flex flex-col max-w-screen-xl gap-4 m-auto md:grid md:grid-cols-11 md:gap-16">
         <article class="order-2 col-span-6 col-start-6 p-10 bg-white border-2 rounded-2xl border-neutral-200">
           <div class="flex justify-between mb-2">
             <h3 class="text-xl font-bold text-secondary">
-              {enfoques_de_trabajo[2].titulo}
+              {enfoques_de_trabajo[2]?.titulo}
             </h3>
             <span class="font-bold text-secondary/60">03</span>
           </div>
           <div
             class="[&_strong]:text-primary [&_a]:text-primary [&_a]:underline [&_p]:mb-2 [&_p]:text-sm"
-            set:html={enfoques_de_trabajo[2].texto}
+            set:html={enfoques_de_trabajo[2]?.texto}
           />
         </article>
 
@@ -125,7 +125,7 @@ const {
           <Image
             class="order-1 object-cover object-center w-full col-span-4 col-start-2 mx-auto rounded-2xl md:max-w-96"
             src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_enfoque_2}`}
-            alt={`Imagen de ${enfoques_de_trabajo[2].titulo}`}
+            alt={`Imagen de ${enfoques_de_trabajo[2]?.titulo}`}
             width={353}
             height={239}
           />
@@ -136,19 +136,19 @@ const {
 
   <!-- Bloque 4 -->
   {
-    enfoques_de_trabajo[3] && (
+    enfoques_de_trabajo?.[3] && (
       <div class="max-w-screen-xl m-auto">
         <div class="flex flex-col md:grid md:grid-cols-7">
           <article class="col-start-3 col-end-7 p-10 border-2 bg-accent-purple rounded-2xl border-neutral-200">
             <div class="flex justify-between mb-2">
               <h3 class="text-xl font-bold text-secondary">
-                {enfoques_de_trabajo[3].titulo}
+                {enfoques_de_trabajo[3]?.titulo}
               </h3>
               <span class="font-bold text-secondary/60">04</span>
             </div>
             <div
               class="[&_strong]:text-primary [&_a]:text-primary [&_a]:underline [&_p]:mb-2 [&_p]:text-sm"
-              set:html={enfoques_de_trabajo[3].texto}
+              set:html={enfoques_de_trabajo[3]?.texto}
             />
           </article>
         </div>
@@ -158,18 +158,18 @@ const {
 
   <!-- Bloque 5 -->
   {
-    enfoques_de_trabajo[4] && (
+    enfoques_de_trabajo?.[4] && (
       <div class="flex flex-col max-w-screen-xl gap-4 m-auto md:grid md:grid-cols-11 md:gap-16">
         <article class="col-span-6 p-10 bg-white border-2 rounded-2xl border-neutral-200">
           <div class="flex justify-between mb-2">
             <h3 class="text-xl font-bold text-secondary">
-              {enfoques_de_trabajo[4].titulo}
+              {enfoques_de_trabajo[4]?.titulo}
             </h3>
             <span class="font-bold text-secondary/60">05</span>
           </div>
           <div
             class="[&_strong]:text-primary [&_a]:text-primary [&_a]:underline [&_p]:mb-2 [&_p]:text-sm"
-            set:html={enfoques_de_trabajo[4].texto}
+            set:html={enfoques_de_trabajo[4]?.texto}
           />
         </article>
 
@@ -177,7 +177,7 @@ const {
           <Image
             class="object-cover object-center w-full col-span-4 mx-auto rounded-2xl md:max-w-96"
             src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_enfoque_3}`}
-            alt={`Imagen de ${enfoques_de_trabajo[4].titulo}`}
+            alt={`Imagen de ${enfoques_de_trabajo[4]?.titulo}`}
             width={353}
             height={239}
           />

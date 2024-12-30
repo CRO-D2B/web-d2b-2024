@@ -8,7 +8,7 @@ import { getUsers, getUserBySlug, getPostsByUserId } from "@/services/blog";
 export const prerender = true;
 export const getStaticPaths = (async () => {
   const data = await getUsers();
-  return data.map(({ slug }) => ({ params: { author: slug } }));
+  return data?.map(({ slug }) => ({ params: { author: slug } }));
 }) satisfies GetStaticPaths;
 
 const { author: userSlug } = Astro.params;
@@ -17,15 +17,13 @@ const authorData = await getUserBySlug({
   userSlug,
 });
 
-const { id="", name="", description="", avatar_urls={}, yoast_head_json={} } = authorData;
+const { id, name, description, avatar_urls, yoast_head_json } =
+  authorData ?? {};
 
 const posts = await getPostsByUserId({ id });
 ---
 
-<Layout
-  metaTitle={yoast_head_json?.title}
-  metaDescription={description}
->
+<Layout metaTitle={yoast_head_json?.title} metaDescription={description}>
   <main>
     <section class="px-6 pt-48 pb-16">
       <div class="flex flex-col max-w-screen-xl gap-6 m-auto md:flex-row">
@@ -46,7 +44,7 @@ const posts = await getPostsByUserId({ id });
     <section class="px-6 py-12">
       <div class="grid max-w-screen-xl gap-12 m-auto md:grid-cols-3">
         {
-          posts.map((post) => (
+          posts?.map((post) => (
             <ReactBlogCard
               title={post?.title?.rendered}
               excerpt={post?.excerpt?.rendered}

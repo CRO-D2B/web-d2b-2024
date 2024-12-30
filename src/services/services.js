@@ -10,9 +10,12 @@ export const servicesResume = await client.request(readItems('Servicios',
   }
 ))
 
-export const serviceDataByName = (slug) => client.request(readItems('Servicios',
-  {
-    fields: ['*', { enfoques_de_trabajo: ['*'], casos_asociados: ['*'], preguntas_frecuentes: ['*'] }],
-    filter: { slug }
-  }
-))
+export const serviceDataByName = (slug) => {
+  if (!slug) return
+  return client.request(readItems('Servicios',
+    {
+      fields: ['*', { enfoques_de_trabajo: ['*'], casos_asociados: ['*'], preguntas_frecuentes: ['*'] }],
+      filter: { slug }
+    }
+  ))
+}

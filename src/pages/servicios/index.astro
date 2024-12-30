@@ -4,113 +4,110 @@ import Layout from "@/layouts/Layout.astro";
 import Arrow from "@/icons/arrow.astro";
 import { servicesLanding, servicesResume } from "@/services/services";
 
-export const prerender = true
+export const prerender = true;
 
 const { meta_title, meta_description, titulo_principal, subtitulo } =
-	servicesLanding;
+  servicesLanding ?? {};
 ---
 
-<Layout
-	metaTitle={meta_title}
-	metaDescription={meta_description}
->
-	<main>
-		<section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
-			<div class="max-w-screen-xl m-auto">
-				<h1
-					class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
-				>
-					{titulo_principal}
-				</h1>
-				<p class="text-white text-2xl max-w-[45ch] mb-14 animate-fade-left">
-					{subtitulo}
-				</p>
-				<div class="flex flex-wrap gap-8">
-					{
-						servicesResume.map(({ nombre_del_servicio, slug }) => (
-							<a class="text-white underline" href={`/servicios/${slug}`}>
-								{nombre_del_servicio}
-							</a>
-						))
-					}
-				</div>
-			</div>
-		</section>
+<Layout metaTitle={meta_title} metaDescription={meta_description}>
+  <main>
+    <section class="px-6 bg-top bg-cover pb-36 pt-52 bg-hero">
+      <div class="max-w-screen-xl m-auto">
+        <h1
+          class="text-white text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
+        >
+          {titulo_principal}
+        </h1>
+        <p class="text-white text-2xl max-w-[45ch] mb-14 animate-fade-left">
+          {subtitulo}
+        </p>
+        <div class="flex flex-wrap gap-8">
+          {
+            servicesResume?.map(({ nombre_del_servicio, slug }) => (
+              <a class="text-white underline" href={`/servicios/${slug}`}>
+                {nombre_del_servicio}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
 
-		<section class="px-6 py-24 gray-rounded-background">
-			<div class="max-w-screen-xl m-auto">
-				<div class="flex flex-col gap-16">
-					{
-						servicesResume.map(
-							(
-								{
-									nombre_del_servicio,
-									descripcion_del_servicio,
-									slug,
-									imagen_principal,
-								},
-								index,
-							) => (
-								<a
-									href={`/servicios/${slug}`}
-									class:list={[
-										"md:flex md:gap-36 md:px-36 py-8 justify-between group md:hover:bg-accent-purple/50 transition-colors rounded-3xl",
-										{
-											"sr-right flex-row-reverse": index % 2 === 1,
-											"sr-left": index % 2 === 0,
-										},
-									]}
-								>
-									<div class="content-center">
-										<h3 class="mb-4 text-3xl font-bold text-secondary">
-											{nombre_del_servicio}
-										</h3>
-										<Image
-											class="m-auto mb-10 md:hidden"
-											src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_principal}`}
-											alt={`Imagen del servicio ${nombre_del_servicio}`}
-											height={400}
-											width={400}
-										/>
-										<p class="mb-3 ">{descripcion_del_servicio}</p>
-										<p class="inline-flex items-center gap-4 py-3 pr-3 font-bold group-hover:underline text-primary">
-											Leer más
-											<span class="grid border-2 rounded-full group-hover:bg-accent w-fit border-primary h-fit place-items-center">
-												<Arrow size={24} />
-											</span>
-										</p>
-									</div>
-									<Image
-										class="hidden m-auto md:block"
-										src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_principal}`}
-										alt={`Imagen del servicio ${nombre_del_servicio}`}
-										height={400}
-										width={400}
-									/>
-								</a>
-							),
-						)
-					}
-				</div>
-			</div>
-		</section>
-	</main>
+    <section class="px-6 py-24 gray-rounded-background">
+      <div class="max-w-screen-xl m-auto">
+        <div class="flex flex-col gap-16">
+          {
+            servicesResume?.map(
+              (
+                {
+                  nombre_del_servicio,
+                  descripcion_del_servicio,
+                  slug,
+                  imagen_principal,
+                },
+                index
+              ) => (
+                <a
+                  href={`/servicios/${slug}`}
+                  class:list={[
+                    "md:flex md:gap-36 md:px-36 py-8 justify-between group md:hover:bg-accent-purple/50 transition-colors rounded-3xl",
+                    {
+                      "sr-right flex-row-reverse": index % 2 === 1,
+                      "sr-left": index % 2 === 0,
+                    },
+                  ]}
+                >
+                  <div class="content-center">
+                    <h3 class="mb-4 text-3xl font-bold text-secondary">
+                      {nombre_del_servicio}
+                    </h3>
+                    <Image
+                      class="m-auto mb-10 md:hidden"
+                      src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_principal}`}
+                      alt={`Imagen del servicio ${nombre_del_servicio}`}
+                      height={400}
+                      width={400}
+                    />
+                    <p class="mb-3 ">{descripcion_del_servicio}</p>
+                    <p class="inline-flex items-center gap-4 py-3 pr-3 font-bold group-hover:underline text-primary">
+                      Leer más
+                      <span class="grid border-2 rounded-full group-hover:bg-accent w-fit border-primary h-fit place-items-center">
+                        <Arrow size={24} />
+                      </span>
+                    </p>
+                  </div>
+                  <Image
+                    class="hidden m-auto md:block"
+                    src={`${import.meta.env.DIRECTUS_URL}/assets/${imagen_principal}`}
+                    alt={`Imagen del servicio ${nombre_del_servicio}`}
+                    height={400}
+                    width={400}
+                  />
+                </a>
+              )
+            )
+          }
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <script>
-	import ScrollReveal from "scrollreveal";
+  import ScrollReveal from "scrollreveal";
 
-	ScrollReveal().reveal(".sr-right", {
-		origin: "right",
-		distance: "100px",
-		duration: 1000,
-		viewFactor: 0.5,
-	});
+  ScrollReveal().reveal(".sr-right", {
+    origin: "right",
+    distance: "100px",
+    duration: 1000,
+    viewFactor: 0.5,
+  });
 
-	ScrollReveal().reveal(".sr-left", {
-		origin: "left",
-		distance: "100px",
-		duration: 1000,
-		viewFactor: 0.5,
-	});
+  ScrollReveal().reveal(".sr-left", {
+    origin: "left",
+    distance: "100px",
+    duration: 1000,
+    viewFactor: 0.5,
+  });
 </script>

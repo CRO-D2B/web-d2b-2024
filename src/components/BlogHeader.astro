@@ -15,7 +15,7 @@ const menuItems = await getCategories();
 
     <nav class="hidden gap-4 md:flex">
       {
-        menuItems.map(({ id, name, slug }) => (
+        menuItems?.map(({ id, name, slug }) => (
           <a
             class="px-6 py-3 font-medium text-white text-md hover:text-primary"
             href={`/blog/categoria/${slug}`}
@@ -55,7 +55,7 @@ const menuItems = await getCategories();
       >
         <div class="flex flex-col gap-2 px-8 md:px-16">
           {
-            menuItems.map(({ name, slug }, index) => (
+            menuItems?.map(({ name, slug }, index) => (
               <a
                 class="px-0 py-2 text-2xl font-semibold rounded-md opacity-0 md:text-3xl fade md:px-4 text-nowrap text-secondary hover:bg-accent-purple"
                 href={`/blog/categoria/${slug}`}

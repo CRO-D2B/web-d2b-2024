@@ -29,7 +29,7 @@ export default function LoadMore ({ wpUrl }) {
     <>
       <div className="grid max-w-screen-xl gap-12 m-auto mb-12 md:grid-cols-3">
         {
-          posts.map((post, index) => (
+          posts?.map((post, index) => (
             <ReactBlogCard
               key={index}
               title={post?.title?.rendered}
@@ -37,7 +37,7 @@ export default function LoadMore ({ wpUrl }) {
               img={post?._embedded?.['wp:featuredmedia']?.[0]?.link}
               caption={post?._embedded?.['wp:featuredmedia']?.[0]?.alt_text}
               author={post?._embedded?.author?.[0]?.name}
-              authorSlug={post?._embedded?.author?.[0].slug}
+              authorSlug={post?._embedded?.author?.[0]?.slug}
               content={post?.content?.rendered}
               slug={post?.slug}
             />

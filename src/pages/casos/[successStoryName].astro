@@ -10,13 +10,13 @@ import {
 
 export const prerender = true;
 export const getStaticPaths = (() => {
-  return successStories.map(({ slug }) => ({
+  return successStories?.map(({ slug }) => ({
     params: { successStoryName: slug },
   }));
 }) satisfies GetStaticPaths;
 
 const successStoryData = await successStoryByName(
-  Astro.params.successStoryName,
+  Astro.params.successStoryName
 );
 
 const {
@@ -30,7 +30,7 @@ const {
   descripcion_enfoque,
   titulo_resultado,
   descripcion_resultado,
-} = successStoryData[0];
+} = successStoryData?.[0] ?? {};
 ---
 
 <Layout metaTitle={meta_title} metaDescription={meta_description}>
@@ -40,11 +40,11 @@ const {
         <h1
           class="text-white text-3xl md:text-5xl font-bold max-w-[30ch] mb-6 animate-fade-left"
         >
-          {successStoryLanding.titulo_principal}
+          {successStoryLanding?.titulo_principal}
         </h1>
         <div
           class="text-white text-xl md:text-2xl max-w-[70ch] [&>p]:mb-6 md:[&>p]:mb-12 [&>p:last-child]:mb-0 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline"
-          set:html={successStoryLanding.descripcion}
+          set:html={successStoryLanding?.descripcion}
         />
       </div>
     </section>

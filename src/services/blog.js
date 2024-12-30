@@ -15,6 +15,8 @@ export const getCategories = async () => {
 }
 
 export const getCategoryInfo = async ({ categorySlug }) => {
+  if (!categorySlug) return
+
   const endpoint = '/categories'
   const params = `_embed&_fields=id,name,description,yoast_head_json&slug=${categorySlug}`
   const url = buildUrl({ endpoint, params })
@@ -33,6 +35,8 @@ export const getPosts = async () => {
 }
 
 export const getPostBySlug = async ({ postSlug }) => {
+  if (!postSlug) return
+
   const endpoint = '/posts'
   const params = `_embed&_fields=title,_links,content,yoast_head_json,_embedded&slug=${postSlug}`
   const url = buildUrl({ endpoint, params })
@@ -42,6 +46,8 @@ export const getPostBySlug = async ({ postSlug }) => {
 }
 
 export const getPostsByCategoryId = async ({ id }) => {
+  if (!id) return
+
   const endpoint = '/posts'
   const params = `_embed&categories=${id}&per_page=100`
   const url = buildUrl({ endpoint, params })
@@ -60,6 +66,8 @@ export const getUsers = async () => {
 }
 
 export const getPostsByUserId = async ({ id }) => {
+  if (!id) return
+
   const endpoint = '/posts'
   const params = `_embed&author=${id}&per_page=100`
   const url = buildUrl({ endpoint, params })
@@ -69,6 +77,8 @@ export const getPostsByUserId = async ({ id }) => {
 }
 
 export const getUserBySlug = async ({ userSlug }) => {
+  if (!userSlug) return
+
   const endpoint = '/users'
   const params = `_embed&_fields=id,name,description,avatar_urls,yoast_head_json&slug=${userSlug}`
   const url = buildUrl({ endpoint, params })
