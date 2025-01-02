@@ -11,7 +11,7 @@ export const getCategories = async () => {
   const url = buildUrl({ endpoint, params })
   const res = await fetch(url)
   const data = await res.json()
-  return data
+  return data.filter(category => category.slug !== 'sin-categoria')
 }
 
 export const getCategoryInfo = async ({ categorySlug }) => {

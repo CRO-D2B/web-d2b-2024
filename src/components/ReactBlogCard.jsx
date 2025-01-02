@@ -23,7 +23,7 @@ export default function ReactBlogCard ({ title, excerpt, img, caption, author, a
       </a>
 
       <div className="px-4 mb-3">
-        <div className="text-clamp-4 [&>p]:text-neutral-600" dangerouslySetInnerHTML={{ __html: excerpt }} />
+        <div className="text-clamp-4 [&>p]:text-neutral-600" dangerouslySetInnerHTML={{ __html: excerpt?.replace(/\[.*?\]/g, '') }} />
       </div>
 
       <footer className="content-end flex-1 px-3 pb-6">
